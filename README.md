@@ -1,8 +1,11 @@
+<h1 align="center">Research and Extension Management Information System</h1>
+<p align="center">This laravel system will help the REMIS Coordinator at Government state college in managing documents.</p>
+
 ## About REMIS
 
 REMIS - Research and Extension Management Information System used Laravel framework as its development framework. The system is use to manage Research and Extension documents 
 in Southern Philippines Agri-business and Marine and Aquatic School of Technology, Malita Campus.
-The system also campable in managing campus documents such as:
+The system also campable in managing documents in Research and Extension such as:
 
 - Research.
 - Extension.
@@ -12,11 +15,11 @@ The system also campable in managing campus documents such as:
 - Partnership
 
 Through this system, the REMIS Coordinator of the campus will be able to monitor and track 
-Research and Extension records.
+Research and Extension documents.
 
 
 ## Developer
-Developed by yours truly.
+-[Dondo T. Dano](https://github.com/dondodano).
 
 
 ## License
