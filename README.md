@@ -1,6 +1,6 @@
 <h1 align="center">SPAMAST - Research and Extension Management Information 
 System (REMIS)</h1>
-<p align="center">This laravel system will help the REMIS Coordinator at Government state college in managing documents.</p>
+<p align="center">This laravel system will help the REMIS Coordinator in University and State College in managing Research and Extension related documents.</p>
 
 ## About REMIS
 
@@ -19,7 +19,7 @@ Through this system, the REMIS Coordinator of the campus will be able to monitor
 Research and Extension documents.
 
 
-## Developer
+## Credits
 -[Dondo T. Dano](https://github.com/dondodano).
 
 
