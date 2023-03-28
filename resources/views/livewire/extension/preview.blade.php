@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <dl class="row mb-0">
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Extension:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ setDate($extensionModel->extension) }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $extensionModel->extension }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Date From:</dt>
                         <dd class="col-sm-10 text-wrap">{{ $extensionModel->date_from }}</dd>
