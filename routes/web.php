@@ -302,3 +302,28 @@ Route::prefix('/partnership')->middleware(['remisauthorized'])->group(function()
     Route::get('/preview/{id}', Partnership\Preview::class);
     Route::get('/evaluation/{id}', Partnership\Evaluation::class);
 });
+
+
+/**
+ * Optimization
+ */
+Route::get('/symlink', function(){
+    Artisan::call('storage:link');
+    return 'Link created!';
+});
+Route::get('/phpinfo', function(){
+    return phpinfo();
+});
+Route::get('/clear', function(){
+    Artisan::call('view:clear');
+    Artisan::call('route:cache');
+    Artisan::call('route:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    echo 'Clear all things required to clear....';
+});
+Route::get('/optmize', function(){
+    Artisan::call('optmized');
+    return 'Optmized!';
+});
