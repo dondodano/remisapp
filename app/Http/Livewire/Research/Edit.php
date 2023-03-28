@@ -69,7 +69,7 @@ class Edit extends Component
         }
 
         $update = $this->research->update([
-            'commodity' => $this->programTitle,
+            'commodity' => $this->commodity,
             'category_id' => $this->category,
             'program' => $this->programTitle,
             'project' => $this->projectTitle,
