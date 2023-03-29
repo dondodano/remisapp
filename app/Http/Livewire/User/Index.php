@@ -5,6 +5,8 @@ namespace App\Http\Livewire\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+use App\Jobs\SendMailLaterJob;
+
 use App\Models\User\User;
 use App\Models\User\UserRole;
 use App\Models\User\UserToken;
@@ -85,37 +87,37 @@ class Index extends Component
 
     public function send($id)
     {
-        $newId = decipher($id);
-        $user = User::findOrFail($newId);
-
         // notyf()
         // ->ripple(false)
         // ->addInfo('Sending credential to email.');
 
+        // $newId = decipher($id);
+        // $user = User::findOrFail($newId);
 
-        try{
+        // try{
 
-            $token = token();
+        //     $token = token();
 
-            $userToken = UserToken::create([
-                'user_id' => $newId,
-                'token' => $token
-            ]);
+        //     $userToken = UserToken::create([
+        //         'user_id' => $newId,
+        //         'token' => $token
+        //     ]);
 
-            Mail::to($user->email)
-                ->send(new UserCredentialMailer([
-                    'recipient' => $user->firstname.' '.$user->lastname,
-                    'email' => $user->email,
-                    'token' => encipher($token)
-                ]));
+        //     Mail::to($user->email)
+        //         ->send(new UserCredentialMailer([
+        //             'recipient' => $user->firstname.' '.$user->lastname,
+        //             'email' => $user->email,
+        //             'token' => encipher($token)
+        //         ]));
 
-                toastr("Credentail of [<strong>".$user->firstname.' '.$user->lastname."</strong>] successfully sent!", "success");
+        //         toastr("Credentail of [<strong>".$user->firstname.' '.$user->lastname."</strong>] successfully sent!", "success");
 
-        }catch(Exception $e)
-        {
-            toastr("Unable to send mail to [<strong>".$user->firstname.' '.$user->lastname."</strong>]!", "error");
-        }
+        // }catch(Exception $e)
+        // {
+        //     toastr("Unable to send mail to [<strong>".$user->firstname.' '.$user->lastname."</strong>]!", "error");
+        // }
 
+        dispatch(new SendMailLaterJob($id) )->delay(now()->addMinute(1));
 
     }
 
