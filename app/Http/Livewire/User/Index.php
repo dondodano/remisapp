@@ -117,7 +117,8 @@ class Index extends Component
         //     toastr("Unable to send mail to [<strong>".$user->firstname.' '.$user->lastname."</strong>]!", "error");
         // }
 
-        dispatch(new SendMailLaterJob($id) )->delay(now()->addMinute(1));
+        dispatch(new SendMailLaterJob($id) );
+        //->delay(now()->addMinutes(1));
 
     }
 
