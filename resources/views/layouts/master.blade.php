@@ -44,6 +44,15 @@
 
         @livewireStyles
 
+        <style>
+            .dash-icon{
+                font-size: 2.75rem;
+            }
+
+            .dash-count{
+                font-size: 2.5rem;
+            }
+        </style>
     </head>
 
     <body>
