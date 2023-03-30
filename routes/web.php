@@ -45,10 +45,10 @@ use App\Http\Livewire\Requisite\Institute;
 /**
  * Auth
  */
-Route::get('/', function(){ return redirect('/login'); })->middleware('remisguest');
-Route::get('/login', [AuthController::class, 'index'])->middleware('remisguest')->name('login');
-Route::post('/login', [AuthController::class, 'signin'])->middleware('remisguest')->name('login.submit');
-Route::get('/logout', [AuthController::class, 'signout'])->name('remisguest');
+Route::get('/', function(){ return redirect('/login'); })->middleware('guest');
+Route::get('/login', [AuthController::class, 'index'])->middleware('guest')->name('login');
+Route::post('/login', [AuthController::class, 'signin'])->middleware('guest')->name('login.submit');
+Route::get('/logout', [AuthController::class, 'signout'])->name('guest');
 
 /**
  * Authorized
@@ -63,7 +63,7 @@ Route::put('/change-password/{token}', [FirstAccessChangePasswordController::cla
 
 
 
-Route::prefix('/dashboard')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/dashboard')->middleware(['auth'])->group(function(){
     Route::get('', Dashboard\Index::class);
 });
 
@@ -71,7 +71,7 @@ Route::prefix('/dashboard')->middleware(['remisauthorized'])->group(function(){
 /**
  * User
  */
-Route::prefix('/user')->middleware(['remisauthorized', 'can:is_super, can:is_admin'])->group(function(){
+Route::prefix('/user')->middleware(['auth', 'can:is_super, can:is_admin'])->group(function(){
     Route::get('', User\Index::class);
     Route::get('/create', User\Create::class);
     Route::get('/edit/{id}', User\Edit::class);
@@ -81,7 +81,7 @@ Route::prefix('/user')->middleware(['remisauthorized', 'can:is_super, can:is_adm
 /**
  * User Log
  */
-Route::prefix('/user-log')->middleware(['remisauthorized', 'can:is_super'])->group(function(){
+Route::prefix('/user-log')->middleware(['auth', 'can:is_super'])->group(function(){
     Route::get('', Log\UserLog::class);
 });
 
@@ -89,7 +89,7 @@ Route::prefix('/user-log')->middleware(['remisauthorized', 'can:is_super'])->gro
 /**
  * Activity Log
  */
-Route::prefix('/activity-log')->middleware(['remisauthorized', 'can:is_super'])->group(function(){
+Route::prefix('/activity-log')->middleware(['auth', 'can:is_super'])->group(function(){
     Route::get('', Log\UserActivityLog::class);
 });
 
@@ -97,7 +97,7 @@ Route::prefix('/activity-log')->middleware(['remisauthorized', 'can:is_super'])-
 /**
  * Requisite Institute
  */
-Route::prefix('/institute')->middleware(['remisauthorized', 'can:is_super, can:is_admin'])->group(function(){
+Route::prefix('/institute')->middleware(['auth', 'can:is_super, can:is_admin'])->group(function(){
     Route::get('', Institute\Index::class);
     Route::get('/create', Institute\Create::class);
     Route::get('/edit/{id}', Institute\Edit::class);
@@ -107,7 +107,7 @@ Route::prefix('/institute')->middleware(['remisauthorized', 'can:is_super, can:i
 /**
  * Requisite Program
  */
-Route::prefix('/program')->middleware(['remisauthorized', 'can:is_super, can:is_admin'])->group(function(){
+Route::prefix('/program')->middleware(['auth', 'can:is_super, can:is_admin'])->group(function(){
     Route::get('', Program\Index::class);
     Route::get('/create', Program\Create::class);
     Route::get('/edit/{id}', Program\Edit::class);
@@ -117,7 +117,7 @@ Route::prefix('/program')->middleware(['remisauthorized', 'can:is_super, can:is_
 /**
  * Backup System
  */
-Route::prefix('/system-backup')->middleware(['remisauthorized', 'can:is_super'])->group(function(){
+Route::prefix('/system-backup')->middleware(['auth', 'can:is_super'])->group(function(){
     Route::get('', [SystemController::class, 'index']);
     Route::get('/create', function(Illuminate\Http\Request $request){
         ini_set('max_execution_time', 300);
@@ -182,7 +182,7 @@ Route::prefix('/system-backup')->middleware(['remisauthorized', 'can:is_super'])
 /**
  * Backup System
  */
-Route::prefix('/database-backup')->middleware(['remisauthorized', 'can:is_super'])->group(function(){
+Route::prefix('/database-backup')->middleware(['auth', 'can:is_super'])->group(function(){
     Route::get('', [DatabaseController::class, 'index']);
     Route::get('/create', [DatabaseController::class, 'create']);
     Route::get('/download/{file}', [DatabaseController::class, 'download']);
@@ -193,7 +193,7 @@ Route::prefix('/database-backup')->middleware(['remisauthorized', 'can:is_super'
 /**
  * System Setting
  */
-Route::prefix('/general')->middleware(['remisauthorized', 'can:is_super'])->group(function(){
+Route::prefix('/general')->middleware(['auth', 'can:is_super'])->group(function(){
     Route::get('', [GeneralSettingController::class, 'index']);
     Route::post('/update', [GeneralSettingController::class, 'update']);
 });
@@ -202,7 +202,7 @@ Route::prefix('/general')->middleware(['remisauthorized', 'can:is_super'])->grou
 /**
  * Favicon Setting
  */
-Route::prefix('/favicon')->middleware(['remisauthorized', 'can:is_super'])->group(function(){
+Route::prefix('/favicon')->middleware(['auth', 'can:is_super'])->group(function(){
     Route::get('', [FaviconController::class, 'index']);
     Route::post('/update', [FaviconController::class, 'update']);
 });
@@ -211,7 +211,7 @@ Route::prefix('/favicon')->middleware(['remisauthorized', 'can:is_super'])->grou
 /**
  * Maintenance
  */
-Route::prefix('/maintenance')->middleware(['remisauthorized', 'can:is_super'])->group(function(){
+Route::prefix('/maintenance')->middleware(['auth', 'can:is_super'])->group(function(){
     Route::get('', [MaintenanceController::class, 'index']);
     Route::post('/update', [MaintenanceController::class, 'update']);
 });
@@ -220,7 +220,7 @@ Route::prefix('/maintenance')->middleware(['remisauthorized', 'can:is_super'])->
 /**
  * My Password & Profile
  */
-Route::prefix('/my')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/my')->middleware(['auth'])->group(function(){
     Route::get('/password', [PasswordController::class, 'index']);
     Route::post('/password', [PasswordController::class, 'update']);
 
@@ -235,7 +235,7 @@ Route::prefix('/my')->middleware(['remisauthorized'])->group(function(){
 /**
  * Research : Require Update
  */
-Route::prefix('/research')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/research')->middleware(['auth'])->group(function(){
     Route::get('/', Research\Index::class);
     Route::get('/create', Research\Create::class);
     Route::get('/edit/{id}',Research\Edit::class);
@@ -247,7 +247,7 @@ Route::prefix('/research')->middleware(['remisauthorized'])->group(function(){
 /**
  * Publication
  */
-Route::prefix('/publication')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/publication')->middleware(['auth'])->group(function(){
     Route::get('/', Publication\Index::class);
     Route::get('/create', Publication\Create::class);
     Route::get('/edit/{id}',Publication\Edit::class);
@@ -259,7 +259,7 @@ Route::prefix('/publication')->middleware(['remisauthorized'])->group(function()
 /**
  * Presentation
  */
-Route::prefix('/presentation')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/presentation')->middleware(['auth'])->group(function(){
     Route::get('/', Presentation\Index::class);
     Route::get('/create', Presentation\Create::class);
     Route::get('/edit/{id}',Presentation\Edit::class);
@@ -271,7 +271,7 @@ Route::prefix('/presentation')->middleware(['remisauthorized'])->group(function(
 /**
  * Extension
  */
-Route::prefix('/extension')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/extension')->middleware(['auth'])->group(function(){
     Route::get('/', Extension\Index::class);
     Route::get('/create', Extension\Create::class);
     Route::get('/edit/{id}',Extension\Edit::class);
@@ -283,7 +283,7 @@ Route::prefix('/extension')->middleware(['remisauthorized'])->group(function(){
 /**
  * Training
  */
-Route::prefix('/training')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/training')->middleware(['auth'])->group(function(){
     Route::get('/', Training\Index::class);
     Route::get('/create', Training\Create::class);
     Route::get('/edit/{id}',Training\Edit::class);
@@ -295,7 +295,7 @@ Route::prefix('/training')->middleware(['remisauthorized'])->group(function(){
 /**
  * Partnership
  */
-Route::prefix('/partnership')->middleware(['remisauthorized'])->group(function(){
+Route::prefix('/partnership')->middleware(['auth'])->group(function(){
     Route::get('/', Partnership\Index::class);
     Route::get('/create', Partnership\Create::class);
     Route::get('/edit/{id}',Partnership\Edit::class);

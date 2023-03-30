@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
+
 
 class AuthenticateUser
 {
@@ -17,8 +19,9 @@ class AuthenticateUser
     public function handle(Request $request, Closure $next)
     {
         if(session()->has('session')){
-            return $next($request);
+             return $next($request);
         }
+
         return redirect('/login');
     }
 }

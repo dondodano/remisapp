@@ -13,6 +13,7 @@ use App\Models\Setting\General;
 
 use Auth;
 
+
 class AuthController extends Controller
 {
     public function index()
@@ -120,8 +121,6 @@ class AuthController extends Controller
                 'current_year' => setToday('Y'),
                 'favicon' => General::where('id', 1)->first()->fav_icon
             ]);
-
-
 
             $this->logUser($request, 1);
 

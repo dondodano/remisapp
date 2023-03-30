@@ -67,6 +67,6 @@ class Kernel extends HttpKernel
          * Custom Middleware
          */
         'remisauthorized' => \App\Http\Middleware\AuthenticateUser::class,
-        'remisguest' => \App\Http\Middleware\RedirectIfAuthenticatedUser::class
+        'remisguest' => \App\Http\Middleware\RedirectIfAuthenticatedUser::class,
     ];
 }
