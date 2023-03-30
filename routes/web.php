@@ -323,8 +323,8 @@ Route::get('/clear', function(){
     Artisan::call('config:cache');
     echo 'Clear all things required to clear....';
 });
-Route::get('/optmize', function(){
-    Artisan::call('optmized');
+Route::get('/optimize', function(){
+    Artisan::call('optimize');
     return 'Optmized!';
 });
 // Route::get('/work', function(){

@@ -5,8 +5,8 @@ namespace App\Http\Livewire\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-//use App\Jobs\SendMailLaterJob;
-use App\Events\SendMailToUserCredentialEvent;
+use App\Jobs\SendMailLaterJob;
+//use App\Events\SendMailToUserCredentialEvent;
 
 use App\Models\User\User;
 use App\Models\User\UserRole;
@@ -121,9 +121,9 @@ class Index extends Component
         /**
          * Job Execution : Problem unable to run queue:work on Production
          */
-        //dispatch(new SendMailLaterJob($id) );
+        dispatch(new SendMailLaterJob($id) );
 
-        event(new SendMailToUserCredentialEvent($id));
+        //event(new SendMailToUserCredentialEvent($id));
 
     }
 
