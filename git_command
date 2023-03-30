@@ -10,3 +10,14 @@ Pushing file to git hub
 git add "README.md"
 git commit -m "First Commit"
 git push -u origin master
+
+# CRON Job for queue:work
+cd /public_html/remis.dpanel.site
+php artisan queue:work --stop-when-empty
+
+# For htaccess on PRODUCTION
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
