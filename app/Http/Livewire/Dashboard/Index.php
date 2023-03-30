@@ -9,28 +9,11 @@ use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
 use App\Models\Repository\Research;
-use App\Models\Attachment\ResearchFile;
-use App\Models\Evaluation\ResearchEvaluation;
-
 use App\Models\Repository\Publication;
-use App\Models\Attachment\PublicationFile;
-use App\Models\Evaluation\PublicationEvaluation;
-
 use App\Models\Repository\Presentation;
-use App\Models\Attachment\PresentationFile;
-use App\Models\Evaluation\PresentationEvaluation;
-
 use App\Models\Repository\Training;
-use App\Models\Attachment\TrainingFile;
-use App\Models\Evaluation\TrainingEvaluation;
-
 use App\Models\Repository\Extension;
-use App\Models\Attachment\ExtensionFile;
-use App\Models\Evaluation\ExtensionEvaluation;
-
 use App\Models\Repository\Partnership;
-use App\Models\Attachment\PartnershipFile;
-use App\Models\Evaluation\PartnershipEvaluation;
 
 class Index extends Component
 {
@@ -106,6 +89,7 @@ class Index extends Component
         }
         return $data;
     }
+
 
     public function render()
     {
