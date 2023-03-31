@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 //use Illuminate\Database\Eloquent\Model;
-
+use Cache;
 
 use App\Models\Log\LogUser;
 use App\Models\User\UserRole;
@@ -59,8 +59,4 @@ class User extends Authenticatable
         return $this->hasOne(User::class, 'user_id', 'id');
     }
 
-    public function isOnline()
-    {
-        return Cache::has('user-online-' . $this->id);
-    }
 }

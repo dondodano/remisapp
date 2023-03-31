@@ -37,6 +37,11 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+            /**
+            * Custom Middleware
+            */
+            \App\Http\Middleware\UserActivity::class,
         ],
 
         'api' => [
@@ -66,7 +71,7 @@ class Kernel extends HttpKernel
         /**
          * Custom Middleware
          */
-        'remisauthorized' => \App\Http\Middleware\AuthenticateUser::class,
-        'remisguest' => \App\Http\Middleware\RedirectIfAuthenticatedUser::class,
+        // 'remisauthorized' => \App\Http\Middleware\AuthenticateUser::class,
+        // 'remisguest' => \App\Http\Middleware\RedirectIfAuthenticatedUser::class,
     ];
 }

@@ -28,7 +28,7 @@
             @livewire('components.activity-timeline')
         </div>
         <div class="col-md-4">
-            @livewire('components.online-users')
+            @livewire('components.online-users', ['onlineusers' => $onlineusers])
         </div>
     </div>
 

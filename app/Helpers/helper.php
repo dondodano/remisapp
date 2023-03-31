@@ -1123,3 +1123,31 @@ function getFileShortLocation($fileName)
 {
     return '/storage'. '/'.  $fileName;
 }
+
+/**
+ * Avatar Online Status
+ */
+function isOnline($userId)
+{
+    return Cache::get('user-' . $userId)['isOnline'] ==1;
+}
+
+/**
+ * User Cache Time
+ */
+function isOnlineTime($userId)
+{
+    return Cache::get('user-' . $userId)['time'];
+}
+
+
+/**
+ * Online User Count
+ */
+function onlineUserCountText($array)
+{
+    return concat(' ',[
+        count($array),
+        count($array) > 0 ? 'online' : 'onlines'
+    ]);
+}

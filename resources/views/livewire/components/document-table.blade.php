@@ -2,8 +2,8 @@
     <div class="card-header">
         <h5 class="card-title">Document uploaded</h5>
     </div>
-    <div class="tabl-responsive">
-        <table class="table">
+    <div class="table-responsive perfect-sc" id="perfect-1">
+        <table class="table table-borderless">
             <thead>
                 <tr>
                     <th>User</th>

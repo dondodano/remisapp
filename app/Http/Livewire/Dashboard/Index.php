@@ -8,6 +8,9 @@ use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
+
+use Cache;
+use App\Models\User\User;
 use App\Models\Repository\Research;
 use App\Models\Repository\Publication;
 use App\Models\Repository\Presentation;
@@ -90,6 +93,29 @@ class Index extends Component
         return $data;
     }
 
+    public function getOnlineUsersProperty()
+    {
+        $onlineUsers = [];
+        $onlineUsersCount = [];
+
+        $users = User::with('temp_avatar')->where('active',1);
+        foreach($users->get() as $user)
+        {
+            if(Cache::has('user-' . $user->id))
+            {
+                array_push($onlineUsers, $user );
+
+                if(isOnline($user->id))
+                {
+                    array_push($onlineUsersCount, $user->id);
+                }
+            }
+        }
+        return [
+            'record' => $onlineUsers,
+            'count' => $onlineUsersCount
+        ];
+    }
 
     public function render()
     {
@@ -100,6 +126,7 @@ class Index extends Component
             'trainings' => $this->trainings,
             'extensions' => $this->extensions,
             'partnerships' => $this->partnerships,
+            'onlineusers' => $this->onlineUsers
         ])
         ->extends('layouts.master')
         ->section('site-content');

@@ -12,6 +12,7 @@ use App\Models\Log\LogUser;
 use App\Models\Setting\General;
 
 use Auth;
+use Cache;
 
 
 class AuthController extends Controller
@@ -153,6 +154,11 @@ class AuthController extends Controller
          * Log User
          */
         $this->logUser($request, 0);
+
+        Cache::put('user-' . Auth::user()->id, [
+            'time' => now(),
+            'isOnline' => 0
+        ]);
 
         $request->session()->forget('session');
         $request->session()->invalidate();

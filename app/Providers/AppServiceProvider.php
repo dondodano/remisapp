@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
 use Illuminate\Support\Facades\Blade;
+use Cache;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -47,6 +49,14 @@ class AppServiceProvider extends ServiceProvider
                     break;
             }
 
+        });
+
+        Blade::if('isOnline', function($userId){
+            return Cache::get('user-' . $userId)['isOnline'] == 1;
+        });
+
+        Blade::if('isOffline', function($userId){
+            return Cache::get('user-' . $userId)['isOnline'] == 0;
         });
 
     }
