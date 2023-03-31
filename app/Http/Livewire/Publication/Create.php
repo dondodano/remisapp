@@ -9,6 +9,8 @@ use App\Models\Repository\Publication;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Attachment\PublicationFile;
 
+use App\Models\Feed\FeedableItem;
+
 class Create extends Component
 {
     use WithFileUploads;
@@ -69,6 +71,10 @@ class Create extends Component
         $this->date_published = setToday();
 
         if($store)
+            FeedableItem::firstOrCreate([
+                'feedable_id' => $store->id,
+                'feedable_type' => Publication::class
+            ])->save();
             logUserActivity(request(), 'User ['.sessionGet('id').'] created new Publication document with ID => ['.$store->id.']');
             toastr("Publication document successfully saved!", "success");
     }

@@ -10,6 +10,8 @@ use App\Models\Attachment\TrainingFile;
 use App\Models\Evaluation\TrainingEvaluation;
 use App\Models\Misc\Miscellaneous as Relevance;
 
+use  App\Models\Feed\FeedableItem;
+
 class Training extends Model
 {
     use HasFactory;
@@ -51,5 +53,18 @@ class Training extends Model
     public function file_owner()
     {
         return $this->belongsTo(User::class, 'owner', 'id');
+    }
+
+    /**
+     * Delegate || Morph
+     */
+    public function feedItem()
+    {
+        return $this->morphOne(FeedableItem::class, 'feedable');
+    }
+
+    public function content()
+    {
+        return $this->title;
     }
 }

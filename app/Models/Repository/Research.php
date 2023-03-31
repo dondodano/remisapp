@@ -12,6 +12,7 @@ use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
+use  App\Models\Feed\FeedableItem;
 
 class Research extends Model
 {
@@ -77,4 +78,18 @@ class Research extends Model
         return $this->where('active', 1);
     }
 
+
+
+    /**
+     * Delegate || Morph
+     */
+    public function feedItem()
+    {
+        return $this->morphOne(FeedableItem::class, 'feedable');
+    }
+
+    public function content()
+    {
+        return $this->project;
+    }
 }

@@ -13,6 +13,8 @@ use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
+use App\Models\Feed\FeedableItem;
+
 class Create extends Component
 {
 
@@ -79,6 +81,10 @@ class Create extends Component
         $this->fileInputId = rand();
 
         if($store)
+            FeedableItem::firstOrCreate([
+                'feedable_id' => $store->id,
+                'feedable_type' => Research::class
+            ])->save();
             logUserActivity(request(), 'User ['.sessionGet('id').'] created new Research document with ID => ['.$store->id.']');
             toastr("Research data successfully saved!", "success");
     }

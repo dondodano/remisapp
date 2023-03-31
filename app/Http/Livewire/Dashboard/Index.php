@@ -10,6 +10,7 @@ use App\Models\Misc\Miscellaneous as Category;
 
 
 use Cache;
+use Carbon\Carbon;
 use App\Models\User\User;
 use App\Models\Repository\Research;
 use App\Models\Repository\Publication;
@@ -17,6 +18,8 @@ use App\Models\Repository\Presentation;
 use App\Models\Repository\Training;
 use App\Models\Repository\Extension;
 use App\Models\Repository\Partnership;
+
+use App\Models\Feed\FeedableItem;
 
 class Index extends Component
 {
@@ -110,6 +113,13 @@ class Index extends Component
         ];
     }
 
+
+    public function getActivityTimelinesProperty()
+    {
+        $lastSevenDays = Carbon::today()->subDays(7);
+        return FeedableItem::where('date_created', '>=', $lastSevenDays)->get();
+    }
+
     public function render()
     {
         return view('livewire.dashboard.index',[
@@ -120,6 +130,7 @@ class Index extends Component
             'extensions' => $this->extensions->orderBy('id', 'desc'),
             'partnerships' => $this->partnerships->orderBy('id', 'desc'),
             'onlineUsers' => $this->onlineUsers,
+            'activityTimelines' => $this->activityTimelines
         ])
         ->extends('layouts.master')
         ->section('site-content');

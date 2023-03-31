@@ -9,6 +9,8 @@ use App\Models\Repository\Extension;
 use App\Models\Attachment\ExtensionFile;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Feed\FeedableItem;
+
 class Create extends Component
 {
     use WithFileUploads;
@@ -66,6 +68,10 @@ class Create extends Component
         $this->date_presented = setToday();
 
         if($store)
+            FeedableItem::firstOrCreate([
+                'feedable_id' => $store->id,
+                'feedable_type' => Extension::class
+            ])->save();
             logUserActivity(request(), 'User ['.sessionGet('id').'] created new Extension document with ID => ['.$store->id.']');
             toastr("Extension document successfully saved!", "success");
     }

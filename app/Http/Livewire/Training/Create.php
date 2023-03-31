@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Misc\Miscellaneous as Quality;
 use App\Models\Attachment\TrainingFile;
 
+use App\Models\Feed\FeedableItem;
+
 class Create extends Component
 {
     use WithFileUploads;
@@ -72,6 +74,10 @@ class Create extends Component
         $this->date_presented = setToday();
 
         if($store)
+            FeedableItem::firstOrCreate([
+                'feedable_id' => $store->id,
+                'feedable_type' => Training::class
+            ])->save();
             logUserActivity(request(), 'User ['.sessionGet('id').'] created new Training document with ID => ['.$store->id.']');
             toastr("Training document successfully saved!", "success");
     }

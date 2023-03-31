@@ -9,6 +9,8 @@ use App\Models\User\User;
 use App\Models\Attachment\PublicationFile;
 use App\Models\Evaluation\PublicationEvaluation;
 
+use  App\Models\Feed\FeedableItem;
+
 class Publication extends Model
 {
     use HasFactory;
@@ -43,5 +45,18 @@ class Publication extends Model
     public function file_owner()
     {
         return $this->belongsTo(User::class, 'owner', 'id');
+    }
+
+    /**
+     * Delegate || Morph
+     */
+    public function feedItem()
+    {
+        return $this->morphOne(FeedableItem::class, 'feedable');
+    }
+
+    public function content()
+    {
+        return $this->title;
     }
 }

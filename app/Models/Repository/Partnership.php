@@ -9,6 +9,8 @@ use App\Models\User\User;
 use App\Models\Attachment\PartnershipFile;
 use App\Models\Evaluation\PartnershipEvaluation;
 
+use  App\Models\Feed\FeedableItem;
+
 class Partnership extends Model
 {
     use HasFactory;
@@ -41,5 +43,18 @@ class Partnership extends Model
     public function file_owner()
     {
         return $this->belongsTo(User::class, 'owner', 'id');
+    }
+
+    /**
+     * Delegate || Morph
+     */
+    public function feedItem()
+    {
+        return $this->morphOne(FeedableItem::class, 'feedable');
+    }
+
+    public function content()
+    {
+        return $this->partner;
     }
 }

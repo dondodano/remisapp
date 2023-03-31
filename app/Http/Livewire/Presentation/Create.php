@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Misc\Miscellaneous as Type;
 use App\Models\Attachment\PresentationFile;
 
+use App\Models\Feed\FeedableItem;
 
 class Create extends Component
 {
@@ -68,6 +69,10 @@ class Create extends Component
         $this->date_presented = setToday();
 
         if($store)
+            FeedableItem::firstOrCreate([
+                'feedable_id' => $store->id,
+                'feedable_type' => Presentation::class
+            ])->save();
             logUserActivity(request(), 'User ['.sessionGet('id').'] created new Presentation document with ID => ['.$store->id.']');
             toastr("Presentation document successfully saved!", "success");
     }

@@ -10,6 +10,8 @@ use App\Models\Misc\Miscellaneous as Type;
 use App\Models\Attachment\PresentationFile;
 use App\Models\Evaluation\PresentationEvaluation;
 
+use  App\Models\Feed\FeedableItem;
+
 class Presentation extends Model
 {
     use HasFactory;
@@ -49,5 +51,18 @@ class Presentation extends Model
     public function file_owner()
     {
         return $this->belongsTo(User::class, 'owner', 'id');
+    }
+
+    /**
+     * Delegate || Morph
+     */
+    public function feedItem()
+    {
+        return $this->morphOne(FeedableItem::class, 'feedable');
+    }
+
+    public function content()
+    {
+        return $this->title;
     }
 }

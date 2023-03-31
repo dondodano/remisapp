@@ -9,6 +9,8 @@ use App\Models\User\User;
 use App\Models\Attachment\ExtensionFile;
 use App\Models\Evaluation\ExtensionEvaluation;
 
+use  App\Models\Feed\FeedableItem;
+
 class Extension extends Model
 {
     use HasFactory;
@@ -41,5 +43,18 @@ class Extension extends Model
     public function file_owner()
     {
         return $this->belongsTo(User::class, 'owner', 'id');
+    }
+
+    /**
+     * Delegate || Morph
+     */
+    public function feedItem()
+    {
+        return $this->morphOne(FeedableItem::class, 'feedable');
+    }
+
+    public function content()
+    {
+        return $this->extension;
     }
 }

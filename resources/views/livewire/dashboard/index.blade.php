@@ -25,7 +25,7 @@
 
     <div class="row mb-4">
         <div class="col-md-8">
-            @livewire('components.activity-timeline', ['activityTimelines' => null])
+            @livewire('components.activity-timeline', ['activityTimelines' => $activityTimelines])
         </div>
         <div class="col-md-4">
             @livewire('components.online-users', ['onlineUsers' => $onlineUsers])
