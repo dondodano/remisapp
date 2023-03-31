@@ -6,7 +6,6 @@ function perfectScrollInit()
         for(let i=0; i<ps.length; i++)
         {
             new PerfectScrollbar('#perfect-'+i);
-            console.log(i);
         }
     }
 }

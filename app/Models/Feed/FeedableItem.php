@@ -33,4 +33,5 @@ class FeedableItem extends Model
     {
         return $this->feedable->content();
     }
+
 }

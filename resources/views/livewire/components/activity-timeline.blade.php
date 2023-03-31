@@ -3,7 +3,7 @@
         <h5 class="card-title m-0 me-2"><i class="bx bx-list-ul me-2"></i>Activity Timeline</h5>
     </div>
     <div class="card-body ">
-        <div class="table-responsive perfect-sc p-3" id="perfect-2" style="max-height: 320px !important;">
+        <div class="table-responsive perfect-sc p-3" id="perfect-1" style="max-height: 320px !important;">
             <ul class="timeline timeline-dashed" >
                 @if($activityTimelines)
                     @foreach ($activityTimelines as $timeline)

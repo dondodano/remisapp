@@ -7,7 +7,7 @@ use Livewire\Component;
 class DocumentTable extends Component
 {
 
-    public $records = [];
+    public $documentRecords = [];
 
     public function render()
     {
