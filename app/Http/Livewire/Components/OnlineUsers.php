@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class OnlineUsers extends Component
 {
-    public $onlineusers = [];
+    public $onlineUsers = [];
 
     public function render()
     {

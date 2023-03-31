@@ -2,16 +2,16 @@
     <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title  m-0 me-2">Online Users</h5>
         <small>
-           {{ onlineUserCountText($onlineusers['count']) }}
+           {{ onlineUserCountText($onlineUsers['count']) }}
         </small>
     </div>
     <div class="table-responsive perfect-sc" id="perfect-0">
         <table class="table table-borderless">
             <tbody>
 
-                @if($onlineusers['record'])
-                    @if(count($onlineusers['record']) > 0)
-                        @foreach($onlineusers['record'] as $user)
+                @if($onlineUsers['record'])
+                    @if(count($onlineUsers['record']) > 0)
+                        @foreach($onlineUsers['record'] as $user)
                             @if(Cache::has('user-' . $user->id))
                                 <tr>
                                     <td>
@@ -30,7 +30,13 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td><small class="text-truncate text-muted">{{ elapse(isOnlineTime($user->id)) }}</small></td>
+                                    <td>
+                                        <small class="text-truncate text-muted">
+                                            @isOffline($user->id)
+                                                {{ elapse(isOnlineTime($user->id)) }}
+                                            @endisOffline
+                                        </small>
+                                    </td>
                                 </tr>
                             @endif
                         @endforeach

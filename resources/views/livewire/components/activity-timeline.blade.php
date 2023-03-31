@@ -6,7 +6,7 @@
 
         <ul class="timeline timeline-dashed ">
 
-            @if($timelines)
+            {{-- @if($timelines)
                 @foreach ($timelines as $timeline)
                 <li class="mb-4 timeline-item timeline-item-primary">
                     <span class="timeline-indicator timeline-indicator-primary">
@@ -24,7 +24,7 @@
                     </div>
                 </li>
                 @endforeach
-            @endif
+            @endif --}}
 
 
             <li class="timeline-end-indicator">

@@ -20,13 +20,6 @@ use App\Models\Repository\Partnership;
 
 class Index extends Component
 {
-    // public $research;
-    // public $publication;
-    // public $presentation;
-    // public $training;
-    // public $extension;
-    // public $partnership;
-
     public function getResearchesProperty()
     {
         $data = Research::with(['category', 'fund', 'research_status', 'evaluations','attachments'])->where('active',1);
@@ -120,13 +113,13 @@ class Index extends Component
     public function render()
     {
         return view('livewire.dashboard.index',[
-            'researches' => $this->researches,
-            'publications' => $this->publications,
-            'presentations' => $this->presentations,
-            'trainings' => $this->trainings,
-            'extensions' => $this->extensions,
-            'partnerships' => $this->partnerships,
-            'onlineusers' => $this->onlineUsers
+            'researches' => $this->researches->orderBy('id', 'desc'),
+            'publications' => $this->publications->orderBy('id', 'desc'),
+            'presentations' => $this->presentations->orderBy('id', 'desc'),
+            'trainings' => $this->trainings->orderBy('id', 'desc'),
+            'extensions' => $this->extensions->orderBy('id', 'desc'),
+            'partnerships' => $this->partnerships->orderBy('id', 'desc'),
+            'onlineUsers' => $this->onlineUsers,
         ])
         ->extends('layouts.master')
         ->section('site-content');

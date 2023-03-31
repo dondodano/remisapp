@@ -7,7 +7,7 @@ use Livewire\Component;
 class ActivityTimeline extends Component
 {
 
-    public $timelines = [];
+    public $activityTimelines = [];
 
     public function render()
     {

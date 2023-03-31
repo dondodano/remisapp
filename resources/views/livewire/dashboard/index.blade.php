@@ -25,10 +25,10 @@
 
     <div class="row mb-4">
         <div class="col-md-8">
-            @livewire('components.activity-timeline')
+            @livewire('components.activity-timeline', ['activityTimelines' => null])
         </div>
         <div class="col-md-4">
-            @livewire('components.online-users', ['onlineusers' => $onlineusers])
+            @livewire('components.online-users', ['onlineUsers' => $onlineUsers])
         </div>
     </div>
 
