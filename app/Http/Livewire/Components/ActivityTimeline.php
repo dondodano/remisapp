@@ -7,10 +7,17 @@ use Livewire\Component;
 class ActivityTimeline extends Component
 {
 
-    public $activityTimelines = [];
+    public $activityTimelines;
+
+    public function mount($activityTimelines)
+    {
+        $this->activityTimelines = $activityTimelines;
+    }
 
     public function render()
     {
-        return view('livewire.components.activity-timeline');
+        return view('livewire.components.activity-timeline',[
+            'activityTimelines' => $this->activityTimelines
+        ]);
     }
 }

@@ -90,46 +90,14 @@ class Index extends Component
         return $data;
     }
 
-    public function getOnlineUsersProperty()
-    {
-        $onlineUsers = [];
-        $onlineUsersCount = [];
-
-        $users = User::with('temp_avatar')->where('active',1);
-        foreach($users->get() as $user)
-        {
-            if(Cache::has('user-' . $user->id))
-            {
-                array_push($onlineUsers, $user );
-
-                if(isOnline($user->id))
-                {
-                    array_push($onlineUsersCount, $user->id);
-                }
-            }
-        }
-        return [
-            'record' => $onlineUsers,
-            'count' => $onlineUsersCount
-        ];
-    }
-
-    public function getActivityTimelinesProperty()
-    {
-        return $this->activityTimelineList()->get();
-    }
-
-    public function getDocumentRecordsProperty()
-    {
-        return $this->activityTimelineList()->get();
-    }
-
 
     public function activityTimelineList()
     {
         $lastSevenDays = Carbon::today()->subDays(7);
-        return FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc');
+        return FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc')->get();
     }
+
+
 
     public function render()
     {
@@ -140,9 +108,8 @@ class Index extends Component
             'trainings' => $this->trainings->orderBy('date_created', 'desc'),
             'extensions' => $this->extensions->orderBy('date_created', 'desc'),
             'partnerships' => $this->partnerships->orderBy('date_created', 'desc'),
-            'onlineUsers' => $this->onlineUsers,
-            'activityTimelines' => $this->activityTimelines,
-            'documentRecords' => $this->documentRecords
+            'activityTimelines' => $this->activityTimelineList(),
+            'documentRecords' => $this->activityTimelineList(),
         ])
         ->extends('layouts.master')
         ->section('site-content');

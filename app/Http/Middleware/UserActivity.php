@@ -23,7 +23,7 @@ class UserActivity
             Cache::put('user-'.Auth::user()->id, [
                 'time' => now(),
                 'isOnline' => 1
-            ], now()->addMinutes(2));
+            ], now()->addMinutes(30));
         }
 
         return $next($request);

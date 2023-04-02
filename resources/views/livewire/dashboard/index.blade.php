@@ -28,12 +28,13 @@
             @livewire('components.activity-timeline', ['activityTimelines' => $activityTimelines])
         </div>
         <div class="col-md-4">
-            @livewire('components.online-users', ['onlineUsers' => $onlineUsers])
+            @livewire('components.online-users')
         </div>
     </div>
 
     <div class="row">
         <div class="col-12">
+
             @livewire('components.document-table', ['documentRecords' => $documentRecords])
         </div>
     </div>
