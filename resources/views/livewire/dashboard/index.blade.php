@@ -33,7 +33,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12" wire:poll.750ms>
+        <div class="col-12">
             @livewire('components.document-table', ['documentRecords' => $documentRecords])
         </div>
     </div>

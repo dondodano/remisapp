@@ -116,25 +116,33 @@ class Index extends Component
 
     public function getActivityTimelinesProperty()
     {
+        return $this->activityTimelineList()->get();
+    }
+
+    public function getDocumentRecordsProperty()
+    {
+        return $this->activityTimelineList()->get();
+    }
+
+
+    public function activityTimelineList()
+    {
         $lastSevenDays = Carbon::today()->subDays(7);
-        return FeedableItem::where('date_created', '>=', $lastSevenDays);
+        return FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc');
     }
 
     public function render()
     {
-
-        $documentRecord =  $this->activityTimelines->orderBy('id', 'desc')->get(); //->paginate($this->paginate);
-
         return view('livewire.dashboard.index',[
-            'researches' => $this->researches->orderBy('id', 'desc'),
-            'publications' => $this->publications->orderBy('id', 'desc'),
-            'presentations' => $this->presentations->orderBy('id', 'desc'),
-            'trainings' => $this->trainings->orderBy('id', 'desc'),
-            'extensions' => $this->extensions->orderBy('id', 'desc'),
-            'partnerships' => $this->partnerships->orderBy('id', 'desc'),
+            'researches' => $this->researches->orderBy('date_created', 'desc'),
+            'publications' => $this->publications->orderBy('date_created', 'desc'),
+            'presentations' => $this->presentations->orderBy('date_created', 'desc'),
+            'trainings' => $this->trainings->orderBy('date_created', 'desc'),
+            'extensions' => $this->extensions->orderBy('date_created', 'desc'),
+            'partnerships' => $this->partnerships->orderBy('date_created', 'desc'),
             'onlineUsers' => $this->onlineUsers,
-            'activityTimelines' => $this->activityTimelines->get(),
-            'documentRecords' => $documentRecord
+            'activityTimelines' => $this->activityTimelines,
+            'documentRecords' => $this->documentRecords
         ])
         ->extends('layouts.master')
         ->section('site-content');
