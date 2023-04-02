@@ -49,11 +49,11 @@
                                                 <td><span class="badge bg-info">{{ $user->user_role->term }}</span></td>
                                                 <td>
                                                     <i class="bx fs-4 {{ statusIcon($user->status) }}" title="{{ statusText($user->status) }}"></i>
-                                                    <span class="spinner-border spinner-border-sm text-primary" role="status" id="spiner-{{ $user->id }}" wire:loading wire:target="send('{{ encipher($user->id) }}')"></span>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-icon" title="Send Credential" type="button" wire:click.prevent="send('{{ encipher($user->id) }}')">
-                                                        <i class='bx bx-mail-send'></i>
+                                                    <button class="btn btn-sm btn-icon" title="Send Credential" type="button" wire:click.prevent="send('{{ encipher($user->id) }}')" wire:loading.attr="disabled" wire:target="send('{{ encipher($user->id) }}')">
+                                                        <i class='bx bx-mail-send' wire:loading.remove wire:target="send('{{ encipher($user->id) }}')"></i>
+                                                        <span class="spinner-border spinner-border-sm text-primary" role="status" id="spiner-{{ $user->id }}" wire:loading wire:target="send('{{ encipher($user->id) }}')"></span>
                                                     </button>
                                                     <a href="/user/edit/{{ $user->id }}" class="btn btn-sm btn-icon" title="Edit">
                                                         <i class="bx bx-edit"></i>
