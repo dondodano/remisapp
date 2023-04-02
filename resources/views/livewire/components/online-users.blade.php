@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" >
     <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title  m-0 me-2">Online Users</h5>
         <small>

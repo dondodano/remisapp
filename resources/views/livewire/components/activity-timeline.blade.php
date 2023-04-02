@@ -14,7 +14,7 @@
                         <div class="timeline-event">
                             <div class="timeline-header mb-0">
                                 <h6 class="mb-0">{{ concat(' ',  [ $timeline->feed_file_owner->firstname, $timeline->feed_file_owner->lastname]) }}</h6>
-                                <a href="/type/id" class="btn p-0" type="button" title="Evaluate">
+                                <a href="/{{ strtolower(basename($timeline->feedable_type)) }}/evaluation/{{ $timeline->feedable_id }}" class="btn p-0" type="button" title="Evaluate">
                                     <i class='bx bx-comment-dots'></i>
                                 </a>
                             </div>
