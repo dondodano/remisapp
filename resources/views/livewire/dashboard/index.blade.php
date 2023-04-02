@@ -1,4 +1,7 @@
 <div>
+    <p>Need Options for Direct Evaluate and Mark as Read</p>
+    <p>Require PUSHER for Realtime Notification</p>
+    <p>Require PUSHER for Realtime update of Dashboard figures</p>
     <div class="row">
         <div class="col-xl-4 mb-4">
             @livewire('components.mini-card', ['title' => 'Research','text' => $researches->count()])
