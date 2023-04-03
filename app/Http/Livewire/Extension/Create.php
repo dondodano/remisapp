@@ -72,7 +72,6 @@ class Create extends Component
                 'feedable_id' => $store->id,
                 'feedable_type' => Extension::class
             ])->save();
-            logUserActivity(request(), 'User ['.sessionGet('id').'] created new Extension document with ID => ['.$store->id.']');
             toastr("Extension document successfully saved!", "success");
     }
 

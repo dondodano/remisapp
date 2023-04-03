@@ -75,7 +75,6 @@ class Create extends Component
                 'feedable_id' => $store->id,
                 'feedable_type' => Publication::class
             ])->save();
-            logUserActivity(request(), 'User ['.sessionGet('id').'] created new Publication document with ID => ['.$store->id.']');
             toastr("Publication document successfully saved!", "success");
     }
 

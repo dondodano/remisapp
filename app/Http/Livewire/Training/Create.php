@@ -78,7 +78,6 @@ class Create extends Component
                 'feedable_id' => $store->id,
                 'feedable_type' => Training::class
             ])->save();
-            logUserActivity(request(), 'User ['.sessionGet('id').'] created new Training document with ID => ['.$store->id.']');
             toastr("Training document successfully saved!", "success");
     }
 

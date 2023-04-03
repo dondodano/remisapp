@@ -73,7 +73,6 @@ class Create extends Component
                 'feedable_id' => $store->id,
                 'feedable_type' => Presentation::class
             ])->save();
-            logUserActivity(request(), 'User ['.sessionGet('id').'] created new Presentation document with ID => ['.$store->id.']');
             toastr("Presentation document successfully saved!", "success");
     }
 

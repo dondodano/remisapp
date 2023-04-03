@@ -77,9 +77,6 @@ class Index extends Component
             report($e);
         }
 
-        logUserActivity(request(),
-            'User ['.sessionGet('id').'] downloaded Extension document with ID => ['.decipher($id).']');
-
         return response()->download($zip_file, $zip_file, [
             'Content-Type' => 'application/zip',
             'Content-Disposition' => 'attachment; filename="'.$zip_file.'"',

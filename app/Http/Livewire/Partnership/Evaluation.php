@@ -51,8 +51,6 @@ class Evaluation extends Component
 
             $this->evaluation = null;
 
-            if($evaluate)
-                logUserActivity(request(), 'User ['.sessionGet('id').'] made Evaluation on Partnership with ID => ['.$this->partnershipId.']');
 
         }else{
             $evaluate = PartnershipEvaluation::findOrFail($this->evaluationEditId);
@@ -65,7 +63,6 @@ class Evaluation extends Component
                 $this->isEditting = false;
                 $this->evaluation = null;
                 $this->evaluationEditId = null;
-                logUserActivity(request(), 'User ['.sessionGet('id').'] updated Evaluation on Partnership with ID => ['.$this->partnershipId.']');
         }
 
         $this->all;
@@ -105,8 +102,6 @@ class Evaluation extends Component
         $delete->active = 0;
         $delete->update();
 
-        logUserActivity(request(), 'User ['.sessionGet('id').'] deleted Partnership document evaluation with ID => ['.$this->evaluationDeleteId.']');
-
         $this->evaluationDeleteId = null;
         $this->all;
     }
@@ -127,7 +122,6 @@ class Evaluation extends Component
 
 
         $this->all;
-        logUserActivity(request(), 'User ['.sessionGet('id').'] changed Evaluation remark to ['.$isEvaluated.'] on Partnership with ID => ['.$this->partnershipId.']');
 
         toastr('Evaluation remark updated!', 'info');
     }

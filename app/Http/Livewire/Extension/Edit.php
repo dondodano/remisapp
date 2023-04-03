@@ -80,7 +80,6 @@ class Edit extends Component
         $this->fileInputId = rand();
 
         if($update)
-            logUserActivity(request(), 'User ['.sessionGet('id').'] updated Extension document with ID => ['.$this->extensionId.']');
             toastr("Extension data successfully updated!", "success");
     }
 

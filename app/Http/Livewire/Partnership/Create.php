@@ -70,7 +70,6 @@ class Create extends Component
                 'feedable_id' => $store->id,
                 'feedable_type' => Partnership::class
             ])->save();
-            logUserActivity(request(), 'User ['.sessionGet('id').'] created new Partnership document with ID => ['.$store->id.']');
             toastr("Partnership document successfully saved!", "success");
     }
 

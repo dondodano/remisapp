@@ -49,9 +49,6 @@ class Evaluation extends Component
 
             $this->evaluation = null;
 
-            if($evaluate)
-                logUserActivity(request(), 'User ['.sessionGet('id').'] made Evaluation on Presentation with ID => ['.$this->presentationId.']');
-
         }else{
             $evaluate = PresentationEvaluation::findOrFail($this->evaluationEditId);
             $evaluate->update([
@@ -63,7 +60,6 @@ class Evaluation extends Component
                 $this->isEditting = false;
                 $this->evaluation = null;
                 $this->evaluationEditId = null;
-                logUserActivity(request(), 'User ['.sessionGet('id').'] updated Evaluation on Presentation with ID => ['.$this->presentationId.']');
         }
 
         $this->all;
@@ -103,8 +99,6 @@ class Evaluation extends Component
         $delete->active = 0;
         $delete->update();
 
-        logUserActivity(request(), 'User ['.sessionGet('id').'] deleted Presentation document evaluation with ID => ['.$this->evaluationDeleteId.']');
-
         $this->evaluationDeleteId = null;
         $this->all;
     }
@@ -123,9 +117,7 @@ class Evaluation extends Component
 
         $this->evaluationItems();
 
-
         $this->all;
-        logUserActivity(request(), 'User ['.sessionGet('id').'] changed Evaluation remark to ['.$isEvaluated.'] on Presentation with ID => ['.$this->presentationId.']');
 
         toastr('Evaluation remark updated!', 'info');
     }

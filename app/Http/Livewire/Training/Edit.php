@@ -91,7 +91,6 @@ class Edit extends Component
         $this->fileInputId = rand();
 
         if($update)
-            logUserActivity(request(), 'User ['.sessionGet('id').'] updated Training document with ID => ['.$this->trainingId.']');
             toastr("Training data successfully updated!", "success");
     }
 

@@ -51,9 +51,6 @@ class Evaluation extends Component
 
             $this->evaluation = null;
 
-            if($evaluate)
-                logUserActivity(request(), 'User ['.sessionGet('id').'] made Evaluation on Extension with ID => ['.$this->extensionId.']');
-
         }else{
             $evaluate = ExtensionEvaluation::findOrFail($this->evaluationEditId);
             $evaluate->update([
@@ -65,7 +62,6 @@ class Evaluation extends Component
                 $this->isEditting = false;
                 $this->evaluation = null;
                 $this->evaluationEditId = null;
-                logUserActivity(request(), 'User ['.sessionGet('id').'] updated Evaluation on Extension with ID => ['.$this->extensionId.']');
         }
 
         $this->all;
@@ -105,8 +101,6 @@ class Evaluation extends Component
         $delete->active = 0;
         $delete->update();
 
-        logUserActivity(request(), 'User ['.sessionGet('id').'] deleted Extension document evaluation with ID => ['.$this->evaluationDeleteId.']');
-
         $this->evaluationDeleteId = null;
         $this->all;
     }
@@ -125,9 +119,7 @@ class Evaluation extends Component
 
         $this->evaluationItems();
 
-
         $this->all;
-        logUserActivity(request(), 'User ['.sessionGet('id').'] changed Evaluation remark to ['.$isEvaluated.'] on Extension with ID => ['.$this->extensionId.']');
 
         toastr('Evaluation remark updated!', 'info');
     }
