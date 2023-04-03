@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Event;
 use App\Events\SendMailToUserCredentialEvent;
 use App\Listeners\SendMailToUserCredentialListner;
 
+
+use App\Events\UserActivityLogEvent;
+use App\Listeners\ResearchActivityLogListener;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -23,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         SendMailToUserCredentialEvent::class => [
             SendMailToUserCredentialListner::class
-        ]
+        ],
     ];
 
     /**

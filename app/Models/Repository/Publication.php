@@ -59,4 +59,35 @@ class Publication extends Model
     {
         return $this->title;
     }
+
+
+    /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($publication){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $publication->id,
+                'subject_type' => Publication::class
+            ])->save();
+        });
+
+        static::updated(function($publication){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $publication->id,
+                'subject_type' => Publication::class
+            ])->save();
+        });
+    }
 }

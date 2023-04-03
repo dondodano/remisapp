@@ -67,4 +67,35 @@ class Training extends Model
     {
         return $this->title;
     }
+
+
+    /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($training){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $training->id,
+                'subject_type' => Training::class
+            ])->save();
+        });
+
+        static::updated(function($training){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $training->id,
+                'subject_type' => Training::class
+            ])->save();
+        });
+    }
 }

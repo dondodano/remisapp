@@ -57,4 +57,35 @@ class Partnership extends Model
     {
         return $this->partner;
     }
+
+
+    /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($partnership){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $partnership->id,
+                'subject_type' => Partnership::class
+            ])->save();
+        });
+
+        static::updated(function($partnership){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $partnership->id,
+                'subject_type' => Partnership::class
+            ])->save();
+        });
+    }
 }

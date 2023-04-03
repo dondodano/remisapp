@@ -65,4 +65,35 @@ class Presentation extends Model
     {
         return $this->title;
     }
+
+
+    /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($presentation){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $presentation->id,
+                'subject_type' => Presentation::class
+            ])->save();
+        });
+
+        static::updated(function($presentation){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $presentation->id,
+                'subject_type' => Presentation::class
+            ])->save();
+        });
+    }
 }

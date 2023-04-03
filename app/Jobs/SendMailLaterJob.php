@@ -7,6 +7,8 @@ use App\Models\User\UserRole;
 use App\Models\User\UserToken;
 use App\Mail\UserCredentialMailer;
 use Illuminate\Support\Facades\Mail;
+use App\Events\SendMailToUserCredentialEvent;
+
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -52,6 +54,12 @@ class SendMailLaterJob implements ShouldQueue
         }catch(Exception $e)
         {
             toastr("Unable to send mail to [<strong>".$this->user->firstname.' '.$this->user->lastname."</strong>]!", "error");
+            $this->failed($e);
         }
+    }
+
+    public function failed($exception)
+    {
+        event(new SendMailToUserCredentialEvent($id));
     }
 }

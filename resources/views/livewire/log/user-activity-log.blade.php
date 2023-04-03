@@ -17,6 +17,7 @@
                                 <th>Employee</th>
                                 <th>IP Address</th>
                                 <th>Activity</th>
+                                <th>Type</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,8 +50,11 @@
                                                 </div>
                                             </td>
                                             <td>{{ $log->ip_address }}</td>
-                                            <td title="{{ $log->activity }}">
-                                                {{ shorten($log->activity) }}
+                                            <td>{{ $log->activity }}</td>
+                                            <td>
+                                                <a href="/{{ strtolower(basename($log->subject_type)) }}/preview/{{ $log->subject_id }}" class="btn btn-link" target="_blank">
+                                                    [ {{ $log->subject_id }} ] => {{ basename($log->subject_type) }}
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

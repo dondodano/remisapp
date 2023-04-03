@@ -85,7 +85,6 @@ class Create extends Component
                 'feedable_id' => $store->id,
                 'feedable_type' => Research::class
             ])->save();
-            logUserActivity(request(), 'User ['.sessionGet('id').'] created new Research document with ID => ['.$store->id.']');
             toastr("Research data successfully saved!", "success");
     }
 

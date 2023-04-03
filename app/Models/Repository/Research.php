@@ -12,7 +12,9 @@ use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
+use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
+use App\Events\UserActivityLogEvent;
 
 class Research extends Model
 {
@@ -72,7 +74,6 @@ class Research extends Model
     }
 
 
-
     public function scopeShowActive()
     {
         return $this->where('active', 1);
@@ -91,5 +92,36 @@ class Research extends Model
     public function content()
     {
         return $this->project;
+    }
+
+
+    /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($research){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $research->id,
+                'subject_type' => Research::class
+            ])->save();
+        });
+
+        static::updated(function($research){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $research->id,
+                'subject_type' => Research::class
+            ])->save();
+        });
     }
 }

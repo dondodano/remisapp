@@ -21,6 +21,9 @@ class CreateLogUserActivityTable extends Migration
             $table->longText('agent')->nullable();
             $table->longText('activity')->nullable();
 
+            $table->integer('subject_id')->nullable();
+            $table->string('subject_type', 255)->nullable();
+
             $table->dateTime('log_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('date_created')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('date_modified')->default(DB::raw('CURRENT_TIMESTAMP'));

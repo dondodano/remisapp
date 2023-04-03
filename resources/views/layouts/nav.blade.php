@@ -11,6 +11,8 @@
                 <button class="btn btn-xs btn-primary">2023</button>
             </li>
 
+            @livewire('components.notification');
+
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">

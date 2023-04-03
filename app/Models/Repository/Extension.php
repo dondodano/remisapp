@@ -57,4 +57,35 @@ class Extension extends Model
     {
         return $this->extension;
     }
+
+
+    /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($extension){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $extension->id,
+                'subject_type' => Extension::class
+            ])->save();
+        });
+
+        static::updated(function($extension){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $extension->id,
+                'subject_type' => Extension::class
+            ])->save();
+        });
+    }
 }

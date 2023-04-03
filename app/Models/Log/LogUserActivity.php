@@ -17,7 +17,9 @@ class LogUserActivity extends Model
         'user_id',
         'ip_address',
         'agent',
-        'activity'
+        'activity',
+        'subject_id',
+        'subject_type'
     ];
 
     const CREATED_AT = 'date_created';

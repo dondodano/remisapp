@@ -6,7 +6,6 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 use App\Jobs\SendMailLaterJob;
-//use App\Events\SendMailToUserCredentialEvent;
 
 use App\Models\User\User;
 use App\Models\User\UserRole;
@@ -88,43 +87,7 @@ class Index extends Component
 
     public function send($id)
     {
-        // notyf()
-        // ->ripple(false)
-        // ->addInfo('Sending credential to email.');
-
-        // $newId = decipher($id);
-        // $user = User::findOrFail($newId);
-
-        // try{
-
-        //     $token = token();
-
-        //     $userToken = UserToken::create([
-        //         'user_id' => $newId,
-        //         'token' => $token
-        //     ]);
-
-        //     Mail::to($user->email)
-        //         ->send(new UserCredentialMailer([
-        //             'recipient' => $user->firstname.' '.$user->lastname,
-        //             'email' => $user->email,
-        //             'token' => encipher($token)
-        //         ]));
-
-        //         toastr("Credentail of [<strong>".$user->firstname.' '.$user->lastname."</strong>] successfully sent!", "success");
-
-        // }catch(Exception $e)
-        // {
-        //     toastr("Unable to send mail to [<strong>".$user->firstname.' '.$user->lastname."</strong>]!", "error");
-        // }
-
-        /**
-         * Job Execution : Problem unable to run queue:work on Production
-         */
         dispatch(new SendMailLaterJob($id) );
-
-        //event(new SendMailToUserCredentialEvent($id));
-
     }
 
     public function render()
