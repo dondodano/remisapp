@@ -27,16 +27,14 @@ class Index extends Component
 
     public function getAllProperty()
     {
-        return RequisiteProgram::where('active',1);
+        return RequisiteProgram::query();
     }
 
     public function delete($id)
     {
         $newId = decipher($id);
         $program = RequisiteProgram::findOrFail($newId);
-        $program->active = 0;
-        $program->date_modified = setTimestamp();
-        $program->update();
+        $program->delete();
 
         if($program)
             toastr("Program [<strong>".$program->term."</strong>] successfully removed!", "info");

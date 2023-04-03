@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Requisite\Program;
+use App\Models\Log\LogUserActivity;
 
 class Institute extends Model
 {
@@ -26,5 +27,46 @@ class Institute extends Model
     public function program()
     {
         return $this->hasOne(Program::class, 'id', 'institute_id');
+    }
+
+     /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($institute){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $institute->id,
+                'subject_type' => Institute::class
+            ])->save();
+        });
+
+        static::updated(function($institute){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $institute->id,
+                'subject_type' => Institute::class
+            ])->save();
+        });
+
+        static::deleted(function($institute){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'deleted',
+                'subject_id' => $institute->id,
+                'subject_type' => Institute::class
+            ])->save();
+        });
     }
 }

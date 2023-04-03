@@ -27,16 +27,14 @@ class Index extends Component
 
     public function getAllProperty()
     {
-        return RequisiteInstitute::where('active',1);
+        return RequisiteInstitute::query();
     }
 
     public function delete($id)
     {
         $newId = decipher($id);
         $institute = RequisiteInstitute::findOrFail($newId);
-        $institute->active = 0;
-        $institute->date_modified = setTimestamp();
-        $institute->update();
+        $institute->delete();
 
         if($institute)
             toastr("Institute [<strong>".$institute->term."</strong>] successfully removed!", "info");

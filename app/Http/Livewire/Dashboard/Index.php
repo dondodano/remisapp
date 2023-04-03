@@ -87,14 +87,6 @@ class Index extends Component
     }
 
 
-    public function activityTimelineList()
-    {
-        $lastSevenDays = Carbon::today()->subDays(7);
-        return FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc');
-    }
-
-
-
     public function render()
     {
         return view('livewire.dashboard.index',[
@@ -104,8 +96,6 @@ class Index extends Component
             'trainings' => $this->trainings->orderBy('date_created', 'desc'),
             'extensions' => $this->extensions->orderBy('date_created', 'desc'),
             'partnerships' => $this->partnerships->orderBy('date_created', 'desc'),
-            'activityTimelines' => $this->activityTimelineList(),
-            'documentRecords' => $this->activityTimelineList(),
         ])
         ->extends('layouts.master')
         ->section('site-content');

@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Components;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Feed\FeedableItem;
 
 class DocumentTable extends Component
 {
@@ -12,17 +14,13 @@ class DocumentTable extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginate = 10;
 
-    public $documentRecords;
-
-    public function mount($documentRecords)
-    {
-        $this->documentRecords = $documentRecords->get();
-    }
 
     public function render()
     {
+        $lastSevenDays = Carbon::today()->subDays(7);
+
         return view('livewire.components.document-table',[
-            'documentRecords' => $this->documentRecords
+            'documentRecords' => FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc')->paginate($this->paginate)
         ]);
     }
 }
