@@ -1,6 +1,7 @@
 <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title">Document uploaded</h5>
+        <small>{{ count($documentRecords) . (count($documentRecords) < 2 ? ' record' : ' records') }} </small>
     </div>
     <div class="table-responsive perfect-sc" id="perfect-2">
         <table class="table table-borderless">
