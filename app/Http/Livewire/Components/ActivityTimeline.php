@@ -11,7 +11,7 @@ class ActivityTimeline extends Component
 
     public function mount($activityTimelines)
     {
-        $this->activityTimelines = $activityTimelines;
+        $this->activityTimelines = $activityTimelines->get();
     }
 
     public function render()

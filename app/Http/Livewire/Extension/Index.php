@@ -40,7 +40,7 @@ class Index extends Component
     {
         $all = Extension::with(['attachments','evaluations' => function($query){
             $query->where('is_read',0);
-        }])->where('active',1);
+        }]);
 
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
@@ -101,8 +101,7 @@ class Index extends Component
         {
             return abort('404');
         }
-        $delete->active = 0;
-        $delete->update();
+        $delete->delete();
 
         $this->extensionId = null;
         $this->all;

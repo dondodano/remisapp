@@ -8,6 +8,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\Log\LogUserActivity;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 //use Illuminate\Database\Eloquent\Model;
 use Cache;
 
@@ -19,7 +22,7 @@ use App\Models\Evaluation\ResearchEvaluation;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $table = 'users';
 
@@ -38,6 +41,7 @@ class User extends Authenticatable
 
     const CREATED_AT = 'date_created';
     const UPDATED_AT = 'date_modified';
+    const DELETED_AT = 'date_deleted';
 
     public function user_role()
     {
@@ -59,4 +63,45 @@ class User extends Authenticatable
         return $this->hasOne(User::class, 'user_id', 'id');
     }
 
+
+    /**
+     * Override boot
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($user){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'created',
+                'subject_id' =>  $user->id,
+                'subject_type' => User::class
+            ])->save();
+        });
+
+        static::updated(function($user){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'updated',
+                'subject_id' => $user->id,
+                'subject_type' => User::class
+            ])->save();
+        });
+
+        static::deleted(function($user){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'deleted',
+                'subject_id' => $user->id,
+                'subject_type' => User::class
+            ])->save();
+        });
+    }
 }

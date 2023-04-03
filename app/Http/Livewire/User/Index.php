@@ -39,16 +39,14 @@ class Index extends Component
 
     public function getAllProperty()
     {
-        return User::with('user_role')->where('active',1);
+        return User::with('user_role');
     }
 
     public function delete($id)
     {
         $newId = decipher($id);
         $user = User::findOrFail($newId);
-        $user->active = 0;
-        $user->date_modified = setTimestamp();
-        $user->update();
+        $user->dlete();
 
         if($user)
             toastr("User [<strong>".$user->firstname.' '.$user->lastname."</strong>] successfully removed!", "info");

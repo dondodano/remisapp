@@ -4,17 +4,19 @@ namespace App\Models\Repository;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\User\User;
 use App\Models\Attachment\TrainingFile;
 use App\Models\Evaluation\TrainingEvaluation;
 use App\Models\Misc\Miscellaneous as Relevance;
 
+use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
 
 class Training extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'repository_training';
 
@@ -34,6 +36,7 @@ class Training extends Model
 
     const CREATED_AT = 'date_created';
     const UPDATED_AT = 'date_modified';
+    const DELETED_AT = 'date_deleted';
 
     public function quality()
     {
@@ -93,6 +96,17 @@ class Training extends Model
                 'ip_address' => request()->ip(),
                 'agent' =>  request()->header('User-Agent'),
                 'activity' => 'updated',
+                'subject_id' => $training->id,
+                'subject_type' => Training::class
+            ])->save();
+        });
+
+        static::deleted(function($training){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'deleted',
                 'subject_id' => $training->id,
                 'subject_type' => Training::class
             ])->save();

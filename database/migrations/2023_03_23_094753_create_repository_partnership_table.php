@@ -27,6 +27,7 @@ class CreateRepositoryPartnershipTable extends Migration
 
             $table->dateTime('date_created')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('date_modified')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('date_deleted')->nullable();
         });
     }
 

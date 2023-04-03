@@ -56,7 +56,7 @@ class Index extends Component
             ->when($this->filterStatus, function($query){
                 if(strlen($this->filterStatus) > 0)
                     return $query->where('status_id', $this->filterStatus)->where('active',1);
-            })->where('active',1);
+            });
 
         if(!in_array(sessionGet('role_id'), [1,2]))
         {
@@ -142,8 +142,7 @@ class Index extends Component
         {
             return abort('404');
         }
-        $delete->active = 0;
-        $delete->update();
+        $delete->delete();
 
         $this->researchId = null;
         $this->all;

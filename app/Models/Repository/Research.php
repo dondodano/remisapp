@@ -4,6 +4,7 @@ namespace App\Models\Repository;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\User\User;
 use App\Models\Attachment\ResearchFile;
@@ -14,11 +15,10 @@ use App\Models\Misc\Miscellaneous as Category;
 
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
-use App\Events\UserActivityLogEvent;
 
 class Research extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'repository_research';
 
@@ -42,6 +42,7 @@ class Research extends Model
 
     const CREATED_AT = 'date_created';
     const UPDATED_AT = 'date_modified';
+    const DELETED_AT = 'date_deleted';
 
     public function category()
     {
@@ -119,6 +120,17 @@ class Research extends Model
                 'ip_address' => request()->ip(),
                 'agent' =>  request()->header('User-Agent'),
                 'activity' => 'updated',
+                'subject_id' => $research->id,
+                'subject_type' => Research::class
+            ])->save();
+        });
+
+        static::deleted(function($research){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'deleted',
                 'subject_id' => $research->id,
                 'subject_type' => Research::class
             ])->save();

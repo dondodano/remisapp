@@ -4,16 +4,18 @@ namespace App\Models\Repository;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\User\User;
 use App\Models\Attachment\ExtensionFile;
 use App\Models\Evaluation\ExtensionEvaluation;
 
+use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
 
 class Extension extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'repository_extension';
 
@@ -29,6 +31,7 @@ class Extension extends Model
 
     const CREATED_AT = 'date_created';
     const UPDATED_AT = 'date_modified';
+    const DELETED_AT = 'date_deleted';
 
     public function attachments()
     {
@@ -83,6 +86,17 @@ class Extension extends Model
                 'ip_address' => request()->ip(),
                 'agent' =>  request()->header('User-Agent'),
                 'activity' => 'updated',
+                'subject_id' => $extension->id,
+                'subject_type' => Extension::class
+            ])->save();
+        });
+
+        static::deleted(function($extension){
+            LogUserActivity::create([
+                'user_id' => sessionGet('id'),
+                'ip_address' => request()->ip(),
+                'agent' =>  request()->header('User-Agent'),
+                'activity' => 'deleted',
                 'subject_id' => $extension->id,
                 'subject_type' => Extension::class
             ])->save();
