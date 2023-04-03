@@ -23,6 +23,7 @@ class CreateRequisiteInstituteTable extends Migration
             $table->integer('active')->default(1);
             $table->dateTime('date_created')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('date_modified')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('date_deleted')->nullable();
         });
     }
 

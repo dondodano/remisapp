@@ -46,7 +46,7 @@ class Index extends Component
     {
         $newId = decipher($id);
         $user = User::findOrFail($newId);
-        $user->dlete();
+        $user->delete();
 
         if($user)
             toastr("User [<strong>".$user->firstname.' '.$user->lastname."</strong>] successfully removed!", "info");
