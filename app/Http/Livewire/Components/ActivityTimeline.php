@@ -15,7 +15,7 @@ class ActivityTimeline extends Component
         $lastSevenDays = Carbon::today()->subDays(7);
 
         return view('livewire.components.activity-timeline',[
-            'activityTimelines' => FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc')
+            'activityTimelines' => FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc')->get()
         ]);
     }
 }

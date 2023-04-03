@@ -37,7 +37,6 @@
             </tbody>
         </table>
 
-        {{-- @include('vendor.remis-components.table-pagination', ['collection' => $documentRecordsLink]) --}}
-
+        @include('vendor.remis-components.table-pagination', ['collection' => $documentRecords])
     </div>
 </div>
