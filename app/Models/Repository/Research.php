@@ -14,7 +14,7 @@ use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
 use App\Models\Log\LogUserActivity;
-use  App\Models\Feed\FeedableItem;
+use App\Models\Feed\FeedableItem;
 
 class Research extends Model
 {
@@ -75,12 +75,6 @@ class Research extends Model
     }
 
 
-    public function scopeShowActive()
-    {
-        return $this->where('active', 1);
-    }
-
-
 
     /**
      * Delegate || Morph
@@ -134,6 +128,9 @@ class Research extends Model
                 'subject_id' => $research->id,
                 'subject_type' => Research::class
             ])->save();
+
+            FeedableItem::where('feedable_id', $research->id)->where('feedable_type', Research::class)->delete();
+
         });
     }
 }

@@ -100,6 +100,8 @@ class Extension extends Model
                 'subject_id' => $extension->id,
                 'subject_type' => Extension::class
             ])->save();
+
+            FeedableItem::where('feedable_id', $extension->id)->where('feedable_type', Extension::class)->delete();
         });
     }
 }

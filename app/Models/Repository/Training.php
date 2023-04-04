@@ -111,5 +111,7 @@ class Training extends Model
                 'subject_type' => Training::class
             ])->save();
         });
+
+        FeedableItem::where('feedable_id', $training->id)->where('feedable_type', Training::class)->delete();
     }
 }

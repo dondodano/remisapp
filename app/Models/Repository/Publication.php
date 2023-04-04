@@ -102,6 +102,9 @@ class Publication extends Model
                 'subject_id' => $publication->id,
                 'subject_type' => Publication::class
             ])->save();
+
+
+            FeedableItem::where('feedable_id', $publication->id)->where('feedable_type', Publication::class)->delete();
         });
     }
 }

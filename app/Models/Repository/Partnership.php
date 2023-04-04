@@ -100,6 +100,9 @@ class Partnership extends Model
                 'subject_id' => $partnership->id,
                 'subject_type' => Partnership::class
             ])->save();
+
+
+            FeedableItem::where('feedable_id', $partnership->id)->where('feedable_type', Partnership::class)->delete();
         });
     }
 }

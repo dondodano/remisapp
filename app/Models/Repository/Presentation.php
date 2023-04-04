@@ -108,6 +108,8 @@ class Presentation extends Model
                 'subject_id' => $presentation->id,
                 'subject_type' => Presentation::class
             ])->save();
+
+            FeedableItem::where('feedable_id', $presentation->id)->where('feedable_type', Presentation::class)->delete();
         });
     }
 }

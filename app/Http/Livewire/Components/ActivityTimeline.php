@@ -10,6 +10,12 @@ use App\Models\Feed\FeedableItem;
 class ActivityTimeline extends Component
 {
 
+    public function markread($id)
+    {
+        $newId = decipher($id);
+        toastr($newId, 'info');
+    }
+
     public function render()
     {
         $lastSevenDays = Carbon::today()->subDays(7);

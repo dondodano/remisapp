@@ -185,7 +185,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\remisapp\\storage\\framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -262,7 +262,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'enkybmuf_remis',
+        'database' => 'remisapp',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -271,8 +271,8 @@
         'driver' => 'mysql',
         'url' => NULL,
         'host' => '127.0.0.1',
-        'port' => '3306',
-        'database' => 'enkybmuf_remis',
+        'port' => '3307',
+        'database' => 'remisapp',
         'username' => 'root',
         'password' => 'root',
         'unix_socket' => '',
@@ -291,8 +291,8 @@
         'driver' => 'pgsql',
         'url' => NULL,
         'host' => '127.0.0.1',
-        'port' => '3306',
-        'database' => 'enkybmuf_remis',
+        'port' => '3307',
+        'database' => 'remisapp',
         'username' => 'root',
         'password' => 'root',
         'charset' => 'utf8',
@@ -306,8 +306,8 @@
         'driver' => 'sqlsrv',
         'url' => NULL,
         'host' => '127.0.0.1',
-        'port' => '3306',
-        'database' => 'enkybmuf_remis',
+        'port' => '3307',
+        'database' => 'remisapp',
         'username' => 'root',
         'password' => 'root',
         'charset' => 'utf8',
@@ -404,7 +404,7 @@
     array (
       'enabled' => true,
       'driver' => 'file',
-      'path' => 'C:\\xampp\\htdocs\\remisapp\\storage\\debugbar',
+      'path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\debugbar',
       'connection' => NULL,
       'provider' => '',
       'hostname' => '127.0.0.1',
@@ -505,10 +505,10 @@
     'convert_entities' => true,
     'options' => 
     array (
-      'font_dir' => 'C:\\xampp\\htdocs\\remisapp\\storage\\fonts',
-      'font_cache' => 'C:\\xampp\\htdocs\\remisapp\\storage\\fonts',
-      'temp_dir' => 'C:\\Users\\Admin\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\remisapp',
+      'font_dir' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\fonts',
+      'font_cache' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\fonts',
+      'temp_dir' => 'C:\\Users\\DONDOD~1\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\remis-app\\remisapp',
       'allowed_protocols' => 
       array (
         'file://' => 
@@ -554,12 +554,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\remisapp\\storage\\app',
+        'root' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\remisapp\\storage\\app/public',
+        'root' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\app/public',
         'url' => 'http://127.0.0.1:8000/storage',
         'visibility' => 'public',
       ),
@@ -576,7 +576,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\remisapp\\public\\storage' => 'C:\\xampp\\htdocs\\remisapp\\storage\\app/public',
+      'C:\\xampp\\htdocs\\remis-app\\remisapp\\public\\storage' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\app/public',
     ),
   ),
   'flasher_toastr' => 
@@ -618,7 +618,7 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
-    'view_path' => 'C:\\xampp\\htdocs\\remisapp\\resources\\views/livewire',
+    'view_path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\resources\\views/livewire',
     'layout' => 'layouts.app',
     'asset_url' => NULL,
     'app_url' => NULL,
@@ -675,13 +675,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\remisapp\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\remisapp\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -731,7 +731,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\remisapp\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -788,7 +788,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\remisapp\\resources\\views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -798,7 +798,7 @@
     'stubs' => 
     array (
       'enabled' => false,
-      'path' => 'C:\\xampp\\htdocs\\remisapp\\vendor/nwidart/laravel-modules/src/Commands/stubs',
+      'path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\vendor/nwidart/laravel-modules/src/Commands/stubs',
       'files' => 
       array (
         'routes/web' => 'Routes/web.php',
@@ -862,9 +862,9 @@
     ),
     'paths' => 
     array (
-      'modules' => 'C:\\xampp\\htdocs\\remisapp\\Modules',
-      'assets' => 'C:\\xampp\\htdocs\\remisapp\\public\\modules',
-      'migration' => 'C:\\xampp\\htdocs\\remisapp\\database/migrations',
+      'modules' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\Modules',
+      'assets' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\public\\modules',
+      'migration' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\database/migrations',
       'generator' => 
       array (
         'config' => 
@@ -1057,7 +1057,7 @@
       'enabled' => false,
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\remisapp\\vendor/*/*',
+        0 => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\vendor/*/*',
       ),
     ),
     'composer' => 
@@ -1086,7 +1086,7 @@
       'file' => 
       array (
         'class' => 'Nwidart\\Modules\\Activators\\FileActivator',
-        'statuses-file' => 'C:\\xampp\\htdocs\\remisapp\\modules_statuses.json',
+        'statuses-file' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\modules_statuses.json',
         'cache-key' => 'activator.installed',
         'cache-lifetime' => 604800,
       ),
@@ -1168,7 +1168,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\remisapp\\storage\\framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1209,9 +1209,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\remisapp\\resources\\views',
+      0 => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\remisapp\\storage\\framework\\views',
+    'compiled' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -1359,7 +1359,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => 'C:\\xampp\\htdocs\\remisapp\\storage\\framework/cache/laravel-excel',
+      'local_path' => 'C:\\xampp\\htdocs\\remis-app\\remisapp\\storage\\framework/cache/laravel-excel',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
       'force_resync_remote' => NULL,
