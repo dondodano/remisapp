@@ -110,8 +110,8 @@ class Training extends Model
                 'subject_id' => $training->id,
                 'subject_type' => Training::class
             ])->save();
-        });
 
-        FeedableItem::where('feedable_id', $training->id)->where('feedable_type', Training::class)->delete();
+            FeedableItem::where('feedable_id', $training->id)->where('feedable_type', Training::class)->delete();
+        });
     }
 }
