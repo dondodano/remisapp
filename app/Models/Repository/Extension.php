@@ -5,11 +5,13 @@ namespace App\Models\Repository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Notification;
 
 use App\Models\User\User;
 use App\Models\Attachment\ExtensionFile;
 use App\Models\Evaluation\ExtensionEvaluation;
 
+use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
 
@@ -78,6 +80,8 @@ class Extension extends Model
                 'subject_id' =>  $extension->id,
                 'subject_type' => Extension::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($extension, Extension::class));
         });
 
         static::updated(function($extension){
@@ -89,6 +93,8 @@ class Extension extends Model
                 'subject_id' => $extension->id,
                 'subject_type' => Extension::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($extension, Extension::class, 'updated'));
         });
 
         static::deleted(function($extension){

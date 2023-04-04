@@ -327,7 +327,4 @@ Route::get('/optimize', function(){
     Artisan::call('optimize');
     return 'Optmized!';
 });
-// Route::get('/work', function(){
-//     Artisan::call('queue:work');
-//     return 'Queue worked!';
-// });
+

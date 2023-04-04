@@ -5,12 +5,14 @@ namespace App\Models\Repository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Notification;
 
 use App\Models\User\User;
 use App\Models\Misc\Miscellaneous as Type;
 use App\Models\Attachment\PresentationFile;
 use App\Models\Evaluation\PresentationEvaluation;
 
+use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
 
@@ -86,6 +88,8 @@ class Presentation extends Model
                 'subject_id' =>  $presentation->id,
                 'subject_type' => Presentation::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($presentation, Presentation::class));
         });
 
         static::updated(function($presentation){
@@ -97,6 +101,8 @@ class Presentation extends Model
                 'subject_id' => $presentation->id,
                 'subject_type' => Presentation::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($presentation, Presentation::class, 'updated'));
         });
 
         static::deleted(function($presentation){

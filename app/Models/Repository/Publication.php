@@ -5,17 +5,19 @@ namespace App\Models\Repository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Notification;
 
 use App\Models\User\User;
 use App\Models\Attachment\PublicationFile;
 use App\Models\Evaluation\PublicationEvaluation;
 
+use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
 
 class Publication extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,  SoftDeletes;
 
     protected $table = 'repository_publication';
 
@@ -80,6 +82,8 @@ class Publication extends Model
                 'subject_id' =>  $publication->id,
                 'subject_type' => Publication::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($publication, Publication::class));
         });
 
         static::updated(function($publication){
@@ -91,6 +95,8 @@ class Publication extends Model
                 'subject_id' => $publication->id,
                 'subject_type' => Publication::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($publication, Publication::class, 'updated'));
         });
 
         static::deleted(function($publication){

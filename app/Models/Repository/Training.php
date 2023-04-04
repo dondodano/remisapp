@@ -5,12 +5,14 @@ namespace App\Models\Repository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Notification;
 
 use App\Models\User\User;
 use App\Models\Attachment\TrainingFile;
 use App\Models\Evaluation\TrainingEvaluation;
 use App\Models\Misc\Miscellaneous as Relevance;
 
+use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
 
@@ -88,6 +90,8 @@ class Training extends Model
                 'subject_id' =>  $training->id,
                 'subject_type' => Training::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($training, Training::class));
         });
 
         static::updated(function($training){
@@ -99,6 +103,8 @@ class Training extends Model
                 'subject_id' => $training->id,
                 'subject_type' => Training::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($training, Training::class,'updated'));
         });
 
         static::deleted(function($training){

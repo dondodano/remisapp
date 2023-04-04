@@ -5,11 +5,13 @@ namespace App\Models\Repository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Notification;
 
 use App\Models\User\User;
 use App\Models\Attachment\PartnershipFile;
 use App\Models\Evaluation\PartnershipEvaluation;
 
+use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
 
@@ -78,6 +80,8 @@ class Partnership extends Model
                 'subject_id' =>  $partnership->id,
                 'subject_type' => Partnership::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($partnership, Partnership::class));
         });
 
         static::updated(function($partnership){
@@ -89,6 +93,8 @@ class Partnership extends Model
                 'subject_id' => $partnership->id,
                 'subject_type' => Partnership::class
             ])->save();
+
+            Notification::send(User::all(), new RepositoryCreated($partnership, Partnership::class, 'updated'));
         });
 
         static::deleted(function($partnership){
