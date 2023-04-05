@@ -16,19 +16,10 @@
                                 <div class="timeline-header mb-0">
                                     <h6 class="mb-0">{{ concat(' ',  [ $timeline->feed_file_owner->firstname, $timeline->feed_file_owner->lastname]) }}</h6>
 
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="timelineWapper-{{ $timeline->feedable_id }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class='bx bx-dots-horizontal-rounded'></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="timelineWapper-{{ $timeline->feedable_id }}" style="">
-                                            <button class="dropdown-item" wire:click="markread('{{ encipher($timeline->feedable_id) }}')" type="button">
-                                                <i class='bx bx-envelope-open'></i> Mark as read
-                                            </button>
-                                            <a class="dropdown-item" href="/{{ strtolower(basename($timeline->feedable_type)) }}/evaluation/{{ $timeline->feedable_id }}"  title="Evaluate">
-                                                <i class='bx bx-comment-dots'></i> Evaluate
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <a class="btn p-0" href="/{{ strtolower(basename($timeline->feedable_type)) }}/evaluation/{{ $timeline->feedable_id }}"  title="Evaluate">
+                                        <i class='bx bx-comment-dots'></i>
+                                    </a>
+
                                 </div>
                                 <p class="mb-0"><span class="badge bg-label-primary">{{ basename($timeline->feedable_type) }}</span></p>
                                 <p class="mb-0">{{ $timeline->feed_content() }}</p>

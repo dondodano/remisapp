@@ -32,7 +32,14 @@
                                             </div>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="mb-1">{{ $notification->data['owner'] }}</h6>
+                                            <h6 class="mb-1">
+                                                @if($notification->notifiable_id == auth()->user()->id)
+                                                    You have
+                                                @else
+                                                    {{ $notification->data['owner'] }}
+                                                @endif
+
+                                            </h6>
                                             <p class="mb-0">{{ ucfirst($notification->data['method']) .' new '. basename($notification->data['type'])}} document</p>
                                             <small class="text-muted">{{ elapse($notification->created_at) }}</small>
                                         </div>
