@@ -51,3 +51,8 @@ $status = $kernel->handle(
 $kernel->terminate($input, $status);
 
 exit($status);
+
+
+/**
+ * Note : Require execution on production through CPanel Terminal
+ */

@@ -685,6 +685,7 @@ class ComposerStaticInit7a9b2ace0906bd7ff352117004649b4c
         'App\\Console\\Commands\\ResetConfig' => __DIR__ . '/../..' . '/app/Console/Commands/ResetConfig.php',
         'App\\Console\\Commands\\ResetLog' => __DIR__ . '/../..' . '/app/Console/Commands/ResetLog.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Events\\PusherNotificationEvent' => __DIR__ . '/../..' . '/app/Events/PusherNotificationEvent.php',
         'App\\Events\\SendMailToUserCredentialEvent' => __DIR__ . '/../..' . '/app/Events/SendMailToUserCredentialEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',

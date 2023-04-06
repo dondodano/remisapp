@@ -11,6 +11,7 @@ return array(
     'App\\Console\\Commands\\ResetConfig' => $baseDir . '/app/Console/Commands/ResetConfig.php',
     'App\\Console\\Commands\\ResetLog' => $baseDir . '/app/Console/Commands/ResetLog.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Events\\PusherNotificationEvent' => $baseDir . '/app/Events/PusherNotificationEvent.php',
     'App\\Events\\SendMailToUserCredentialEvent' => $baseDir . '/app/Events/SendMailToUserCredentialEvent.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\AuthController' => $baseDir . '/app/Http/Controllers/Auth/AuthController.php',
