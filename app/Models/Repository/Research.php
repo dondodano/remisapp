@@ -110,7 +110,14 @@ class Research extends Model
                 'subject_type' => Research::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($research, Research::class));
+
+            $researchAll = Research::with(['file_owner' => function($first){
+                $first->select('id','firstname', 'middlename', 'lastname', 'avatar')->with(['temp_avatar' => function($second){
+                    $second->select('user_id','avatar');
+                }]);
+            }])->findOrFail($research->id);
+
+            Notification::send(User::all(), new RepositoryCreated($researchAll, Research::class));
 
             event(new PusherNotificationEvent('NewNotification'));
         });

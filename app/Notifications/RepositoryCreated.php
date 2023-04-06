@@ -44,7 +44,6 @@ class RepositoryCreated extends Notification
             'repository' => $this->repository,
             'type' => $this->type,
             'method' => $this->method,
-            'owner' => fullName(),
         ];
     }
 }

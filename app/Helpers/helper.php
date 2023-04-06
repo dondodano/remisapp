@@ -1151,3 +1151,18 @@ function onlineUserCountText($array)
         count($array) > 0 ? 'online' : 'onlines'
     ]);
 }
+
+
+/**
+ * Notification Avatar
+ */
+function notificationAvatar(){
+    $avatar = sessionGet('avatar');
+    $temp_avatar = sessionGet('temp_avatar');
+
+    if(strlen($avatar) == 0 || $avatar == null)
+    {
+        return $tem_avatar;
+    }
+    return '<img src="'.$avatar.'" alt="Avatar" class="w-px-40 h-auto rounded-circle">';
+}

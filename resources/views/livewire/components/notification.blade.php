@@ -30,7 +30,14 @@
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
                                             <div class="avatar">
-                                                <img src="../../assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
+
+                                                @if(strlen($notification->data['repository']['file_owner']['avatar']) == 0 ||
+                                                $notification->data['repository']['file_owner']['avatar'] == null)
+                                                    {{ $notification->data['repository']['file_owner']['temp_avatar']['avatar'] }}
+                                                @else
+                                                    <img src="{{ getFile($notification->data['repository']['file_owner']['avatar']) }}" alt="" class="w-px-40 h-auto rounded-circle">
+                                                @endif
+
                                             </div>
                                         </div>
                                         <div class="flex-grow-1">
@@ -38,7 +45,7 @@
                                                 @if($notification->data['repository']['owner'] == auth()->user()->id)
                                                     You have
                                                 @else
-                                                    {{ $notification->data['owner'] }}
+                                                    {{ $notification->data['repository']['file_owner']['firstname'] .' '.$notification->data['repository']['file_owner']['lastname'] }}
                                                 @endif
 
                                             </h6>
@@ -60,7 +67,6 @@
                             No notification available...
                         </li>
                     @endif
-
 
                 </ul>
                 <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

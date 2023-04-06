@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Components;
 
 use Livewire\Component;
+use App\Models\User\User;
 
 class Notification extends Component
 {
