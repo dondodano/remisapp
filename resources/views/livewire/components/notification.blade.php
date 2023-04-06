@@ -49,7 +49,7 @@
                                                 @endif
 
                                             </h6>
-                                            <p class="mb-0">{{ ucfirst($notification->data['method']) .' new '. basename($notification->data['type'])}} document</p>
+                                            <p class="mb-0">{{ ucfirst($notification->data['method']) .' new '. basenameV2($notification->data['type'])}} document</p>
                                             <small class="text-muted">{{ elapse($notification->created_at) }}</small>
                                         </div>
                                         <div class="flex-shrink-0 dropdown-notifications-actions">

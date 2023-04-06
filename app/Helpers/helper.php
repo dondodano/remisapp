@@ -1166,3 +1166,13 @@ function notificationAvatar(){
     }
     return '<img src="'.$avatar.'" alt="Avatar" class="w-px-40 h-auto rounded-circle">';
 }
+
+
+/**
+ * Custom Basename
+ */
+function basenameV2($str){
+    $replaced = str_replace('\\', '/', $str);
+    $extract = explode('/', $replaced);
+    return $extract[count($extract)-1];
+}

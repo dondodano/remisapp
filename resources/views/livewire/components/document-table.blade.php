@@ -28,7 +28,7 @@
                                 </div>
                             </td>
                             <td>{{ $record->feed_content() }}</td>
-                            <td>{{ basename($record->feedable_type) }}</td>
+                            <td>{{ basenameV2($record->feedable_type) }}</td>
                             <td><span class="badge bg-label-secondary">{{ setDate($record->date_created ) }}</span></td>
                         </tr>
                     @endforeach
