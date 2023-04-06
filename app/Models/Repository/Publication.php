@@ -84,7 +84,13 @@ class Publication extends Model
                 'subject_type' => Publication::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($publication, Publication::class));
+            $publicationAll = Publication::with(['file_owner' => function($first){
+                $first->select('id','firstname', 'middlename', 'lastname', 'avatar')->with(['temp_avatar' => function($second){
+                    $second->select('user_id','avatar');
+                }]);
+            }])->findOrFail($publication->id);
+
+            Notification::send(User::all(), new RepositoryCreated($publicationAll, Publication::class));
 
             event(new PusherNotificationEvent('NewNotification'));
         });
@@ -114,6 +120,8 @@ class Publication extends Model
 
 
             FeedableItem::where('feedable_id', $publication->id)->where('feedable_type', Publication::class)->delete();
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
     }
 }

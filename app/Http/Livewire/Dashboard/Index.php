@@ -20,6 +20,8 @@ use App\Models\Feed\FeedableItem;
 
 class Index extends Component
 {
+    protected $listeners = ['newNotificationEvent' => '$refresh'];
+
     public function getResearchesProperty()
     {
         $data = Research::with(['category', 'fund', 'research_status', 'evaluations','attachments']);
@@ -85,7 +87,6 @@ class Index extends Component
         }
         return $data;
     }
-
 
     public function render()
     {

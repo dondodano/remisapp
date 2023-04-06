@@ -33,7 +33,7 @@
 
                                                 @if(strlen($notification->data['repository']['file_owner']['avatar']) == 0 ||
                                                 $notification->data['repository']['file_owner']['avatar'] == null)
-                                                    {{ $notification->data['repository']['file_owner']['temp_avatar']['avatar'] }}
+                                                    {!! $notification->data['repository']['file_owner']['temp_avatar']['avatar'] !!}
                                                 @else
                                                     <img src="{{ getFile($notification->data['repository']['file_owner']['avatar']) }}" alt="" class="w-px-40 h-auto rounded-circle">
                                                 @endif

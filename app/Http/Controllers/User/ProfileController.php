@@ -63,14 +63,14 @@ class ProfileController extends Controller
                     'lastname' => $lastname,
                     'extension' => inValidateNull($extension),
                     'title' => inValidateNull($title),
-                    'avatar' => $attachment_file_name,
+                    'avatar' => $path . $attachment_file_name,
                     'email' => $email,
                 ]);
 
                 if($profile)
                 {
                     session([
-                        'avatar' => $attachment_file_name,
+                        'avatar' => $path . $attachment_file_name,
                         'email' => $email,
                         'name_array' => [
                             'firstname' => $firstname,

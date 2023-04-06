@@ -82,7 +82,13 @@ class Extension extends Model
                 'subject_type' => Extension::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($extension, Extension::class));
+            $extensionAll = Extension::with(['file_owner' => function($first){
+                $first->select('id','firstname', 'middlename', 'lastname', 'avatar')->with(['temp_avatar' => function($second){
+                    $second->select('user_id','avatar');
+                }]);
+            }])->findOrFail($extension->id);
+
+            Notification::send(User::all(), new RepositoryCreated($extensionAll, Extension::class));
 
             event(new PusherNotificationEvent('NewNotification'));
         });
@@ -111,6 +117,8 @@ class Extension extends Model
             ])->save();
 
             FeedableItem::where('feedable_id', $extension->id)->where('feedable_type', Extension::class)->delete();
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
     }
 }

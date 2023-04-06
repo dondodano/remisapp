@@ -21,7 +21,7 @@
     <meta name="description" content="SPAMAST REMIS" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ '/storage/images/default_logo.png' }}" />
+    <link rel="icon" type="image/x-icon" href="{{ $favicon }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,7 +64,7 @@
               <div class="app-brand justify-content-center">
                 <a href="index.html" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="{{ '/storage/images/default_logo.png' }}" width="100" />
+                    <img src="{{ $favicon }}" width="100" />
                   </span>
                 </a>
               </div>

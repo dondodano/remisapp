@@ -90,7 +90,13 @@ class Presentation extends Model
                 'subject_type' => Presentation::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($presentation, Presentation::class));
+            $presentationAll = Presentation::with(['file_owner' => function($first){
+                $first->select('id','firstname', 'middlename', 'lastname', 'avatar')->with(['temp_avatar' => function($second){
+                    $second->select('user_id','avatar');
+                }]);
+            }])->findOrFail($presentation->id);
+
+            Notification::send(User::all(), new RepositoryCreated($presentationAll, Presentation::class));
 
             event(new PusherNotificationEvent('NewNotification'));
         });
@@ -119,6 +125,8 @@ class Presentation extends Model
             ])->save();
 
             FeedableItem::where('feedable_id', $presentation->id)->where('feedable_type', Presentation::class)->delete();
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
     }
 }

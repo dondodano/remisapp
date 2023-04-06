@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Cache;
 use App\Models\Setting\General;
 
 class FaviconController extends Controller
@@ -39,17 +40,23 @@ class FaviconController extends Controller
 
             $attachment_file->storeAs($path, $attachment_file_name, 'public');
 
+
+            $favPath = $path . $attachment_file_name;
+
             if(General::count() == 0)
             {
                $fav_icon_store = General::firstOrCreate([
-                   'fav_icon' => $attachment_file_name
+                   'fav_icon' => $favPath
                ]);
                $fav_icon_store->save();
 
                if($fav_icon_store){
-                   session(['favicon' => $attachment_file_name]);
+                   session(['favicon' => $favPath]);
 
-                   logUserActivity($request, 'User ['.sessionGet('id').'] uploaded new fav icon');
+                    Cache::forget('favicon');
+                    Cache::rememberForever('favicon', function() use ($favPath){
+                        return ['path' => $favPath];
+                    });
 
                    toastr("File successfully uploaded!", "success");
                    return back();
@@ -60,13 +67,16 @@ class FaviconController extends Controller
            }else{
                $fav_icon_update = General::findOrFail(1);
                $fav_icon_update->update([
-                   'fav_icon' => $attachment_file_name
+                   'fav_icon' => $favPath
                ]);
 
                if($fav_icon_update){
-                   session(['favicon' => $attachment_file_name]);
+                   session(['favicon' => $favPath]);
 
-                   logUserActivity($request, 'User ['.sessionGet('id').'] updated fav icon');
+                    Cache::forget('favicon');
+                    Cache::rememberForever('favicon', function() use ($favPath){
+                        return ['path' => $favPath];
+                    });
 
                    toastr("Fav icon successfully updated!", "info");
                    return back();

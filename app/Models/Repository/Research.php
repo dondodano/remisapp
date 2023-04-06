@@ -147,6 +147,7 @@ class Research extends Model
 
             FeedableItem::where('feedable_id', $research->id)->where('feedable_type', Research::class)->delete();
 
+            event(new PusherNotificationEvent('NewNotification'));
         });
     }
 }

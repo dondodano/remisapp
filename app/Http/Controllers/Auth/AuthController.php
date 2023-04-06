@@ -19,78 +19,23 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('content.auth.login');
+
+        $favIcon = 'images/default_logo';
+
+        if(Cache::get('favicon'))
+        {
+            $favIcon = Cache::get('favicon')['path'];
+        }
+
+        return view('content.auth.login',[
+            'favicon' => getFileShortLocation($favIcon)
+        ]);
     }
 
     public function signin(Request $request)
     {
         $email = $request->input('email');
         $password = $request->input('password');
-
-        /*if(strlen($email) == 0 || strlen($password) == 0)
-        {
-            toastr("Please fill all fields required!", "error");
-            return back();
-        }else{
-            $emailAddress = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-            if(!filter_var( $emailAddress, FILTER_VALIDATE_EMAIL) )
-            {
-                toastr("Invalid email address", "error");
-                return back();
-            }else{
-                $credentials = [
-                    'email' => $request->email,
-                    'password' => md5($request->password)
-                ];
-
-                if($this->attempt($credentials))
-                {
-
-                    $request->session()->regenerate();
-
-                    $user = User::with(['user_role', 'temp_avatar'])->where(function($w) use ($credentials){
-                        $w->where('active',1)->where('status',1);
-                        $w->where('email', $credentials['email']);
-                        $w->where('password', $credentials['password']);
-                    })->first();
-
-                    $fullName = [
-                        'firstname' => $user->firstname,
-                        'middlename' => $user->middlename,
-                        'lastname' => $user->lastname,
-                        'extension' => $user->extension,
-                        'title' => $user->title
-                    ];
-
-                    session([
-                        'session' => token(),
-                        'id' => $user->id,
-                        'email' => $user->email,
-                        'password' => $user->password,
-                        'role_id' => $user->role_id,
-                        'role' => $user->user_role->term,
-                        'avatar' => $user->avatar,
-                        'temp_avatar' => !empty($user->temp_avatar) ? $user->temp_avatar->avatar : '',
-                        'name_array' => $fullName,
-                        'current_year' => setToday('Y'),
-                        'favicon' => General::where('id', 1)->first()->fav_icon
-                    ]);
-
-
-
-                    $this->logUser($request, 1);
-
-                    toastr("Welcome! You have successfully logged in.", "success");
-                    return redirect()->intended('/dashboard');
-
-                }else{
-                    toastr("These credentials do not match our records.", "error");
-                    return redirect("login");
-                }
-
-            }
-        }*/
 
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -109,6 +54,8 @@ class AuthController extends Controller
                 'title' => Auth::user()->title
             ];
 
+            $favIcon = General::where('id', 1)->first()->fav_icon;
+
             session([
                 'session' => token(),
                 'id' => Auth::user()->id,
@@ -120,10 +67,14 @@ class AuthController extends Controller
                 'temp_avatar' => !empty(Auth::user()->temp_avatar) ? Auth::user()->temp_avatar->avatar : '',
                 'name_array' => $fullName,
                 'current_year' => setToday('Y'),
-                'favicon' => General::where('id', 1)->first()->fav_icon
+                'favicon' => $favIcon
             ]);
 
             $this->logUser($request, 1);
+
+            Cache::rememberForever('favicon', function() use ($favIcon){
+                return ['path' => $favIcon];
+            });
 
             toastr("Welcome! You have successfully logged in.", "success");
             return redirect()->intended('/dashboard');

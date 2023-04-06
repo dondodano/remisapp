@@ -82,7 +82,13 @@ class Partnership extends Model
                 'subject_type' => Partnership::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($partnership, Partnership::class));
+            $partnershipAll = Partnership::with(['file_owner' => function($first){
+                $first->select('id','firstname', 'middlename', 'lastname', 'avatar')->with(['temp_avatar' => function($second){
+                    $second->select('user_id','avatar');
+                }]);
+            }])->findOrFail($partnership->id);
+
+            Notification::send(User::all(), new RepositoryCreated($partnershipAll, Partnership::class));
 
             event(new PusherNotificationEvent('NewNotification'));
         });
@@ -112,6 +118,8 @@ class Partnership extends Model
 
 
             FeedableItem::where('feedable_id', $partnership->id)->where('feedable_type', Partnership::class)->delete();
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
     }
 }

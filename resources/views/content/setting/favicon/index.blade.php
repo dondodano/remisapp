@@ -17,7 +17,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="siteicon">Site Icon</label>
                         <div class="col-sm-10">
-                            <img src="{{ getFile(sessionGet('favicon')) }}" width="96" />
+                            <img src="{{ getFileShortLocation(sessionGet('favicon')) }}" width="96" />
                         </div>
                     </div>
 

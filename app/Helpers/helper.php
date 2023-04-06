@@ -1036,7 +1036,7 @@ function avatar($size = "")
     $avatar = sessionGet('avatar');
     if(strlen($avatar) > 0 || $avatar != null)
     {
-        return '<img src="'.getFile($avatar).'" alt="Avatar" width="96"  />';
+        return '<img src="'.getFileShortLocation($avatar).'" alt="Avatar" width="96"  />';
     }
 
     $temp_avatar = sessionGet('temp_avatar');

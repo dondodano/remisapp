@@ -12,7 +12,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ getFile(sessionGet('favicon')) }}" />
+        <link rel="icon" type="image/x-icon" href="{{ getFileShortLocation(sessionGet('favicon')) }}" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -126,7 +126,6 @@
 
         var channel = pusher.subscribe('notification-channel');
         channel.bind('notification-event', function(data) {
-            //console.log(JSON.stringify(data));
             if(data)
             {
                 Livewire.emit('newNotificationEvent')

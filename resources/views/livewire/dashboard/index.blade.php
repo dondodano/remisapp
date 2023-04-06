@@ -1,30 +1,52 @@
 <div>
-    <p>Need Options for Direct Evaluate and Mark as Read</p>
-    <p>Require PUSHER for Realtime Notification</p>
-    <p>Require PUSHER for Realtime update of Dashboard figures</p>
     <div class="row">
         <div class="col-xl-4 mb-4">
-            @livewire('components.mini-card', ['title' => 'Research','text' => $researches->count()])
+            @include('vendor.remis-components.mini-card',[
+                'miniCardTitle' => "Research",
+                'miniCardText' => $researches->count(),
+                'miniCardIcon' => 'bx-search'
+            ])
         </div>
         <div class="col-xl-4 mb-4">
-            @livewire('components.mini-card', ['title' => 'Publication','text' => $publications->count(), 'icon' => 'bx-file'])
+            @include('vendor.remis-components.mini-card',[
+                'miniCardTitle' => "Publication",
+                'miniCardText' => $publications->count(),
+                'miniCardIcon' => 'bx-file'
+            ])
         </div>
         <div class="col-xl-4 mb-4">
-            @livewire('components.mini-card', ['title' => 'Presentation','text' => $presentations->count(), 'icon' => 'bx-slideshow'])
+            @include('vendor.remis-components.mini-card',[
+                'miniCardTitle' => "Presentation",
+                'miniCardText' => $presentations->count(),
+                'miniCardIcon' => 'bx-slideshow'
+            ])
         </div>
     </div>
 
     <div class="row">
         <div class="col-xl-4 mb-4">
-            @livewire('components.mini-card', ['title' => 'Training','text' => $trainings->count(), 'icon' => 'bx-run'])
+            @include('vendor.remis-components.mini-card',[
+                'miniCardTitle' => "Training",
+                'miniCardText' => $trainings->count(),
+                'miniCardIcon' => 'bx-run'
+            ])
         </div>
         <div class="col-xl-4 mb-4">
-            @livewire('components.mini-card', ['title' => 'Extension','text' => $extensions->count(), 'icon' => 'bx-chalkboard'])
+            @include('vendor.remis-components.mini-card',[
+                'miniCardTitle' => "Extension",
+                'miniCardText' => $extensions->count(),
+                'miniCardIcon' => 'bx-chalkboard'
+            ])
         </div>
         <div class="col-xl-4 mb-4">
-            @livewire('components.mini-card', ['title' => 'Partnership','text' => $partnerships->count(), 'icon' => 'bx-trip'])
+            @include('vendor.remis-components.mini-card',[
+                'miniCardTitle' => "Partnership",
+                'miniCardText' => $partnerships->count(),
+                'miniCardIcon' => 'bx-trip'
+            ])
         </div>
     </div>
+
 
     <div class="row mb-4">
         <div class="col-md-8">

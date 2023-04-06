@@ -48,7 +48,6 @@ class GeneralSettingController extends Controller
                 $general_store->save();
 
                 if($general_store){
-                    logUserActivity($request, 'User ['.sessionGet('id').'] created new setting');
                     toastr("General setting successfully saved!", "success");
                     return back();
                 }else{
@@ -67,7 +66,6 @@ class GeneralSettingController extends Controller
                 ]);
 
                 if($general){
-                    logUserActivity($request, 'User ['.sessionGet('id').'] updated setting');
                     toastr("General setting updated!", "info");
                     return back();
                 }else{

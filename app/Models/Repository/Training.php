@@ -92,7 +92,13 @@ class Training extends Model
                 'subject_type' => Training::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($training, Training::class));
+            $trainingAll = Training::with(['file_owner' => function($first){
+                $first->select('id','firstname', 'middlename', 'lastname', 'avatar')->with(['temp_avatar' => function($second){
+                    $second->select('user_id','avatar');
+                }]);
+            }])->findOrFail($training->id);
+
+            Notification::send(User::all(), new RepositoryCreated($trainingAll, Training::class));
 
             event(new PusherNotificationEvent('NewNotification'));
         });
@@ -121,6 +127,8 @@ class Training extends Model
             ])->save();
 
             FeedableItem::where('feedable_id', $training->id)->where('feedable_type', Training::class)->delete();
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
     }
 }
