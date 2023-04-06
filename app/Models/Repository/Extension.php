@@ -14,6 +14,7 @@ use App\Models\Evaluation\ExtensionEvaluation;
 use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
+use App\Events\PusherNotificationEvent;
 
 class Extension extends Model
 {
@@ -82,6 +83,8 @@ class Extension extends Model
             ])->save();
 
             Notification::send(User::all(), new RepositoryCreated($extension, Extension::class));
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::updated(function($extension){

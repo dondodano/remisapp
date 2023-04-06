@@ -60,20 +60,20 @@
                     <label title="Required" class="form-label" for="title">Title
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="title" class="form-control" name="title" wire:model="title"></textarea>
+                    <textarea id="title" class="form-control" name="title" wire:model.prevent.debounce.500ms="title"></textarea>
                 </div>
 
                 <div class="col-md-6">
                     <label title="Required" class="form-label" for="date_from">Date From
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_from" class="form-control" name="date_from"  wire:model="date_from">
+                    <input type="date" id="date_from" class="form-control" name="date_from"  wire:model.prevent.debounce.500ms="date_from">
                 </div>
                 <div class="col-md-6">
                     <label title="Required" class="form-label" for="date_to">Date To
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_to" class="form-control" name="date_to"  wire:model="date_to">
+                    <input type="date" id="date_to" class="form-control" name="date_to"  wire:model.prevent.debounce.500ms="date_to">
                 </div>
 
 
@@ -81,32 +81,32 @@
                     <label title="Required" class="form-label" for="duration">Duration
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="number" id="duration" class="form-control" name="duration"  wire:model="duration">
+                    <input type="number" id="duration" class="form-control" name="duration"  wire:model.prevent.debounce.500ms="duration">
                 </div>
                 <div class="col-md-3 col-12">
                     <label title="Required" class="form-label" for="trainees">No of Trainees
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="number" id="trainees" class="form-control" name="trainees"  wire:model="trainees">
+                    <input type="number" id="trainees" class="form-control" name="trainees"  wire:model.prevent.debounce.500ms="trainees">
                 </div>
                 <div class="col-md-3 col-12">
                     <label title="Required" class="form-label" for="weight">Weight
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="number" id="weight" class="form-control" name="weight"  wire:model="weight">
+                    <input type="number" id="weight" class="form-control" name="weight"  wire:model.prevent.debounce.500ms="weight">
                 </div>
                 <div class="col-md-3 col-12">
                     <label title="Required" class="form-label" for="surveyed">No of Trainees Surveyed
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="number" id="surveyed" class="form-control" name="surveyed"  wire:model="surveyed">
+                    <input type="number" id="surveyed" class="form-control" name="surveyed"  wire:model.prevent.debounce.500ms="surveyed">
                 </div>
 
                 <div class="col-md-6 col-12">
                     <label title="Required" class="form-label" for="quality">Quality
                         <span class="text-danger">*</span>
                     </label>
-                    <select id="quality" class="form-control" name="quality"  wire:model="quality">
+                    <select id="quality" class="form-control" name="quality"  wire:model.prevent.debounce.500ms="quality">
                         <option value="">-- Select Quality --</option>
                         @foreach($qualities as $quality)
                             <option value="{{ $quality->id }}">{{ $quality->term}}</option>
@@ -117,7 +117,7 @@
                     <label title="Required" class="form-label" for="relevance">Relevance
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="number" id="relevance" class="form-control" name="relevance"  wire:model="relevance">
+                    <input type="number" id="relevance" class="form-control" name="relevance"  wire:model.prevent.debounce.500ms="relevance">
                 </div>
 
             </div>

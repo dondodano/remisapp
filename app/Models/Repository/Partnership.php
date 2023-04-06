@@ -14,6 +14,7 @@ use App\Models\Evaluation\PartnershipEvaluation;
 use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
+use App\Events\PusherNotificationEvent;
 
 class Partnership extends Model
 {
@@ -82,6 +83,8 @@ class Partnership extends Model
             ])->save();
 
             Notification::send(User::all(), new RepositoryCreated($partnership, Partnership::class));
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::updated(function($partnership){

@@ -15,6 +15,7 @@ use App\Models\Evaluation\PresentationEvaluation;
 use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
+use App\Events\PusherNotificationEvent;
 
 class Presentation extends Model
 {
@@ -90,6 +91,8 @@ class Presentation extends Model
             ])->save();
 
             Notification::send(User::all(), new RepositoryCreated($presentation, Presentation::class));
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::updated(function($presentation){

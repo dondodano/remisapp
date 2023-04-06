@@ -17,6 +17,7 @@ use App\Models\Misc\Miscellaneous as Category;
 use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use App\Models\Feed\FeedableItem;
+use App\Events\PusherNotificationEvent;
 
 class Research extends Model
 {
@@ -110,6 +111,8 @@ class Research extends Model
             ])->save();
 
             Notification::send(User::all(), new RepositoryCreated($research, Research::class));
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::updated(function($research){

@@ -2,8 +2,8 @@
     <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
             <i class="bx bx-bell bx-sm"></i>
-            @if(count(auth()->user()->notifications) > 0)
-                <span class="badge bg-danger rounded-pill badge-notifications">{{ count(auth()->user()->notifications) }}</span>
+            @if(auth()->user()->unreadNotifications->count() > 0)
+                <span class="badge bg-danger rounded-pill badge-notifications">{{ auth()->user()->unreadNotifications->count() }}</span>
             @endif
 
         </a>
@@ -11,7 +11,9 @@
             <li class="dropdown-menu-header border-bottom">
                 <div class="dropdown-header d-flex align-items-center py-3">
                     <h5 class="text-body mb-0 me-auto">Notification</h5>
-                    <a href="javascript:void(0)" class="dropdown-notifications-all text-body"  data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Mark all as read" data-bs-original-title="Mark all as read">
+                    <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
+                        data-bs-toggle="tooltip" data-bs-placement="top"
+                        aria-label="Mark all as read" data-bs-original-title="Mark all as read" wire:click="markallasread">
                         <i class="bx fs-4 bx-envelope-open"></i>
                     </a>
                 </div>
@@ -21,7 +23,7 @@
                 <ul class="list-group list-group-flush">
 
                     @if(count(auth()->user()->notifications) > 0)
-                        @foreach (auth()->user()->notifications as $notification )
+                        @foreach (auth()->user()->unreadNotifications as $notification )
 
                                 <!-- Notification list -->
                                 <li class="list-group-item list-group-item-action dropdown-notifications-item">
@@ -33,7 +35,7 @@
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="mb-1">
-                                                @if($notification->notifiable_id == auth()->user()->id)
+                                                @if($notification->data['repository']['owner'] == auth()->user()->id)
                                                     You have
                                                 @else
                                                     {{ $notification->data['owner'] }}
@@ -44,7 +46,7 @@
                                             <small class="text-muted">{{ elapse($notification->created_at) }}</small>
                                         </div>
                                         <div class="flex-shrink-0 dropdown-notifications-actions">
-                                            <a href="javascript:void(0)" class="dropdown-notifications-archive">
+                                            <a href="javascript:void(0)" class="dropdown-notifications-archive" wire:click="markasread('{{ $notification->id }}')">
                                                 <span class="bx bx-x"></span>
                                             </a>
                                         </div>

@@ -77,14 +77,14 @@
                     <label title="Required" class="form-label" for="date_presented">Date Presented
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_presented" class="form-control" name="date_presented"  wire:model="date_presented">
+                    <input type="date" id="date_presented" class="form-control" name="date_presented"  wire:model.prevent.debounce.500ms="date_presented">
                 </div>
 
                 <div class="col-md-12">
                     <label   title="Required" class="form-label" for="type">Presentation Type
                         <span class="text-danger">*</span>
                     </label>
-                    <select id="type" class="form-select" name="type" wire:model="type">
+                    <select id="type" class="form-select" name="type" wire:model.prevent.debounce.500ms="type">
                         <option value="">-- Select type --</option>
                         @foreach($types as $key => $type)
                             <option value="{{ $type->id }}">{{ $type->term }}</option>
@@ -96,28 +96,28 @@
                     <label title="Required" class="form-label" for="title">Title
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="title" class="form-control" name="title" wire:model="title"></textarea>
+                    <textarea id="title" class="form-control" name="title" wire:model.prevent.debounce.500ms="title"></textarea>
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="author">Author
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="author" class="form-control" name="author" wire:model="author"></textarea>
+                    <textarea id="author" class="form-control" name="author" wire:model.prevent.debounce.500ms="author"></textarea>
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="forum">Forum
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="forum" class="form-control" name="forum" wire:model="forum"></textarea>
+                    <textarea id="forum" class="form-control" name="forum" wire:model.prevent.debounce.500ms="forum"></textarea>
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="venue">Venue
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="venue" class="form-control" name="venue" wire:model="venue"></textarea>
+                    <textarea id="venue" class="form-control" name="venue" wire:model.prevent.debounce.500ms="venue"></textarea>
                 </div>
             </div>
 

@@ -78,40 +78,40 @@
                 <label  title="Required" class="form-label" for="project-title">Project Title
                     <span class="text-danger">*</span>
                 </label>
-                <textarea id="project-title" class="form-control" name="project-title" wire:model="projectTitle"></textarea>
+                <textarea id="project-title" class="form-control" name="project-title" wire:model.prevent.debounce.500ms="projectTitle"></textarea>
             </div>
             <div class="col-md-12">
                 <label   title="Required" class="form-label" for="researcher">Researcher
                     <span class="text-danger">*</span>
                 </label>
-                <textarea id="researcher" class="form-control" name="researcher" wire:model="researcher"></textarea>
+                <textarea id="researcher" class="form-control" name="researcher" wire:model.prevent.debounce.500ms="researcher"></textarea>
             </div>
             <div class="col-md-12">
                 <label   title="Required" class="form-label" for="budget">Budget
                     <span class="text-danger">*</span>
                 </label>
-                <input type="number" id="budget" class="form-control" name="budget"  wire:model="budget">
+                <input type="number" id="budget" class="form-control" name="budget"  wire:model.prevent.debounce.500ms="budget">
             </div>
 
             <div class="col-md-4">
                 <label   title="Required" class="form-label" for="year-start">Year Start
                     <span class="text-danger">*</span>
                 </label>
-                <input type="number" id="year-start" class="form-control" name="year-start" wire:model="yearStart">
+                <input type="number" id="year-start" class="form-control" name="year-start" wire:model.prevent.debounce.500ms="yearStart">
             </div>
 
             <div class="col-md-4">
                 <label   title="Required" class="form-label" for="year-end">Year End
                     <span class="text-danger">*</span>
                 </label>
-                <input type="number" id="year-end" class="form-control" name="year-end" wire:model="yearEnd">
+                <input type="number" id="year-end" class="form-control" name="year-end" wire:model.prevent.debounce.500ms="yearEnd">
             </div>
 
             <div class="col-md-4">
                 <label   title="Required" class="form-label" for="status">Status
                     <span class="text-danger">*</span>
                 </label>
-                <select id="status" class="form-select" name="status" wire:model="status">
+                <select id="status" class="form-select" name="status" wire:model.prevent.debounce.500ms="status">
                     <option value="">-- Select Status --</option>
                     @foreach($statuses as $key => $status)
                         <option value="{{ $status->id }}">{{ $status->term }}</option>
@@ -128,7 +128,7 @@
                 <label title="Required" class="form-label" for="fund-type">Fund Type
                     <span class="text-danger">*</span>
                 </label>
-                <select id="fund-type" class="form-select" name="fund-type" wire:model="fundType">
+                <select id="fund-type" class="form-select" name="fund-type" wire:model.prevent.debounce.500ms="fundType">
                     <option value="">-- Select Fund Type --</option>
                     @foreach($fundtypes as $key => $fundtype)
                         <option value="{{ $fundtype->id }}">{{ $fundtype->term }}</option>
@@ -139,7 +139,7 @@
                 <label title="Required" class="form-label" for="category">Category
                     <span class="text-danger">*</span>
                 </label>
-                <select id="category" class="form-select" name="category" wire:model="category">
+                <select id="category" class="form-select" name="category" wire:model.prevent.debounce.500ms="category">
                     <option value="">-- Select Category --</option>
                     @foreach($categories as $key => $category)
                         <option value="{{ $category->id }}">{{ $category->term }}</option>
@@ -148,32 +148,32 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label" for="commodity">Commodity</label>
-                <input type="text" id="commodity" class="form-control" name="commodity" wire:model="commodity">
+                <input type="text" id="commodity" class="form-control" name="commodity" wire:model.prevent.debounce.500ms="commodity">
             </div>
         </div>
 
         <div class="row g-3 mb-3">
             <div class="col-md-12">
                 <label class="form-label" for="program-title">Program Title</label>
-                <textarea id="program-title" class="form-control" name="program-title"  wire:model="programTitle"></textarea>
+                <textarea id="program-title" class="form-control" name="program-title"  wire:model.prevent.debounce.500ms="programTitle"></textarea>
             </div>
 
             <div class="col-md-12">
                 <label title="Required" class="form-label" for="study-site">Study site
                     <span class="text-danger">*</span>
                 </label>
-                <textarea id="study-site" class="form-control" name="study-site" wire:model="studySite"></textarea>
+                <textarea id="study-site" class="form-control" name="study-site" wire:model.prevent.debounce.500ms="studySite"></textarea>
             </div>
             <div class="col-md-12">
                 <label title="Required" class="form-label" for="funding-agency">Funding Agency
                     <span class="text-danger">*</span>
                 </label>
-                <textarea id="funding-agency" class="form-control" name="funding-agency"  wire:model="fundingAgency"></textarea>
+                <textarea id="funding-agency" class="form-control" name="funding-agency"  wire:model.prevent.debounce.500ms="fundingAgency"></textarea>
             </div>
 
             <div class="col-md-12">
                 <label class="form-label" for="agency">Collaborative Agency</label>
-                <textarea id="agency" class="form-control" name="agency"  wire:model="collaborativeAgency"></textarea>
+                <textarea id="agency" class="form-control" name="agency"  wire:model.prevent.debounce.500ms="collaborativeAgency"></textarea>
             </div>
         </div>
 

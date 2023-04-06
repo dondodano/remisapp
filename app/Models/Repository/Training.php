@@ -15,6 +15,7 @@ use App\Models\Misc\Miscellaneous as Relevance;
 use App\Notifications\RepositoryCreated;
 use App\Models\Log\LogUserActivity;
 use  App\Models\Feed\FeedableItem;
+use App\Events\PusherNotificationEvent;
 
 class Training extends Model
 {
@@ -92,6 +93,8 @@ class Training extends Model
             ])->save();
 
             Notification::send(User::all(), new RepositoryCreated($training, Training::class));
+
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::updated(function($training){

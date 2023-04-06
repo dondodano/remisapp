@@ -62,7 +62,6 @@ Route::get('/change-password/{token}', [FirstAccessChangePasswordController::cla
 Route::put('/change-password/{token}', [FirstAccessChangePasswordController::class, 'update']);
 
 
-
 Route::prefix('/dashboard')->middleware(['auth'])->group(function(){
     Route::get('', Dashboard\Index::class);
 });

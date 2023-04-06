@@ -9,6 +9,7 @@
 
         <meta name="description" content="Southern Philippines and Marine and Aquatic School of Technology REMIS" />
         <meta name="description" content="SPAMAST REMIS" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="{{ getFile(sessionGet('favicon')) }}" />
@@ -116,6 +117,23 @@
         @yield('site-footer-1')
 
         @stack('scripts')
+
+        <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+        <script>
+        var pusher = new Pusher('b9a98d5d52ec6269f87b', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('notification-channel');
+        channel.bind('notification-event', function(data) {
+            //console.log(JSON.stringify(data));
+            if(data)
+            {
+                Livewire.emit('newNotificationEvent')
+            }
+        });
+
+        </script>
 
     </body>
 </html>
