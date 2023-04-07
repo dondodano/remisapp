@@ -50,6 +50,8 @@ Route::get('/login', [AuthController::class, 'index'])->middleware('guest')->nam
 Route::post('/login', [AuthController::class, 'signin'])->middleware('guest')->name('login.submit');
 Route::get('/logout', [AuthController::class, 'signout'])->name('guest');
 
+
+
 /**
  * Authorized
  */

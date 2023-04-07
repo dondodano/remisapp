@@ -6,7 +6,7 @@
     'debug' => true,
     'url' => 'http://127.0.0.1:8000',
     'asset_url' => NULL,
-    'mail_from_address' => 'dondodano1227@gmail.com',
+    'mail_from_address' => 'spamast@remis.dpanel.site',
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
@@ -744,11 +744,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.gmail.com',
-        'port' => '587',
-        'encryption' => 'tls',
-        'username' => 'dondodano1227@gmail.com',
-        'password' => 'oevhgvjntcxbxzdm',
+        'host' => 'remis.dpanel.site',
+        'port' => '465',
+        'encryption' => 'ssl',
+        'username' => 'spamast@remis.dpanel.site',
+        'password' => '!remisdpanel.site@2023',
         'timeout' => NULL,
         'auth_mode' => NULL,
       ),
@@ -781,7 +781,7 @@
     ),
     'from' => 
     array (
-      'address' => 'dondodano1227@gmail.com',
+      'address' => 'spamast@remis.dpanel.site',
       'name' => 'SPAMAST - REMIS',
     ),
     'markdown' => 

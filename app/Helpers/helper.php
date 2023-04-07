@@ -1172,7 +1172,14 @@ function notificationAvatar(){
  * Custom Basename
  */
 function basenameV2($str){
-    $replaced = str_replace('\\', '/', $str);
-    $extract = explode('/', $replaced);
-    return $extract[count($extract)-1];
+    $regex = strpos($str,'\\');
+    if($regex)
+    {
+        $replaced = str_replace('\\', '/', $str);
+        $extract = explode('/', $replaced);
+        return $extract[count($extract)-1];
+    }else{
+        return $str;
+    }
+
 }

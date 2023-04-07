@@ -76,6 +76,8 @@ class AuthController extends Controller
                 return ['path' => $favIcon];
             });
 
+
+
             toastr("Welcome! You have successfully logged in.", "success");
             return redirect()->intended('/dashboard');
 

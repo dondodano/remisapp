@@ -9,8 +9,12 @@ use App\Models\User\User;
 
 class OnlineUsers extends Component
 {
+
+    protected $listeners = ['newUserOnline' => '$refresh'];
+
     public function getOnlineUsersProperty()
     {
+
         $onlineUsers = [];
         $onlineUsersCount = [];
 

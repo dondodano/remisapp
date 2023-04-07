@@ -126,9 +126,14 @@
 
         var channel = pusher.subscribe('notification-channel');
         channel.bind('notification-event', function(data) {
-            if(data)
+            if(data.includes('newNotificationEvent'))
             {
                 Livewire.emit('newNotificationEvent')
+            }
+
+            if(data.includes('newUserOnline'))
+            {
+                Livewire.emit('newUserOnline')
             }
         });
 
