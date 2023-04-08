@@ -10,6 +10,7 @@ use Response;
 use App\Models\User\User;
 use App\Models\Log\LogUser;
 use App\Models\Setting\General;
+use App\Events\PusherNotificationEvent;
 
 use Auth;
 use Cache;
@@ -76,6 +77,8 @@ class AuthController extends Controller
                 return ['path' => $favIcon];
             });
 
+            event(new PusherNotificationEvent('newUserOnline'));
+
 
 
             toastr("Welcome! You have successfully logged in.", "success");
@@ -112,6 +115,8 @@ class AuthController extends Controller
             'time' => now(),
             'isOnline' => 0
         ]);
+
+        event(new PusherNotificationEvent('newUserOnline'));
 
         $request->session()->forget('session');
         $request->session()->invalidate();

@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use Cache;
 use App\Models\User\User;
+use App\Events\PusherNotificationEvent;
 
 class OnlineUsers extends Component
 {
@@ -36,6 +37,7 @@ class OnlineUsers extends Component
             'count' => $onlineUsersCount
         ];
     }
+
 
     public function render()
     {

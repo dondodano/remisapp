@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <h5 class="card-title">Extension list</h5>
                 </div>
-                <div class="table-responsive text-nowrap perfect-sc" id="perfect-0">
+                <div class="table-responsive text-nowrap perfect-sc" id="perfect-0"  >
 
                     @include('vendor.remis-components.table-nav',['root' => 'extension', 'text' => 'Add New Extension'])
 
@@ -34,7 +34,7 @@
                                                 @include('vendor.remis-components.repository-evaluate-indicator',['collection' => $extension])
                                             </td>
                                             <td>
-                                                @include('vendor.remis-components.repository-dropdown',[ 'root' => 'extension', 'collection' => $extension])
+                                                @include('vendor.remis-components.repository-dropdown',[ 'root' => 'extension', 'collection' => $extension, 'plural' => $extensions])
                                             </td>
                                         </tr>
                                     @endforeach
