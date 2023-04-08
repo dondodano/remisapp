@@ -21,6 +21,7 @@ use App\Http\Controllers\User\PasswordController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\UserAuthorizationController;
 use App\Http\Controllers\User\FirstAccessChangePasswordController;
+use App\Http\Controllers\FileUpload\FileUploadController;
 
 /**
  * Livewire
@@ -329,3 +330,11 @@ Route::get('/optimize', function(){
     return 'Optmized!';
 });
 
+
+/**
+ * File Upload
+ */
+Route::prefix('/file')->middleware(['auth'])->group(function(){
+    Route::post('/upload', [FileUploadController::class, 'upload']);
+    Route::delete('/undo', [FileUploadController::class, 'undo']);
+});

@@ -1,66 +1,64 @@
 @extends('layouts.master')
 
-U
 @section('site-header')
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/datatables/dataTables.bootstrap5.min.css') }}"/>
 @endsection
 
 @section('site-content')
+    <div class="row">
+        <div class="col-md-12">
 
-<div class="row">
-    <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">
+                    Database backup list
+                    <div class="float-end">
+                        <a href="/database-backup/create" class="btn btn-sm btn-primary">
+                            <i class="bx bx-plus"></i> Create Backup
+                        </a>
+                    </div>
+                </h5>
+                <div class="card-body">
 
-        <div class="card mb-4">
-            <h5 class="card-header">
-                Database backup list
-                <div class="float-end">
-                    <a href="/database-backup/create" class="btn btn-sm btn-primary">
-                        <i class="bx bx-plus"></i> Create Backup
-                    </a>
-                </div>
-            </h5>
-            <div class="card-body">
-
-                <div class="table-responsive">
-                    <table class="table table-hover datatable" id="datatable">
-                        <thead class="table-light">
-                            <tr>
-                                <th>File</th>
-                                <th>Size</th>
-                                <th>Date Created</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($files as $file)
+                    <div class="table-responsive">
+                        <table class="table table-hover datatable" id="datatable">
+                            <thead class="table-light">
                                 <tr>
-                                    <td>{{ $file['filename'] }}</td>
-                                    <td>{{ getFileSize(filesize($file['location'])) }}</td>
-                                    <td>{{ date("M. d, Y h:i:s A", filectime($file["location"])) }}</td>
-                                    <td>
-                                        <div class="d-inline-block text-nowrap">
-                                            <a href="/database-backup/download/{{ $file['filename'] }}" class="btn btn-sm btn-icon" title="Download">
-                                                <i class="bx bx-download"></i>
-                                            </a>
-
-                                            <form action="/database-backup/delete/{{ $file['filename'] }}" method="post" class="btn-icon">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-sm " title="Delete" type="submit" name="delete[]"><i class="bx bx-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </td>
+                                    <th>File</th>
+                                    <th>Size</th>
+                                    <th>Date Created</th>
+                                    <th>Actions</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($files as $file)
+                                    <tr>
+                                        <td>{{ $file['filename'] }}</td>
+                                        <td>{{ getFileSize(filesize($file['location'])) }}</td>
+                                        <td>{{ date("M. d, Y h:i:s A", filectime($file["location"])) }}</td>
+                                        <td>
+                                            <div class="d-inline-block text-nowrap">
+                                                <a href="/database-backup/download/{{ $file['filename'] }}" class="btn btn-sm btn-icon" title="Download">
+                                                    <i class="bx bx-download"></i>
+                                                </a>
+
+                                                <form action="/database-backup/delete/{{ $file['filename'] }}" method="post" class="btn-icon">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-sm " title="Delete" type="submit" name="delete[]"><i class="bx bx-trash"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 @endsection
 
 
@@ -70,9 +68,8 @@ U
 @endsection
 
 
-
 @section('site-footer-1')
-<script>
-    $(document).ready(function(){ $('#datatable').DataTable() })
-</script>
+    <script>
+        $(document).ready(function(){ $('#datatable').DataTable() })
+    </script>
 @endsection
