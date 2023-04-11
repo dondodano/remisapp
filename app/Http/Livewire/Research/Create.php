@@ -7,9 +7,9 @@ use Livewire\WithFileUploads;
 
 use Auth;
 use Storage;
-use App\Models\FileUpload\TemporaryFile;
 use App\Models\Repository\Research;
 use App\Models\Attachment\ResearchFile;
+use App\Models\FileUpload\TemporaryFile;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
@@ -37,6 +37,25 @@ class Create extends Component
         sessionSet('user_upload_token_' . Auth::user()->id, $this->userUploadToken);
 
         $this->fileInputId = rand();
+    }
+
+    public function remove($file)
+    {
+        if(is_countable($this->attachments))
+        {
+            $filePathToDelete = storage_path('app/livewire-tmp/' . $file);
+            foreach($this->attachments as $attach)
+            {
+                if($attach->getFilename() == $file)
+                {
+                    if(file_exists($filePathToDelete))
+                    {
+                        $attach->delete();
+                        $this->emit('onRefreshEvent');
+                    }
+                }
+            }
+        }
     }
 
     public function store()
@@ -124,7 +143,7 @@ class Create extends Component
     {
         $validatedData = Validator::make(
             ['attachments' => $this->attachments],
-            ['attachments.*' => 'file|mimes:pdf,doc,docx,xls,xlxs,png, jpeg, jpg|max:2048'],
+            ['attachments.*' => 'file|max:5120'],
         );
 
         if ($validatedData->fails()) {
@@ -136,6 +155,7 @@ class Create extends Component
     public function render()
     {
         return view('livewire.research.create',[
+            'fileAttachments' => $this->attachments,
             'fileInputId' => $this->fileInputId,
             'statuses' => Status::where('group', 'projectstatus')->get(),
             'fundtypes' => Fund::where('group', 'fundclass')->get(),

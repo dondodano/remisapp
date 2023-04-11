@@ -29,13 +29,16 @@
             <div class="col-md-12 mb-3">
                 <small class="text-light fw-semibold  mb-3">File list </small>
                 <ul class="list-group ">
-                    @if($attachments)
-                        @foreach ($attachments as $attachment )
+                    @if($fileAttachments)
+                        @foreach ($fileAttachments as $attachment )
                             <li class="list-group-item justify-content-start list-group-item-action d-flex  align-items-center cursor-pointer">
                                 <i class='bx bx-file  me-2'></i>
                                 <div class="w-100">
                                     {{ $attachment->getClientOriginalName() }}
                                 </div>
+                                {{-- <div class="text-danger" wire:click.prevent="remove('{{ $attachment->getFilename() }}')">
+                                    <i class='bx bx-x-circle'></i>
+                                </div> --}}
                             </li>
                         @endforeach
                     @else
@@ -45,8 +48,6 @@
                 </ul>
             </div>
         </div>
-
-
 
         <hr class="my-4 mx-n4">
 
