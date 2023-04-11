@@ -1,7 +1,7 @@
 <?php return array (
-  'auth' => 'App\\Http\\Livewire\\Auth',
   'components.activity-timeline' => 'App\\Http\\Livewire\\Components\\ActivityTimeline',
   'components.document-table' => 'App\\Http\\Livewire\\Components\\DocumentTable',
+  'components.file-upload' => 'App\\Http\\Livewire\\Components\\FileUpload',
   'components.notification' => 'App\\Http\\Livewire\\Components\\Notification',
   'components.online-users' => 'App\\Http\\Livewire\\Components\\OnlineUsers',
   'dashboard.index' => 'App\\Http\\Livewire\\Dashboard\\Index',

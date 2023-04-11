@@ -61,7 +61,7 @@
             @if($publication->is_evaluated  == 0)
                 <div class="card  mb-5 p-2">
                     <form  method="post" class="d-flex justify-content-between align-items-center" wire:submit.prevent="save">
-                        <textarea class="form-control message-input border-0 me-3 shadow-none" wire:model.debounce.500ms="evaluation" placeholder="Type your message here..."></textarea>
+                        <textarea class="form-control message-input border-0 me-3 shadow-none" wire:model.defer="evaluation" placeholder="Type your message here..."></textarea>
                         <button class="btn btn-primary d-flex send-msg-btn">
                             <i class='bx bx-subdirectory-left me-md-1 me-0'></i>
                             <span class="align-middle d-md-inline-block d-none">Enter</span>

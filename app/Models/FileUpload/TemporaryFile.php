@@ -12,6 +12,7 @@ class TemporaryFile extends Model
     protected $table = 'temporary_files';
 
     protected $fillable = [
+        'token',
         'folder',
         'file',
     ];

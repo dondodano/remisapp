@@ -59,34 +59,34 @@
                     <label title="Required" class="form-label" for="extension">Extension
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="extension" class="form-control" name="extension" wire:model.prevent.debounce.500ms="extension"></textarea>
+                    <textarea id="extension" class="form-control" name="extension" wire:model.defer="extension"></textarea>
                 </div>
 
                 <div class="col-md-6">
                     <label title="Required" class="form-label" for="date_from">Date From
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_from" class="form-control" name="date_from"  wire:model.prevent.debounce.500ms="date_from">
+                    <input type="date" id="date_from" class="form-control" name="date_from"  wire:model.defer="date_from">
                 </div>
                 <div class="col-md-6">
                     <label title="Required" class="form-label" for="date_to">Date To
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_to" class="form-control" name="date_to"  wire:model.prevent.debounce.500ms="date_to">
+                    <input type="date" id="date_to" class="form-control" name="date_to"  wire:model.defer="date_to">
                 </div>
 
                 <div class="col-md-12">
                     <label   title="Required" class="form-label" for="quantity">Quantity
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="number" id="quantity" class="form-control" name="quantity" wire:model.prevent.debounce.500ms="quantity">
+                    <input type="number" id="quantity" class="form-control" name="quantity" wire:model.defer="quantity">
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="beneficiaries">Beneficiaries
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="beneficiaries" class="form-control" name="beneficiaries" wire:model.prevent.debounce.500ms="beneficiaries"></textarea>
+                    <textarea id="beneficiaries" class="form-control" name="beneficiaries" wire:model.defer="beneficiaries"></textarea>
                 </div>
             </div>
 

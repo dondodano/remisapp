@@ -34,7 +34,7 @@
             .filepond--credits{visibility: hidden;}
             .filepond--drop-label{min-height: 180px !important;}
         </style>
-        <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/filepond/filepond.css') }}" />
+        {{-- <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/filepond/filepond.css') }}" /> --}}
     </head>
     <body>
         <!-- Layout wrapper -->
@@ -79,7 +79,7 @@
         <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
         <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
         <script src="{{ asset('/assets/vendor/js/menu-primary.js') }}"></script>
-        <script src="{{ asset('/assets/vendor/libs/filepond/filepond.js') }}"></script>
+        {{-- <script src="{{ asset('/assets/vendor/libs/filepond/filepond.js') }}"></script> --}}
         @yield('site-footer-0')
         <script src="{{ asset('/assets/js/main-primary.js') }}"></script>
         <script src="{{ asset('/assets/remis/helper.js') }}"></script>
@@ -107,17 +107,17 @@
                 }
             });
 
-            const inputElement = document.querySelector('input[type="file"]');
-            const pond = FilePond.create(inputElement);
-            FilePond.setOptions({
-                server: {
-                    process: '/file/upload',
-                    revert: '/file/undo',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    }
-                },
-            });
+            //const inputElement = document.querySelector('input[type="file"]');
+            // const pond = FilePond.create(inputElement);
+            // FilePond.setOptions({
+            //     server: {
+            //         process: '/file/upload',
+            //         revert: '/file/undo',
+            //         headers: {
+            //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            //         }
+            //     },
+            // });
         </script>
     </body>
 </html>

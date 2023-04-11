@@ -60,49 +60,49 @@
                     <label title="Required" class="form-label" for="date_published">Date Published
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_published" class="form-control" name="date_published"  wire:model.prevent.debounce.500ms="date_published">
+                    <input type="date" id="date_published" class="form-control" name="date_published"  wire:model.defer="date_published">
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="title">Title
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="title" class="form-control" name="title" wire:model.prevent.debounce.500ms="title"></textarea>
+                    <textarea id="title" class="form-control" name="title" wire:model.defer="title"></textarea>
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="author">Author
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="author" class="form-control" name="author" wire:model.prevent.debounce.500ms="author"></textarea>
+                    <textarea id="author" class="form-control" name="author" wire:model.defer="author"></textarea>
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="publisher">Publisher
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="publisher" class="form-control" name="publisher" wire:model.prevent.debounce.500ms="publisher"></textarea>
+                    <textarea id="publisher" class="form-control" name="publisher" wire:model.defer="publisher"></textarea>
                 </div>
 
                 <div class="col-md-4">
                     <label   title="Required" class="form-label" for="volume">Volume
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="volume" class="form-control" name="volume" wire:model.prevent.debounce.500ms="volume">
+                    <input type="text" id="volume" class="form-control" name="volume" wire:model.defer="volume">
                 </div>
 
                 <div class="col-md-4">
                     <label   title="Required" class="form-label" for="issue">Issue
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="issue" class="form-control" name="issue" wire:model.prevent.debounce.500ms="issue">
+                    <input type="text" id="issue" class="form-control" name="issue" wire:model.defer="issue">
                 </div>
 
                 <div class="col-md-4">
                     <label   title="Required" class="form-label" for="page">Page
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="page" class="form-control" name="page" wire:model.prevent.debounce.500ms="page">
+                    <input type="text" id="page" class="form-control" name="page" wire:model.defer="page">
                 </div>
             </div>
 

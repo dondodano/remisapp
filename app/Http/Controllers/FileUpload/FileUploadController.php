@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FileUpload;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Auth;
 use Storage;
 use App\Models\FileUpload\TemporaryFile;
 
@@ -30,6 +31,7 @@ class FileUploadController extends Controller
             $file->storeAs('temp/' . $folder, $fileName , 'public');
 
             TemporaryFile::create([
+                'token' => sessionGet('user_upload_token_' . Auth::user()->id),
                 'folder' => $folder,
                 'file' => $fileName
             ]);

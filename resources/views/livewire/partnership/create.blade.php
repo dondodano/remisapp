@@ -60,27 +60,27 @@
                     <label title="Required" class="form-label" for="partner">Partner
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="partner" class="form-control" name="partner" wire:model.prevent.debounce.500ms="partner"></textarea>
+                    <textarea id="partner" class="form-control" name="partner" wire:model.defer="partner"></textarea>
                 </div>
 
                 <div class="col-md-12">
                     <label title="Required" class="form-label" for="activity">Activity
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea id="activity" class="form-control" name="activity" wire:model.prevent.debounce.500ms="activity"></textarea>
+                    <textarea id="activity" class="form-control" name="activity" wire:model.defer="activity"></textarea>
                 </div>
 
                 <div class="col-md-6">
                     <label title="Required" class="form-label" for="date_from">Date From
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_from" class="form-control" name="date_from"  wire:model.prevent.debounce.500ms="date_from">
+                    <input type="date" id="date_from" class="form-control" name="date_from"  wire:model.defer="date_from">
                 </div>
                 <div class="col-md-6">
                     <label title="Required" class="form-label" for="date_to">Date To
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" id="date_to" class="form-control" name="date_to"  wire:model.prevent.debounce.500ms="date_to">
+                    <input type="date" id="date_to" class="form-control" name="date_to"  wire:model.defer="date_to">
                 </div>
 
             </div>
