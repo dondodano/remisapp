@@ -6,7 +6,7 @@
     'debug' => true,
     'url' => 'http://127.0.0.1:8000',
     'asset_url' => NULL,
-    'mail_from_address' => 'spamast@remis.dpanel.site',
+    'mail_from_address' => 'coordinator@remis.dpanel.site',
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
@@ -747,8 +747,8 @@
         'host' => 'remis.dpanel.site',
         'port' => '465',
         'encryption' => 'ssl',
-        'username' => 'spamast@remis.dpanel.site',
-        'password' => 'spamast@remis.dpanel.site',
+        'username' => 'coordinator@remis.dpanel.site',
+        'password' => 'coordinator@remis.dpanel.site',
         'timeout' => NULL,
         'auth_mode' => NULL,
       ),
@@ -781,7 +781,7 @@
     ),
     'from' => 
     array (
-      'address' => 'spamast@remis.dpanel.site',
+      'address' => 'coordinator@remis.dpanel.site',
       'name' => 'SPAMAST - REMIS',
     ),
     'markdown' => 

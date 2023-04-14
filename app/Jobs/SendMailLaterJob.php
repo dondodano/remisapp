@@ -46,10 +46,10 @@ class SendMailLaterJob implements ShouldQueue
                 ->send(new UserCredentialMailer([
                     'recipient' => $this->user->firstname.' '.$this->user->lastname,
                     'email' => $this->user->email,
-                    'token' => encipher($token)
+                    'token' => $token
                 ]));
 
-                toastr("Credentail of [<strong>".$this->user->firstname.' '.$this->user->lastname."</strong>] successfully sent!", "success");
+            toastr("Credentail of [<strong>".$this->user->firstname.' '.$this->user->lastname."</strong>] successfully sent!", "success");
 
         }catch(Exception $e)
         {

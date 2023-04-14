@@ -20,7 +20,7 @@ class FirstAccessChangePasswordController extends Controller
         }
 
 
-        $auth = UserToken::with('user')->where('token', decipher($token))->where('active',1);
+        $auth = UserToken::with('user')->where('token', $token)->where('active',1);
 
         if(!$auth->exists()){
             return abort(404);
@@ -56,7 +56,7 @@ class FirstAccessChangePasswordController extends Controller
             return back();
         }
 
-        $userToken = UserToken::where('token', decipher($token))->where('active',1);
+        $userToken = UserToken::where('token', $token)->where('active',1);
 
 
         $user = User::findOrFail($userToken->first()->user_id);

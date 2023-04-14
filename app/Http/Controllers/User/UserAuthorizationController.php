@@ -19,7 +19,7 @@ class UserAuthorizationController extends Controller
             return abort(404);
         }
 
-        $auth = UserToken::where('token', decipher($token))->where('active',1);
+        $auth = UserToken::where('token', $token)->where('active',1);
         if($auth->exists())
         {
             return redirect('/change-password'.'/'.$token);
