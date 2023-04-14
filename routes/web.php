@@ -329,6 +329,10 @@ Route::get('/optimize', function(){
     Artisan::call('optimize');
     return 'Optmized!';
 });
+Route::get('/migrate', function(){
+    Artisan::call('migrate');
+    return 'Migrated!';
+});
 Route::get('/seed', function(){
     Artisan::call('db:seed');
     return 'DB Seed!';
