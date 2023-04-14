@@ -1120,8 +1120,11 @@ function getFileFullLocation($fileName)
 }
 
 function getFileShortLocation($fileName)
-{
-    return '/storage'. '/'.  $fileName;
+{   if(file_exists(realpath(public_path() . '/storage'. '/'.  $fileName)))
+    {
+        return '/storage'. '/'.  $fileName;
+    }
+    return '/storage/images/default_logo.png';
 }
 
 /**
