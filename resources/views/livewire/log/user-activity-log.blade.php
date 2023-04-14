@@ -59,10 +59,10 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                    {!! emptyEndRow(4) !!}
+                                    {!! emptyEndRow(5) !!}
                                 @endif
                             @else
-                                {!! emptyEndRow(4) !!}
+                                {!! emptyEndRow(5) !!}
                             @endif
 
                         </tbody>

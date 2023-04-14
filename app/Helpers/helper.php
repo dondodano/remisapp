@@ -777,7 +777,7 @@ function getFirstLettersOfName($firstname, $lastname)
  */
 function getMiddleInitial($middlename)
 {
-    return strlen($middlename) > 1 ? strtoupper($middlename[0]).'.' : "";
+    return strlen($middlename) > 0 ? strtoupper($middlename[0]).'.' : "";
 }
 
 /**

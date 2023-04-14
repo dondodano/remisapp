@@ -72,14 +72,17 @@ class User extends Authenticatable
         parent::boot();
 
         static::created(function($user){
-            LogUserActivity::create([
-                'user_id' => sessionGet('id'),
-                'ip_address' => request()->ip(),
-                'agent' =>  request()->header('User-Agent'),
-                'activity' => 'created',
-                'subject_id' =>  $user->id,
-                'subject_type' => User::class
-            ])->save();
+            if($user->id != sessionGet('id'))
+            {
+                LogUserActivity::create([
+                    'user_id' => sessionGet('id'),
+                    'ip_address' => request()->ip(),
+                    'agent' =>  request()->header('User-Agent'),
+                    'activity' => 'created',
+                    'subject_id' =>  $user->id,
+                    'subject_type' => User::class
+                ])->save();
+            }
         });
 
         static::updated(function($user){
