@@ -761,7 +761,7 @@ function initialName()
 {
     $name = (array)sessionGet('name_array');
 
-    return $name['firstname'][0] . '. '. $name['middlename'][0] .'. '. $name['lastname'];
+    return $name['firstname'][0] . '. '. (strlen($name['middlename']) > 1 ? $name['middlename'][0].'. ' :  '' ).' '. $name['lastname'];
 }
 
 /**
