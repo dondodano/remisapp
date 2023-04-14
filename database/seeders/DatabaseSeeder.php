@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             UserRoleSeeder::class,
             MiscellaneousSeeder::class,
             GeneralSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            UserTempAvatarSeeder::class
         ]);
     }
 }
