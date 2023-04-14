@@ -47,7 +47,7 @@ class Create extends Component
             'extension' => $this->extension,
             'title' => $this->title,
             'email' => $this->email,
-            'password' => (strlen($this->password) > 0 ? $this->password : null),
+            'password' => (strlen($this->password) > 0 ? bcrypt($this->password) : null),
             'role_id' => $this->role,
         ]);
         $user->save();
