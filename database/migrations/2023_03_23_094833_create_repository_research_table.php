@@ -17,7 +17,7 @@ class CreateRepositoryResearchTable extends Migration
             $table->id();
 
             $table->string('commodity',255)->nullable();
-            $table->integer('category_id',255)->nullable();
+            $table->integer('category_id')->nullable();
             $table->string('program',255)->nullable();
             $table->string('project',255)->nullable();
             $table->string('researcher',255)->nullable();

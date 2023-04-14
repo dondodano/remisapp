@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User\Setting\General as GeneralSetting;
+use App\Models\Setting\General as GeneralSetting;
 
 class GeneralSeeder extends Seeder
 {
