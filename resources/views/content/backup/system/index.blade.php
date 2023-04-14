@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('site-header')
-    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/datatables/dataTables.bootstrap5.min.css') }}"/>
-@endsection
-
 
 @section('site-content')
     <div class="row">
@@ -62,15 +58,24 @@
     </div>
 @endsection
 
+@push('header-0')
+    @once
+        <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/datatables/dataTables.bootstrap5.min.css') }}"/>
+    @endonce
+@endpush
 
-@section('site-footer-0')
-    <script src="{{ asset('/assets/vendor/libs/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('/assets/vendor/libs/datatables/dataTables.bootstrap5.min.js') }}"></script>
-@endsection
+@push('footer-0')
+    @once
+        <script src="{{ asset('/assets/vendor/libs/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('/assets/vendor/libs/datatables/dataTables.bootstrap5.min.js') }}"></script>
+    @endonce
+@endpush
 
 
-@section('site-footer-1')
-<script>
-    $(document).ready(function(){ $('#datatable').DataTable() })
-</script>
-@endsection
+@push('footer-1')
+    @once
+        <script>
+            $(document).ready(function(){ $('#datatable').DataTable() })
+        </script>
+    @endonce
+@endpush

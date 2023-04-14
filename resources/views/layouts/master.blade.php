@@ -17,26 +17,23 @@
         <link rel="stylesheet" href="{{ asset('/assets/vendor/fonts/boxicons.css') }}" />
         <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl/core.css')  }}" class="template-customizer-core-css" />
         <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
-        {{-- <link rel="stylesheet" href="{{ asset('/assets/vendor/css/core-primary.css')  }}" class="template-customizer-core-css" />
-        <link rel="stylesheet" href="{{ asset('/assets/vendor/css/theme-default-primary.css') }}" class="template-customizer-theme-css" /> --}}
         <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}" />
         <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-        @yield('site-header')
-        {{-- <script src="{{ asset('/assets/vendor/js/helpers.js') }}"></script>
-        <script src="{{ asset('/assets/js/config.js') }}"></script> --}}
+        @stack('header-0')
         <script src="{{ asset('/assets/vendor/js/helpers-primary.js') }}"></script>
         <script src="{{ asset('/assets/vendor/js/template-customizer-primary.js') }}"></script>
         <script src="{{ asset('/assets/js/config-primary.js') }}"></script>
         @livewireStyles
+        @stack('header-1')
         <style>
             .dash-icon{font-size: 2.75rem;}
             .dash-count{font-size: 2.5rem;}
             .filepond--credits{visibility: hidden;}
             .filepond--drop-label{min-height: 180px !important;}
         </style>
-        {{-- <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/filepond/filepond.css') }}" /> --}}
     </head>
     <body>
+
         <!-- Layout wrapper -->
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
@@ -79,13 +76,11 @@
         <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
         <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
         <script src="{{ asset('/assets/vendor/js/menu-primary.js') }}"></script>
-        {{-- <script src="{{ asset('/assets/vendor/libs/filepond/filepond.js') }}"></script> --}}
-        @yield('site-footer-0')
+        @stack('footer-0')
         <script src="{{ asset('/assets/js/main-primary.js') }}"></script>
         <script src="{{ asset('/assets/remis/helper.js') }}"></script>
         @livewireScripts
-        @yield('site-footer-1')
-        {{-- @stack('scripts') --}}
+        @stack('footer-1')
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
         <script>
             var pusher = new Pusher('b9a98d5d52ec6269f87b', {
@@ -106,20 +101,7 @@
                     }
                 }
             });
-
-
-
-            //const inputElement = document.querySelector('input[type="file"]');
-            // const pond = FilePond.create(inputElement);
-            // FilePond.setOptions({
-            //     server: {
-            //         process: '/file/upload',
-            //         revert: '/file/undo',
-            //         headers: {
-            //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            //         }
-            //     },
-            // });
         </script>
+        @stack('footer-2')
     </body>
 </html>

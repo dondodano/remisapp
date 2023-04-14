@@ -11,18 +11,19 @@
 
         <div class="row g-3">
             <div class="col-md-12 mb-3">
-                <div class="file-input" >
-                    <input type="file" name="attachment" class="form-control" multiple wire:model="attachments" id="{{ $fileInputId }}">
-                    <small class="text-muted"><i>Note : To change file. You need to select another file(s) to upload.</i></small>
-                </div>
-                <span class="text-info" wire:loading wire:target="attachments">
-                    <div class="spinner-border spinner-border-sm text-info" role="status"></div>
-                    Uploading...
-                </span>
-                @error('attachments.*')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
+                <x-filepond wire:model="attachments" multiple/>
+                <small class="text-muted"><i>Note : To change file. You need to select another file(s) to upload.</i></small>
             </div>
+
+            {{-- <span class="text-info" wire:loading wire:target="attachments">
+                <div class="spinner-border spinner-border-sm text-info" role="status"></div>
+                Uploading...
+            </span>
+
+            @error('attachments.*')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror --}}
+
         </div>
 
         <div class="row">
