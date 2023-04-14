@@ -748,7 +748,7 @@
         'port' => '465',
         'encryption' => 'ssl',
         'username' => 'spamast@remis.dpanel.site',
-        'password' => '!remisdpanel.site@2023',
+        'password' => 'spamast@remis.dpanel.site',
         'timeout' => NULL,
         'auth_mode' => NULL,
       ),

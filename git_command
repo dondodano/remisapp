@@ -15,9 +15,14 @@ git push -u origin master
 cd /public_html/remis.dpanel.site
 php artisan queue:work --stop-when-empty
 
+/usr/local/bin/php /home/enkybmuf/public_html/remis.dpanel.site/php artisan queue:work --stop-when-empty
+
 # For htaccess on PRODUCTION
 <IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+# Migrate specific file
+php artisan migrate --path=/database/migrations/2023_04_14_092809_create_failed_jobs_table.php

@@ -77,7 +77,7 @@ class AuthController extends Controller
                 return ['path' => $favIcon];
             });
 
-            event(new PusherNotificationEvent('newUserOnline'));
+            event(new PusherNotificationEvent('UserOnlineStatus'));
 
 
 
@@ -116,7 +116,7 @@ class AuthController extends Controller
             'isOnline' => 0
         ]);
 
-        event(new PusherNotificationEvent('newUserOnline'));
+        event(new PusherNotificationEvent('UserOnlineStatus'));
 
         $request->session()->forget('session');
         $request->session()->invalidate();

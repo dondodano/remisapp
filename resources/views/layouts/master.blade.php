@@ -90,14 +90,14 @@
             channel.bind('notification-event', function(data) {
                 if(data)
                 {
-                    if(data.message == 'newNotificationEvent')
+                    if(data.message == 'NewNotification')
                     {
-                        Livewire.emit('newNotificationEvent')
+                        Livewire.emit('NewNotification')
                     }
 
-                    if(data.message == 'newUserOnline')
+                    if(data.message == 'UserOnlineStatus')
                     {
-                        Livewire.emit('newUserOnline')
+                        Livewire.emit('UserOnlineStatus')
                     }
                 }
             });
