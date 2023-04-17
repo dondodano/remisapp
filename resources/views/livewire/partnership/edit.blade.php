@@ -17,14 +17,9 @@
                         <small class="text-muted"><i>Note : To change file. You need to select another file(s) to upload.</i></small>
                     </div>
 
-                    {{-- <span class="text-info" wire:loading wire:target="attachments">
-                        <div class="spinner-border spinner-border-sm text-info" role="status"></div>
-                        Uploading...
-                    </span>
-
                     @error('attachments.*')
                         <span class="text-danger">{{ $message }}</span>
-                    @enderror --}}
+                    @enderror
 
                 </div>
             </div>
@@ -34,21 +29,6 @@
                 <div class="col-md-12 mb-3">
                     <small class="text-light fw-semibold  mb-3">File list </small>
                     <ul class="list-group ">
-
-                        {{-- @if (isset($attachments))
-                            @if(count($attachments) > 0)
-                                @foreach ($attachments as $attachment )
-                                    <li class="list-group-item justify-content-start list-group-item-action d-flex  align-items-center cursor-pointer">
-                                        <i class='bx bx-file  me-2'></i>
-                                        <div class="w-100">
-                                            {{ $attachment->getClientOriginalName() }}
-                                        </div>
-                                    </li>
-                                @endforeach
-                            @else
-                                <li class="list-group-item d-flex justify-content-between align-items-center">No files</li>
-                            @endif
-                        @endif --}}
 
                         @if(isset($partnershipFiles))
                             @if(count($partnershipFiles) > 0)

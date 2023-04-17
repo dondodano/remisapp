@@ -100,18 +100,3 @@
 
     </div>
 </div>
-
-
-@section('site-footer-0')
-@endsection
-
-@section('site-footer-1')
-@endsection
-
-@push('scripts')
-    <script>
-        window.addEventListener('remove-row', event => {
-            $('#row-' + event.detail.rowId).remove();
-        })
-    </script>
-@endpush
