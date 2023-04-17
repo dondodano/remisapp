@@ -105,7 +105,8 @@ class Publication extends Model
                 'subject_type' => Publication::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($publication, Publication::class, 'updated'));
+            //Notification::send(User::all(), new RepositoryCreated($publication, Publication::class, 'updated'));
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::deleted(function($publication){

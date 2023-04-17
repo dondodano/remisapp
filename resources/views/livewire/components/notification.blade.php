@@ -31,12 +31,15 @@
                                         <div class="flex-shrink-0 me-3">
                                             <div class="avatar">
 
-                                                @if(strlen($notification->data['repository']['file_owner']['avatar']) == 0 ||
-                                                $notification->data['repository']['file_owner']['avatar'] == null)
-                                                    {!! $notification->data['repository']['file_owner']['temp_avatar']['avatar'] !!}
-                                                @else
-                                                    <img src="{{ getFileShortLocation($notification->data['repository']['file_owner']['avatar']) }}" alt="" class="w-px-40 h-auto rounded-circle">
+                                                @if(isset($notification->data['repository']['file_owner']))
+                                                    @if(strlen($notification->data['repository']['file_owner']['avatar']) == 0 )
+                                                        {!! $notification->data['repository']['file_owner']['temp_avatar']['avatar'] !!}
+                                                    @else
+                                                        <img src="{{ getFileShortLocation($notification->data['repository']['file_owner']['avatar']) }}" alt="" class="w-px-40 h-auto rounded-circle">
+                                                    @endif
                                                 @endif
+
+
 
                                             </div>
                                         </div>

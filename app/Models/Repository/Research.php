@@ -132,7 +132,8 @@ class Research extends Model
                 'subject_type' => Research::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($research, Research::class,'updated'));
+            //Notification::send(User::all(), new RepositoryCreated($research, Research::class,'updated'));
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::deleted(function($research){

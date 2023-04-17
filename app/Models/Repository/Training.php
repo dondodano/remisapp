@@ -113,7 +113,8 @@ class Training extends Model
                 'subject_type' => Training::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($training, Training::class,'updated'));
+            //Notification::send(User::all(), new RepositoryCreated($training, Training::class,'updated'));
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::deleted(function($training){

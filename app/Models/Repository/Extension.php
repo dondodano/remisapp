@@ -103,7 +103,8 @@ class Extension extends Model
                 'subject_type' => Extension::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($extension, Extension::class, 'updated'));
+            //Notification::send(User::all(), new RepositoryCreated($extension, Extension::class, 'updated'));
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::deleted(function($extension){

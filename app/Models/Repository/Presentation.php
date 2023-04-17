@@ -111,7 +111,8 @@ class Presentation extends Model
                 'subject_type' => Presentation::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($presentation, Presentation::class, 'updated'));
+            //Notification::send(User::all(), new RepositoryCreated($presentation, Presentation::class, 'updated'));
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::deleted(function($presentation){

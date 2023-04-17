@@ -26,3 +26,7 @@ RewriteRule ^(.*)$ public/$1 [L]
 
 # Migrate specific file
 php artisan migrate --path=/database/migrations/2023_04_14_092809_create_failed_jobs_table.php
+
+# Refresh Laravel IDE helper
+php artisan ide-helper:generate
+php artisan ide-helper:models

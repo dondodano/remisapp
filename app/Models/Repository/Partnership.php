@@ -103,7 +103,8 @@ class Partnership extends Model
                 'subject_type' => Partnership::class
             ])->save();
 
-            Notification::send(User::all(), new RepositoryCreated($partnership, Partnership::class, 'updated'));
+            //Notification::send(User::all(), new RepositoryCreated($partnership, Partnership::class, 'updated'));
+            event(new PusherNotificationEvent('NewNotification'));
         });
 
         static::deleted(function($partnership){
