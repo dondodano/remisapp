@@ -16,7 +16,7 @@
             }
         });
     }">
-    <input type="file" name="attachment" class="form-control" x-ref="{{ $attributes->get('ref') ?? 'input' }}">
+    <input type="file" name="attachments" class="form-control" x-ref="{{ $attributes->get('ref') ?? 'input' }}">
 
 </div>
 

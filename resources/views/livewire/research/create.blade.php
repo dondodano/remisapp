@@ -26,7 +26,7 @@
 
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12 mb-3">
                 <small class="text-light fw-semibold  mb-3">File list </small>
                 <ul class="list-group ">
@@ -37,9 +37,9 @@
                                 <div class="w-100">
                                     {{ $attachment->getClientOriginalName() }}
                                 </div>
-                                {{-- <div class="text-danger" wire:click.prevent="remove('{{ $attachment->getFilename() }}')">
+                                -- <div class="text-danger" wire:click.prevent="remove('{{ $attachment->getFilename() }}')">
                                     <i class='bx bx-x-circle'></i>
-                                </div> --}}
+                                </div> --
                             </li>
                         @endforeach
                     @else
@@ -48,7 +48,7 @@
 
                 </ul>
             </div>
-        </div>
+        </div> --}}
 
         <hr class="my-4 mx-n4">
 

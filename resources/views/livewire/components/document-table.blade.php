@@ -15,23 +15,27 @@
             </thead>
             <tbody>
                 @if($documentRecords)
-                    @foreach ($documentRecords as $record )
-                        <tr>
-                            <td>
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <div class="avatar me-2">
-                                        {!! $record->feed_file_owner->temp_avatar->avatar !!}
+                    @if(count($documentRecords) > 0)
+                        @foreach ($documentRecords as $record )
+                            <tr>
+                                <td>
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <div class="avatar me-2">
+                                            {!! $record->feed_file_owner->temp_avatar->avatar !!}
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-0 text-truncate">{{ concat(' ',  [ $record->feed_file_owner->firstname, $record->feed_file_owner->lastname]) }}</h6>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-0 text-truncate">{{ concat(' ',  [ $record->feed_file_owner->firstname, $record->feed_file_owner->lastname]) }}</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{{ $record->feed_content() }}</td>
-                            <td>{{ basenameV2($record->feedable_type) }}</td>
-                            <td><span class="badge bg-label-secondary">{{ setDate($record->date_created ) }}</span></td>
-                        </tr>
-                    @endforeach
+                                </td>
+                                <td>{{ $record->feed_content() }}</td>
+                                <td>{{ basenameV2($record->feedable_type) }}</td>
+                                <td><span class="badge bg-label-secondary">{{ setDate($record->date_created ) }}</span></td>
+                            </tr>
+                        @endforeach
+                    @else
+                        {!! emptyEndRow(4) !!}
+                    @endif
                 @else
                     {!! emptyEndRow(4) !!}
                 @endif

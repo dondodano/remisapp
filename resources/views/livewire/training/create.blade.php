@@ -30,7 +30,7 @@
             </div>
 
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12 mb-3">
                     <small class="text-light fw-semibold  mb-3">File list </small>
                     <ul class="list-group ">
@@ -48,7 +48,7 @@
                         @endif
                     </ul>
                 </div>
-            </div>
+            </div> --}}
 
 
 

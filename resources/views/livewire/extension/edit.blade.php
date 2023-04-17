@@ -35,7 +35,7 @@
                     <small class="text-light fw-semibold  mb-3">File list </small>
                     <ul class="list-group ">
 
-                        @if (isset($attachments))
+                        {{-- @if (isset($attachments))
                             @if(count($attachments))
                                 @foreach ($attachments as $attachment )
                                     <li class="list-group-item justify-content-start list-group-item-action d-flex  align-items-center cursor-pointer">
@@ -46,9 +46,9 @@
                                     </li>
                                 @endforeach
                             @endif
-                        @endif
+                        @endif --}}
 
-                        @if(count($extensionFiles))
+                        @if(isset($extensionFiles))
                             @if(count($extensionFiles) > 0)
                                 @foreach ($extensionFiles as $file)
                                     <li class="list-group-item justify-content-start list-group-item-action d-flex  align-items-center cursor-pointer" id="fileitem-{{ $file->id }}">

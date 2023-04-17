@@ -34,7 +34,6 @@ class Create extends Component
             return ;
         }
 
-
         $store = Partnership::firstOrCreate([
             'partner' => $this->partner,
             'activity' => $this->activity,
@@ -44,22 +43,19 @@ class Create extends Component
         ]);
         $store->save();
 
-        if(isset($this->attachments))
-        {
-            $path = 'attachment/'. token() .'/';
-            foreach($this->attachments as $attachment)
-            {
-                $fileName = $attachment->getClientOriginalName();
-                $storeFile = PartnershipFile::firstOrCreate([
-                    'partnership_id' => $store->id,
-                    'user_id' => sessionGet('id'),
-                    'file' => $path . $fileName
-                ]);
-                $attachment->storeAs($path, $fileName, 'public');
-            }
-            $this->attachments = [];
-        }
 
+        $path = 'attachment/'. token() .'/';
+        foreach($this->attachments as $attachment)
+        {
+            $fileName = $attachment->getClientOriginalName();
+            $storeFile = PartnershipFile::firstOrCreate([
+                'partnership_id' => 1,
+                'user_id' => sessionGet('id'),
+                'file' => $path . $fileName
+            ]);
+            $attachment->storeAs($path, $fileName, 'public');
+        }
+        $this->attachments = [];
 
         $this->reset();
         $this->fileInputId = rand();
@@ -77,7 +73,7 @@ class Create extends Component
     {
         $validatedData = Validator::make(
             ['attachments' => $this->attachments],
-            ['attachments.*' => 'file|mimes:pdf,doc,docx,xls,xlxs,png, jpeg, jpg|max:2048'],
+            ['attachments.*' => 'file|mimes:pdf,doc,docx,xls,xlxs,png,jpeg,jpg|max:2048'],
         );
 
         if ($validatedData->fails()) {

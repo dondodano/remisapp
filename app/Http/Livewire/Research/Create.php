@@ -39,24 +39,24 @@ class Create extends Component
         $this->fileInputId = rand();
     }
 
-    public function remove($file)
-    {
-        if(is_countable($this->attachments))
-        {
-            $filePathToDelete = storage_path('app/livewire-tmp/' . $file);
-            foreach($this->attachments as $attach)
-            {
-                if($attach->getFilename() == $file)
-                {
-                    if(file_exists($filePathToDelete))
-                    {
-                        $attach->delete();
-                        $this->emit('onRefreshEvent');
-                    }
-                }
-            }
-        }
-    }
+    // public function remove($file)
+    // {
+    //     if(is_countable($this->attachments))
+    //     {
+    //         $filePathToDelete = storage_path('app/livewire-tmp/' . $file);
+    //         foreach($this->attachments as $attach)
+    //         {
+    //             if($attach->getFilename() == $file)
+    //             {
+    //                 if(file_exists($filePathToDelete))
+    //                 {
+    //                     $attach->delete();
+    //                     $this->emit('onRefreshEvent');
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     public function store()
     {

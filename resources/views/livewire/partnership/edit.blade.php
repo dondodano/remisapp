@@ -35,8 +35,8 @@
                     <small class="text-light fw-semibold  mb-3">File list </small>
                     <ul class="list-group ">
 
-                        @if (isset($attachments))
-                            @if(count($attachments))
+                        {{-- @if (isset($attachments))
+                            @if(count($attachments) > 0)
                                 @foreach ($attachments as $attachment )
                                     <li class="list-group-item justify-content-start list-group-item-action d-flex  align-items-center cursor-pointer">
                                         <i class='bx bx-file  me-2'></i>
@@ -45,10 +45,12 @@
                                         </div>
                                     </li>
                                 @endforeach
+                            @else
+                                <li class="list-group-item d-flex justify-content-between align-items-center">No files</li>
                             @endif
-                        @endif
+                        @endif --}}
 
-                        @if(count($partnershipFiles))
+                        @if(isset($partnershipFiles))
                             @if(count($partnershipFiles) > 0)
                                 @foreach ($partnershipFiles as $file)
                                     <li class="list-group-item justify-content-start list-group-item-action d-flex  align-items-center cursor-pointer" id="fileitem-{{ $file->id }}">

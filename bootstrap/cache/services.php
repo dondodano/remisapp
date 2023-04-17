@@ -52,7 +52,8 @@
     48 => 'App\\Providers\\RouteServiceProvider',
     49 => 'Barryvdh\\Debugbar\\ServiceProvider',
     50 => 'Barryvdh\\DomPDF\\ServiceProvider',
-    51 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    51 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    52 => 'Yajra\\DataTables\\DataTablesServiceProvider',
   ),
   'eager' => 
   array (
@@ -222,6 +223,8 @@
     'form' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
+    'command.ide-helper.generate' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    'command.ide-helper.models' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
   ),
   'when' => 
   array (
@@ -265,6 +268,9 @@
     array (
     ),
     'Collective\\Html\\HtmlServiceProvider' => 
+    array (
+    ),
+    'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => 
     array (
     ),
   ),
