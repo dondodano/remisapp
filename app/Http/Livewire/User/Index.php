@@ -13,6 +13,8 @@ use App\Models\User\UserToken;
 use App\Mail\UserCredentialMailer;
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Database\Eloquent\Collection;
+
 class Index extends Component
 {
     use WithPagination;
@@ -39,7 +41,11 @@ class Index extends Component
 
     public function getAllProperty()
     {
-        return User::with('user_role');
+        // return User::with(['user_role' => function($query){
+        //     $query->where('is_visible', '=',1);
+        // }]);
+
+        return User::with('user_role')->where('role_id', '<>', 1);
     }
 
     public function delete($id)
@@ -91,9 +97,10 @@ class Index extends Component
     public function render()
     {
         return view('livewire.user.index',[
-            'users' =>  $this->all->orderBy('id', 'desc')->paginate($this->paginate)
+            'users' =>  $this->all->latest()->get()
         ])
         ->extends('layouts.master')
         ->section('site-content');
+        //->paginate($this->paginate)
     }
 }

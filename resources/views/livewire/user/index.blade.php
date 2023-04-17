@@ -20,10 +20,11 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @if(is_countable($users))
                                 @if(count($users) > 0)
                                     @foreach ($users as $user )
-                                        @if(strtolower($user->user_role->term) != 'super')
+                                        @if(isset($user->user_role->term))
                                             <tr id="row-{{ $user->id }}">
                                                 <td>
                                                     <div class="d-flex justify-content-start align-items-center user-name">
@@ -78,15 +79,8 @@
                         </tbody>
                     </table>
 
-                    @if(is_countable($users))
-                        @if($users->hasPages())
-                            <div class="d-flex flex-row justify-content-end mt-3">
-                                <div class="me-3">
-                                    {{ $users->links() }}
-                                </div>
-                            </div>
-                        @endif
-                    @endif
+                    @include('vendor.remis-components.table-pagination', ['collection' => $users])
+
                 </div>
             </div>
 

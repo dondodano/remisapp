@@ -61,7 +61,7 @@
                         </tbody>
                     </table>
 
-                    @if(is_countable($programs))
+                    {{-- @if(is_countable($programs))
                         @if($programs->hasPages())
                             <div class="d-flex flex-row justify-content-end mt-3">
                                 <div class="me-3">
@@ -69,7 +69,9 @@
                                 </div>
                             </div>
                         @endif
-                    @endif
+                    @endif --}}
+
+                    @include('vendor.remis-components.table-pagination', ['collection' => $programs])
 
                 </div>
             </div>

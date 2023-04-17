@@ -68,7 +68,7 @@
                         </tbody>
                     </table>
 
-                    @if(is_countable($logs))
+                    {{-- @if(is_countable($logs))
                         @if($logs->hasPages())
                             <div class="d-flex flex-row justify-content-end mt-3">
                                 <div class="me-3">
@@ -76,7 +76,9 @@
                                 </div>
                             </div>
                         @endif
-                    @endif
+                    @endif --}}
+
+                    @include('vendor.remis-components.table-pagination', ['collection' => $logs])
 
                 </div>
             </div>
