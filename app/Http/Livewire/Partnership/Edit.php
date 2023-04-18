@@ -77,6 +77,7 @@ class Edit extends Component
 
         if($update)
             toastr("Partnership data successfully updated!", "success");
+            $this->dispatchBrowserEvent('pondFileClear');
     }
 
     public function updatedAttachments()

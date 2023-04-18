@@ -76,6 +76,7 @@ class Create extends Component
                 'feedable_type' => Publication::class
             ])->save();
             toastr("Publication document successfully saved!", "success");
+            $this->dispatchBrowserEvent('pondFileClear');
     }
 
     public function updatedAttachments()

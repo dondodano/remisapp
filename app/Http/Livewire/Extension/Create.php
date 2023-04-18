@@ -73,6 +73,7 @@ class Create extends Component
                 'feedable_type' => Extension::class
             ])->save();
             toastr("Extension document successfully saved!", "success");
+            $this->dispatchBrowserEvent('pondFileClear');
     }
 
 

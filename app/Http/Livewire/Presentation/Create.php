@@ -74,6 +74,7 @@ class Create extends Component
                 'feedable_type' => Presentation::class
             ])->save();
             toastr("Presentation document successfully saved!", "success");
+            $this->dispatchBrowserEvent('pondFileClear');
     }
 
 

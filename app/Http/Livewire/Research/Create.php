@@ -29,8 +29,6 @@ class Create extends Component
 
     public $userUploadToken;
 
-    protected $listeners = ['onRefreshEvent' => '$refresh'];
-
     public function mount()
     {
         $this->userUploadToken = token();
@@ -39,24 +37,6 @@ class Create extends Component
         $this->fileInputId = rand();
     }
 
-    // public function remove($file)
-    // {
-    //     if(is_countable($this->attachments))
-    //     {
-    //         $filePathToDelete = storage_path('app/livewire-tmp/' . $file);
-    //         foreach($this->attachments as $attach)
-    //         {
-    //             if($attach->getFilename() == $file)
-    //             {
-    //                 if(file_exists($filePathToDelete))
-    //                 {
-    //                     $attach->delete();
-    //                     $this->emit('onRefreshEvent');
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 
     public function store()
     {
@@ -87,30 +67,6 @@ class Create extends Component
         ]);
         $store->save();
 
-        /**
-         * Load Temporary Files
-         */
-        // $tempFiles = TemporaryFile::where('token', $this->userUploadToken);
-        // foreach($tempFiles->get() as $tempFile)
-        // {
-        //     // Copy File
-        //     Storage::disk('public')->copy(
-        //         'temp/'. $tempFile->folder .'/' . $tempFile->file,
-        //         'attachment/'. $tempFile->token .'/' . $tempFile->file
-        //     );
-
-        //     // Store in Research File
-        //     $storeFile = ResearchFile::firstOrCreate([
-        //         'research_id' => $store->id,
-        //         'user_id' => sessionGet('id'),
-        //         'file' => 'attachment/'. $tempFile->token .'/' . $tempFile->file
-        //     ]);
-
-        //     // Delete File
-        //     Storage::disk('public')->deleteDirectory('temp/'. $tempFile->folder);
-        // }
-        // $tempFiles->delete();
-
         if($this->attachments != null)
         {
             $path = 'attachment/'. token() .'/';
@@ -136,7 +92,8 @@ class Create extends Component
                 'feedable_type' => Research::class
             ])->save();
             toastr("Research data successfully saved!", "success");
-            $this->emitSelf('onRefreshEvent');
+            $this->dispatchBrowserEvent('pondFileClear');
+
     }
 
     public function updatedAttachments()

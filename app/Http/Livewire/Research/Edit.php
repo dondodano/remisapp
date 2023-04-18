@@ -105,6 +105,7 @@ class Edit extends Component
 
         if($update)
             toastr("Research data successfully updated!", "success");
+            $this->dispatchBrowserEvent('pondFileClear');
     }
 
 

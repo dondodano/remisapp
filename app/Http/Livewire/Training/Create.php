@@ -79,6 +79,7 @@ class Create extends Component
                 'feedable_type' => Training::class
             ])->save();
             toastr("Training document successfully saved!", "success");
+            $this->dispatchBrowserEvent('pondFileClear');
     }
 
     public function updatedAttachments()

@@ -67,6 +67,7 @@ class Create extends Component
                 'feedable_type' => Partnership::class
             ])->save();
             toastr("Partnership document successfully saved!", "success");
+            $this->dispatchBrowserEvent('pondFileClear');
     }
 
     public function updatedAttachments()

@@ -15,6 +15,9 @@
                 },
             }
         });
+        window.addEventListener('pondFileClear', e => {
+            pond.removeFiles();
+        });
     }">
     <input type="file" name="attachments" class="form-control" x-ref="{{ $attributes->get('ref') ?? 'input' }}">
 
