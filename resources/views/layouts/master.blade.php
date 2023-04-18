@@ -43,7 +43,8 @@
                 <!-- Layout container -->
                 <div class="layout-page">
 
-                    @include('layouts.nav')
+                    {{-- @include('layouts.nav') --}}
+                    @livewire('components.nav-bar')
 
                     <div class="content-wrapper">
 
