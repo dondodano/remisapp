@@ -1186,3 +1186,11 @@ function basenameV2($str){
     }
 
 }
+
+/**
+ * Get Quarter
+ */
+function getQuarter($perMonths = 3)
+{
+    return ceil(date('m', time()) / $perMonths);
+}

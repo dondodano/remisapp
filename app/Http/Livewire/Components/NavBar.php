@@ -7,9 +7,23 @@ use Livewire\Component;
 class NavBar extends Component
 {
 
-    public function select()
+    public $quarter;
+    public $year;
+
+    public function mount()
     {
-        toastr('test', 'info');
+        $this->quarter = ceil(date('m', time()) / 3);
+        $this->year = setToday('Y');
+    }
+
+    public function selectYear()
+    {
+        toastr($this->year, 'info');
+    }
+
+    public function selectQuarter()
+    {
+        toastr($this->quarter, 'info');
     }
 
     public function render()

@@ -9,7 +9,10 @@
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <li class="nav-item lh-1 me-3">
-                    <button class="btn btn-xs btn-primary" type="button" wire:click.prevent="select">2023</button>
+                    <button class="btn btn-xs btn-primary" type="button" wire:click.prevent="selectQuarter">Quarter : {{ $quarter }}</button>
+                </li>
+                <li class="nav-item lh-1 me-3">
+                    <button class="btn btn-xs btn-primary" type="button" wire:click.prevent="selectYear">{{ $year }}</button>
                 </li>
 
                 @livewire('components.notification')
