@@ -21,6 +21,7 @@
         "php-flasher/flasher-sweetalert-laravel": "^1.13",
         "pusher/pusher-php-server": "^7.2",
         "rappasoft/laravel-livewire-tables": "^2.11",
+        "wire-elements/modal": "^1.0",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "^9.21",
         "yoeunes/toastr": "^2.3"
