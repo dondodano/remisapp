@@ -72,6 +72,9 @@
         <!-- / Layout wrapper -->
 
 
+        @livewire('livewire-ui-modal')
+
+
         <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
         <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
         <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
@@ -81,6 +84,10 @@
         <script src="{{ asset('/assets/js/main-primary.js') }}"></script>
         <script src="{{ asset('/assets/remis/helper.js') }}"></script>
         @livewireScripts
+        <!-- Focus plugin -->
+        <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+        <!-- Alpine v3 -->
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         @stack('footer-1')
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
         <script>

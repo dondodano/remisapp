@@ -153,6 +153,13 @@
       0 => 'Rappasoft\\LaravelLivewireTables\\LaravelLivewireTablesServiceProvider',
     ),
   ),
+  'wire-elements/modal' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LivewireUI\\Modal\\LivewireModalServiceProvider',
+    ),
+  ),
   'yajra/laravel-datatables-buttons' => 
   array (
     'providers' => 
