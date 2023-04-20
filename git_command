@@ -30,3 +30,6 @@ php artisan migrate --path=/database/migrations/2023_04_14_092809_create_failed_
 # Refresh Laravel IDE helper
 php artisan ide-helper:generate
 php artisan ide-helper:models
+
+# Download Branch
+git clone --single-branch --branch livewiremodal https://github.com/dondodano/remisapp.git
