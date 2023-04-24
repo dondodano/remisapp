@@ -47,21 +47,14 @@
                     @livewire('components.nav-bar')
 
                     <div class="content-wrapper">
-
                         <div class="container-xxl flex-grow-1 container-p-y">
-
                             @include('layouts.breadcrumb')
 
-
                             @yield('site-content')
-
-
                         </div>
 
                         @include('layouts.footer')
-
                         <div class="content-backdrop fade"></div>
-
                     </div>
                 </div>
             </div>
@@ -71,9 +64,7 @@
         </div>
         <!-- / Layout wrapper -->
 
-
-        @livewire('livewire-ui-modal')
-
+        @livewire('modals.select-year')
 
         <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
         <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
@@ -84,10 +75,6 @@
         <script src="{{ asset('/assets/js/main-primary.js') }}"></script>
         <script src="{{ asset('/assets/remis/helper.js') }}"></script>
         @livewireScripts
-        <!-- Focus plugin -->
-        <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
-        <!-- Alpine v3 -->
-        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         @stack('footer-1')
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
         <script>
@@ -111,5 +98,7 @@
             });
         </script>
         @stack('footer-2')
+
+
     </body>
 </html>

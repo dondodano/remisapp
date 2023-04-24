@@ -42,11 +42,6 @@ class NavBar extends Component
         $this->year = setToday('Y');
     }
 
-    public function selectYear()
-    {
-        toastr($this->year, 'info');
-    }
-
     public function selectQuarter($index)
     {
 
@@ -66,6 +61,11 @@ class NavBar extends Component
         }else{
             toastr('Please select a valid quarter!' . $currentQuarter,'error');
         }
+    }
+
+    public function selectYear()
+    {
+        $this->dispatchBrowserEvent('showModal');
     }
 
     public function render()
