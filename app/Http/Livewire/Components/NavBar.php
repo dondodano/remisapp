@@ -66,7 +66,6 @@ class NavBar extends Component
     public function selectYear()
     {
         $this->dispatchBrowserEvent('showModal');
-        //$this->emit('show');
     }
 
     public function render()

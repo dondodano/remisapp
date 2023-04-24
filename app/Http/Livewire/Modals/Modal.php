@@ -14,4 +14,5 @@ class Modal extends Component
     {
         $this->show = true;
     }
+
 }

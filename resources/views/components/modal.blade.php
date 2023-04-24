@@ -5,6 +5,12 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 {{ $slot }}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-danger"
+                        x-data
+                        x-on:click="$dispatch('closeModal')">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -13,6 +19,7 @@
 
 @push('footer-1')
     @once
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script>
             window.addEventListener('showModal', event => {
                 $(".modal").modal('show');
