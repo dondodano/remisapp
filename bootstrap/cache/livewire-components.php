@@ -12,6 +12,8 @@
   'extension.preview' => 'App\\Http\\Livewire\\Extension\\Preview',
   'log.user-activity-log' => 'App\\Http\\Livewire\\Log\\UserActivityLog',
   'log.user-log' => 'App\\Http\\Livewire\\Log\\UserLog',
+  'modals.modal' => 'App\\Http\\Livewire\\Modals\\Modal',
+  'modals.select-year' => 'App\\Http\\Livewire\\Modals\\SelectYear',
   'partnership.create' => 'App\\Http\\Livewire\\Partnership\\Create',
   'partnership.edit' => 'App\\Http\\Livewire\\Partnership\\Edit',
   'partnership.evaluation' => 'App\\Http\\Livewire\\Partnership\\Evaluation',
