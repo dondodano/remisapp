@@ -1,21 +1,15 @@
-
-<div >
-    <div class="modal fade show" id="selectYearModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="selectYearModalLabel" aria-modal="true" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                {{ $slot }}
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Understood</button>
-                    <button type="button" class="btn btn-danger"
-                        x-data
-                        x-on:click="$dispatch('closeModal')">Close</button>
-                </div>
+<div class="modal fade show" id="selectYearModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="selectYearModalLabel" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            {{ $slot }}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Select</button>
+                <button type="button" class="btn btn-danger" x-data x-on:click="$dispatch('closeModal')">Close</button>
             </div>
         </div>
     </div>
 </div>
-
 
 @push('footer-1')
     @once
