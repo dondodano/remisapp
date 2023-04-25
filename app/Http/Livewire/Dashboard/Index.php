@@ -1,0 +1,104 @@
+<?php
+
+namespace App\Http\Livewire\Dashboard;
+
+use Livewire\Component;
+
+use Cache;
+use Carbon\Carbon;
+use App\Models\User\User;
+
+use App\Models\Repository\Research;
+use App\Models\Repository\Publication;
+use App\Models\Repository\Presentation;
+use App\Models\Repository\Training;
+use App\Models\Repository\Extension;
+use App\Models\Repository\Partnership;
+
+
+use App\Models\Feed\FeedableItem;
+
+class Index extends Component
+{
+    protected $listeners = ['newNotificationEvent' => '$refresh'];
+
+    public function getResearchesProperty()
+    {
+        $data = Research::with(['category', 'fund', 'research_status', 'evaluations','attachments']);
+
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $data = $data->where('owner', sessionGet('id'));
+        }
+        return $data;
+    }
+
+    public function getPublicationsProperty()
+    {
+        $data = Publication::with([ 'evaluations','attachments']);
+
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $data = $data->where('owner', sessionGet('id'));
+        }
+        return $data;
+    }
+
+    public function getPresentationsProperty()
+    {
+        $data = Presentation::with([ 'type','attachments','evaluations']);
+
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $data = $data->where('owner', sessionGet('id'));
+        }
+        return $data;
+    }
+
+    public function getTrainingsProperty()
+    {
+        $data = Training::with([ 'quality','attachments','evaluations']);
+
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $data = $data->where('owner', sessionGet('id'));
+        }
+        return $data;
+    }
+
+    public function getExtensionsProperty()
+    {
+        $data = Extension::with([ 'attachments','evaluations']);
+
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $data = $data->where('owner', sessionGet('id'));
+        }
+        return $data;
+    }
+
+    public function getPartnershipsProperty()
+    {
+        $data = Partnership::with([ 'attachments','evaluations']);
+
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $data = $data->where('owner', sessionGet('id'));
+        }
+        return $data;
+    }
+
+    public function render()
+    {
+        return view('livewire.dashboard.index',[
+            'researches' => $this->researches->orderBy('date_created', 'desc'),
+            'publications' => $this->publications->orderBy('date_created', 'desc'),
+            'presentations' => $this->presentations->orderBy('date_created', 'desc'),
+            'trainings' => $this->trainings->orderBy('date_created', 'desc'),
+            'extensions' => $this->extensions->orderBy('date_created', 'desc'),
+            'partnerships' => $this->partnerships->orderBy('date_created', 'desc'),
+        ])
+        ->extends('layouts.master')
+        ->section('site-content');
+    }
+}
