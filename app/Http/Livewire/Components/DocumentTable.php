@@ -9,7 +9,10 @@ use App\Models\Feed\FeedableItem;
 
 class DocumentTable extends Component
 {
-    protected $listeners = ['NewNotification' => '$refresh'];
+    protected $listeners = [
+        'NewNotification' => '$refresh',
+        //'QuarterAndYearSelected' => '$refresh',
+    ];
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';

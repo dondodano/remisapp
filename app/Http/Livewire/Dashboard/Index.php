@@ -20,7 +20,10 @@ use App\Models\Feed\FeedableItem;
 
 class Index extends Component
 {
-    protected $listeners = ['NewNotification' => '$refresh'];
+    protected $listeners = [
+        'NewNotification' => '$refresh',
+        'QuarterAndYearSelected' => '$refresh',
+    ];
 
     public $quarter;
     public $year;

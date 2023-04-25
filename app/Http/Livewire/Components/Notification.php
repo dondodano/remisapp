@@ -7,7 +7,10 @@ use App\Models\User\User;
 
 class Notification extends Component
 {
-    protected $listeners = ['NewNotification' => '$refresh'];
+    protected $listeners = [
+        'NewNotification' => '$refresh',
+        //'QuarterAndYearSelected' => '$refresh',
+    ];
 
     public function markallasread()
     {

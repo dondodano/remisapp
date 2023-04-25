@@ -11,7 +11,10 @@ use App\Events\PusherNotificationEvent;
 class OnlineUsers extends Component
 {
 
-    protected $listeners = ['UserOnlineStatus' => '$refresh'];
+    protected $listeners = [
+        'UserOnlineStatus' => '$refresh',
+        //'QuarterAndYearSelected' => '$refresh',
+    ];
 
     public function getOnlineUsersProperty()
     {

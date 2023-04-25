@@ -1,4 +1,5 @@
 <div>
+    {{ now() }}
     <div class="row">
         <div class="col-xl-4 mb-4">
             @include('vendor.remis-components.mini-card',[
