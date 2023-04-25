@@ -82,6 +82,10 @@ class Edit extends Component
             'collaborative' => $this->collaborativeAgency,
             'fund_id' => $this->fundType,
             'status_id' => $this->status,
+
+            'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
+            'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
+
             'date_modified' => setTimestamp()
         ]);
 

@@ -42,7 +42,10 @@ class Create extends Component
             'date_to' => $this->date_to,
             'quantity' => $this->quantity,
             'beneficiaries' => $this->beneficiaries,
-            'owner' => sessionGet('id')
+            'owner' => sessionGet('id'),
+
+            'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
+            'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
         ]);
         $store->save();
 

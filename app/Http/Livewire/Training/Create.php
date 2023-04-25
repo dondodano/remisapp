@@ -48,7 +48,10 @@ class Create extends Component
             'no_of_trainees_surveyed' => $this->surveyed,
             'quality_id' => $this->quality,
             'relevance' => $this->relevance,
-            'owner' => sessionGet('id')
+            'owner' => sessionGet('id'),
+
+            'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
+            'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
         ]);
         $store->save();
 

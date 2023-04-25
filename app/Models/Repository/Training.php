@@ -34,7 +34,9 @@ class Training extends Model
         'quality_id',
         'relevance',
         'owner',
-        'is_evaluated'
+        'is_evaluated',
+        'quarter',
+        'year'
     ];
 
     const CREATED_AT = 'date_created';

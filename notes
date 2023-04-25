@@ -30,3 +30,11 @@ php artisan migrate --path=/database/migrations/2023_04_14_092809_create_failed_
 # Refresh Laravel IDE helper
 php artisan ide-helper:generate
 php artisan ide-helper:models
+
+
+# Depreciated (Removable items)
+Livewire\Modals\Modal.php
+Livewire\Modals\SeletYear.php
+
+resource\views\components\modal.blade.php
+resource\views\livewire\modals\select-year.blade.php

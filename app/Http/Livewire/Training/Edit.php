@@ -69,6 +69,10 @@ class Edit extends Component
             'no_of_trainees_surveyed' => $this->surveyed,
             'quality_id' => $this->quality,
             'relevance' => $this->relevance,
+
+            'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
+            'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
+
             'date_modified' => setTimestamp()
         ]);
 

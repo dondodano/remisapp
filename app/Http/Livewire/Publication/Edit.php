@@ -59,6 +59,10 @@ class Edit extends Component
             'volume' => $this->volume,
             'issue' => $this->issue,
             'page' => $this->page,
+
+            'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
+            'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
+
             'date_modified' => setTimestamp()
         ]);
 

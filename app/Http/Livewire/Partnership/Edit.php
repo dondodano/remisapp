@@ -54,6 +54,10 @@ class Edit extends Component
             'activity' => $this->activity,
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,
+
+            'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
+            'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
+
             'date_modified' => setTimestamp()
         ]);
 

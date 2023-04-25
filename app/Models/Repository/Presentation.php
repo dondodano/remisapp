@@ -31,7 +31,9 @@ class Presentation extends Model
         'venue',
         'type_id',
         'owner',
-        'is_evaluated'
+        'is_evaluated',
+        'quarter',
+        'year'
     ];
 
     const CREATED_AT = 'date_created';

@@ -24,6 +24,9 @@ class CreateRepositoryExtensionTable extends Migration
 
             $table->integer('owner')->default(0);
             $table->integer('is_evaluated')->default(0);
+
+            $table->integer('quarter')->nullabe();
+            $table->integer('year')->nullabe();
             $table->integer('active')->default(1);
 
             $table->dateTime('date_created')->default(DB::raw('CURRENT_TIMESTAMP'));

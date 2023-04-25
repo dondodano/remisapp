@@ -12,6 +12,7 @@ class NavBar extends Component
     public $year;
     public $suffix;
 
+
     public function mount()
     {
         // Suffix
@@ -39,7 +40,21 @@ class NavBar extends Component
 
 
         // Year
-        $this->year = setToday('Y');
+        if(Cache::has('current-year-'.auth()->user()->id))
+        {
+            $this->year = Cache::get('current-year-'.auth()->user()->id)['value'];
+        }else{
+            $this->year = setToday('Y');
+        }
+
+
+        sessionSet('current-quarter-'.auth()->user()->id,[
+            'value' => $this->quarter,
+            'suffix' => $this->suffix[$currentQuarter]
+        ]);
+        sessionSet('current-year-'.auth()->user()->id,[
+            'value' => $this->year
+        ]);
     }
 
     public function selectQuarter($index)
@@ -54,6 +69,11 @@ class NavBar extends Component
                 'Quarter'
             ]);
 
+            sessionSet('current-quarter-'.auth()->user()->id,[
+                'value' => $currentQuarter,
+                'suffix' => $this->suffix[$currentQuarter]
+            ]);
+
             Cache::put('current-quarter-'.auth()->user()->id, [
                 'value' => $currentQuarter,
                 'suffix' => $this->suffix[$currentQuarter]
@@ -65,7 +85,13 @@ class NavBar extends Component
 
     public function selectYear()
     {
-        $this->dispatchBrowserEvent('showModal');
+        sessionSet('current-year-'.auth()->user()->id,[
+            'value' => $this->year
+        ]);
+
+        Cache::put('current-year-'.auth()->user()->id, [
+            'value' => $this->year
+        ]);
     }
 
     public function render()

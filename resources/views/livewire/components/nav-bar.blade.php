@@ -9,21 +9,23 @@
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <li class="nav-item lh-1 me-3">
-                    <div class="btn-group">
-                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuClickable"
-                            data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
-                            {{ $quarter }}
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuClickable" style="">
-                            <li><h6 class="dropdown-header text-uppercase">Select quarter</h6></li>
-                            <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cQ==')">1st Quarter</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cg==')">2nd Quarter</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cw==')">3rd Quarter</a></li>
-                        </ul>
-                      </div>
+                    <x-dropdown-list id="dropdownQuarter" text="{{ $quarter }}">
+                        <li><h6 class="dropdown-header text-uppercase">Select quarter</h6></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cQ==')">1st Quarter</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cg==')">2nd Quarter</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cw==')">3rd Quarter</a></li>
+                    </x-dropdown-list>
                 </li>
                 <li class="nav-item lh-1 me-3">
-                    <button class="btn btn-sm btn-primary" type="button" wire:click.prevent="selectYear">{{ $year }}</button>
+                    <x-dropdown-form id="dropdownYear" text="{{ $year }}">
+                        <div class="mb-2">
+                            <label for="yearField" class="form-label">Enter Year</label>
+                            <input type="text" class="form-control" id="yearField" wire:model.defer="year" value="{{ $year }}">
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-sm btn-primary" wire:click.prevent="selectYear">Select year</button>
+                        </div>
+                    </x-dropdown-form>
                 </li>
 
                 @livewire('components.notification')

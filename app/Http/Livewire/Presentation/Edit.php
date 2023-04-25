@@ -58,6 +58,10 @@ class Edit extends Component
             'venue' => $this->venue,
             'date_presented' => $this->date_presented,
             'type_id' => $this->type,
+
+            'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
+            'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
+
             'date_modified' => setTimestamp()
         ]);
 
