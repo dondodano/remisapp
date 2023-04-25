@@ -1194,3 +1194,51 @@ function getQuarter($perMonths = 3)
 {
     return ceil(date('m', time()) / $perMonths);
 }
+
+/**
+ * Session Current Quarter and Year
+ */
+function getQuarterSuffix()
+{
+    return [
+        '1' => 'st',
+        '2' => 'nd',
+        '3' => 'rd'
+    ];
+}
+
+function getCurrentQuarter()
+{
+    // Suffix
+    $suffix = getQuarterSuffix();
+
+     // Cache
+     $currentQuarter = getQuarter();
+     if(cache()->has('current-quarter-'.auth()->user()->id))
+     {
+         return [
+            'value' => cache()->get('current-quarter-'.auth()->user()->id)['value'],
+            'suffix' => cache()->get('current-quarter-'.auth()->user()->id)['suffix'],
+         ];
+
+     }
+
+     return [
+        'value' => $currentQuarter,
+        'suffix' => $suffix[$currentQuarter]
+     ];
+}
+
+function getCurrentYear()
+{
+    if(cache()->has('current-year-'.auth()->user()->id))
+    {
+        return [
+            'value' => cache()->get('current-year-'.auth()->user()->id)['value']
+        ];
+    }
+
+    return [
+        'value' => setToday('Y')
+    ];
+}

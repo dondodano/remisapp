@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Components;
 
 use Livewire\Component;
 use Cache;
+use App\Events\PusherNotificationEvent;
 
 class NavBar extends Component
 {
@@ -16,44 +17,30 @@ class NavBar extends Component
     public function mount()
     {
         // Suffix
-        $this->suffix = [
-            '1' => 'st',
-            '2' => 'nd',
-            '3' => 'rd'
-        ];
+        $this->suffix = getQuarterSuffix();
 
-        // Cache
-        $currentQuarter = ceil(date('m', time()) / 3);
-        if(Cache::has('current-quarter-'.auth()->user()->id))
-        {
-            $this->quarter = concat(' ',[
-                Cache::get('current-quarter-'.auth()->user()->id)['value'] . Cache::get('current-quarter-'.auth()->user()->id)['suffix'],
-                'Quarter'
-            ]);
-        }else{
-            Cache::put('current-quarter-'.auth()->user()->id, [
-                'value' => $currentQuarter,
-                'suffix' => $this->suffix[$currentQuarter]
-            ]);
-            $this->quarter = $currentQuarter.$this->suffix[$currentQuarter];
-        }
+        // Quarter
+        $this->quarter = concat(' ',[
+            getCurrentQuarter()['value'] . getCurrentQuarter()['suffix'],
+            'Quarter'
+        ]);
+        Cache::put('current-quarter-'.auth()->user()->id,[
+            'value' => getCurrentQuarter()['value'],
+            'suffix' => getCurrentQuarter()['suffix']
+        ]);
+        sessionSet('current-quarter-'.auth()->user()->id,[
+            'value' => getCurrentQuarter()['value'],
+            'suffix' => getCurrentQuarter()['suffix']
+        ]);
 
 
         // Year
-        if(Cache::has('current-year-'.auth()->user()->id))
-        {
-            $this->year = Cache::get('current-year-'.auth()->user()->id)['value'];
-        }else{
-            $this->year = setToday('Y');
-        }
-
-
-        sessionSet('current-quarter-'.auth()->user()->id,[
-            'value' => $this->quarter,
-            'suffix' => $this->suffix[$currentQuarter]
+        $this->year = getCurrentYear()['value'];
+        Cache::put('current-year-'.auth()->user()->id,[
+            'value' => getCurrentYear()['value']
         ]);
         sessionSet('current-year-'.auth()->user()->id,[
-            'value' => $this->year
+            'value' => getCurrentYear()['value']
         ]);
     }
 
@@ -92,6 +79,7 @@ class NavBar extends Component
         Cache::put('current-year-'.auth()->user()->id, [
             'value' => $this->year
         ]);
+
     }
 
     public function render()

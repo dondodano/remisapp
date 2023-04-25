@@ -9,7 +9,7 @@ use App\Models\Feed\FeedableItem;
 
 class DocumentTable extends Component
 {
-    protected $listeners = ['newNotificationEvent' => '$refresh'];
+    protected $listeners = ['NewNotification' => '$refresh'];
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';

@@ -20,11 +20,22 @@ use App\Models\Feed\FeedableItem;
 
 class Index extends Component
 {
-    protected $listeners = ['newNotificationEvent' => '$refresh'];
+    protected $listeners = ['NewNotification' => '$refresh'];
+
+    public $quarter;
+    public $year;
+
+    public function mount()
+    {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+    }
 
     public function getResearchesProperty()
     {
-        $data = Research::with(['category', 'fund', 'research_status', 'evaluations','attachments']);
+        $data = Research::with(['category', 'fund', 'research_status', 'evaluations','attachments'])
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year);
 
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
@@ -35,7 +46,9 @@ class Index extends Component
 
     public function getPublicationsProperty()
     {
-        $data = Publication::with([ 'evaluations','attachments']);
+        $data = Publication::with([ 'evaluations','attachments'])
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year);
 
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
@@ -46,7 +59,9 @@ class Index extends Component
 
     public function getPresentationsProperty()
     {
-        $data = Presentation::with([ 'type','attachments','evaluations']);
+        $data = Presentation::with([ 'type','attachments','evaluations'])
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year);
 
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
@@ -57,7 +72,9 @@ class Index extends Component
 
     public function getTrainingsProperty()
     {
-        $data = Training::with([ 'quality','attachments','evaluations']);
+        $data = Training::with([ 'quality','attachments','evaluations'])
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year);
 
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
@@ -68,7 +85,9 @@ class Index extends Component
 
     public function getExtensionsProperty()
     {
-        $data = Extension::with([ 'attachments','evaluations']);
+        $data = Extension::with([ 'attachments','evaluations'])
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year);
 
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
@@ -79,7 +98,9 @@ class Index extends Component
 
     public function getPartnershipsProperty()
     {
-        $data = Partnership::with([ 'attachments','evaluations']);
+        $data = Partnership::with([ 'attachments','evaluations'])
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year);
 
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
@@ -91,12 +112,12 @@ class Index extends Component
     public function render()
     {
         return view('livewire.dashboard.index',[
-            'researches' => $this->researches->orderBy('date_created', 'desc'),
-            'publications' => $this->publications->orderBy('date_created', 'desc'),
-            'presentations' => $this->presentations->orderBy('date_created', 'desc'),
-            'trainings' => $this->trainings->orderBy('date_created', 'desc'),
-            'extensions' => $this->extensions->orderBy('date_created', 'desc'),
-            'partnerships' => $this->partnerships->orderBy('date_created', 'desc'),
+            'researches' => $this->researches->latest(),
+            'publications' => $this->publications->latest(),
+            'presentations' => $this->presentations->latest(),
+            'trainings' => $this->trainings->latest(),
+            'extensions' => $this->extensions->latest(),
+            'partnerships' => $this->partnerships->latest(),
         ])
         ->extends('layouts.master')
         ->section('site-content');

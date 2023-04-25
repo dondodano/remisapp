@@ -9,7 +9,7 @@ use App\Models\Feed\FeedableItem;
 
 class ActivityTimeline extends Component
 {
-    protected $listeners = ['newNotificationEvent' => '$refresh'];
+    protected $listeners = ['NewNotification' => '$refresh'];
 
     public function markread($id)
     {
