@@ -20,7 +20,7 @@
                     <x-dropdown-form id="dropdownYear" text="{{ $year }}">
                         <div class="mb-2">
                             <label for="yearField" class="form-label">Enter Year</label>
-                            <input type="text" class="form-control" id="yearField" wire:model.defer="year" value="{{ $year }}">
+                            <input type="number" class="form-control" id="yearField" wire:model.defer="year" value="{{ $year }}">
                         </div>
                         <div class="text-end">
                             <button type="button" class="btn btn-sm btn-primary" wire:click.prevent="selectYear">Select year</button>

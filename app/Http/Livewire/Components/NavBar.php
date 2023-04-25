@@ -73,13 +73,14 @@ class NavBar extends Component
     public function selectYear()
     {
         sessionSet('current-year-'.auth()->user()->id,[
-            'value' => $this->year
+            'value' => (int)filter_var( $this->year, FILTER_SANITIZE_NUMBER_INT)
         ]);
 
         Cache::put('current-year-'.auth()->user()->id, [
-            'value' => $this->year
+            'value' => (int)filter_var( $this->year, FILTER_SANITIZE_NUMBER_INT)
         ]);
 
+        $this->year = (int)filter_var( $this->year, FILTER_SANITIZE_NUMBER_INT);
     }
 
     public function render()
