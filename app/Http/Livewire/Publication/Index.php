@@ -2,30 +2,14 @@
 
 namespace App\Http\Livewire\Publication;
 
-use ZipArchive;
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Repository\Publication;
 use App\Models\Attachment\PublicationFile;
+use App\Http\Livewire\Traits\RepositoryIndex;
 
-class Index extends Component
+class Index extends RepositoryIndex
 {
-
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public $paginate = 10;
-    public $search = "";
     public $publicationId;
 
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
 
     public function updatedSearch()
     {
@@ -50,7 +34,7 @@ class Index extends Component
             $all = $all->where('owner', sessionGet('id'));
         }
 
-        return $all;
+        return $all->where('quarter', $this->quarter)->where('year', $this->year);
     }
 
 

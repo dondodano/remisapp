@@ -2,37 +2,20 @@
 
 namespace App\Http\Livewire\Research;
 
-use Livewire\Component;
-use Livewire\WithPagination;
-
-
-use ZipArchive;
 use App\Models\Repository\Research;
 use App\Models\Attachment\ResearchFile;
 use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
-use App\Models\Misc\Miscellaneous as Category;
+use App\Http\Livewire\Traits\RepositoryIndex;
 use App\Models\Evaluation\ResearchEvaluation;
+use App\Models\Misc\Miscellaneous as Category;
 
 
-class Index extends Component
+class Index extends RepositoryIndex
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public $paginate = 10;
-    public $search = "";
     public $researchId;
     public $filterCategory = null, $filterFund = null, $filterStatus = null;
 
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
 
     public function updatedSearch()
     {
@@ -63,7 +46,7 @@ class Index extends Component
             $data = $data->where('owner', sessionGet('id'));
         }
 
-        return $data;
+        return $data->where('quarter', $this->quarter)->where('year', $this->year);
     }
 
     public function resetFilter()

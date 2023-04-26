@@ -2,30 +2,14 @@
 
 namespace App\Http\Livewire\Training;
 
-use ZipArchive;
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Repository\Training;
 use App\Models\Attachment\TrainingFile;
+use App\Http\Livewire\Traits\RepositoryIndex;
 
 
-class Index extends Component
+class Index extends RepositoryIndex
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public $paginate = 10;
-    public $search = "";
     public $trainingId;
-
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
 
     public function updatedSearch()
     {
@@ -49,7 +33,7 @@ class Index extends Component
             $all = $all->where('owner', sessionGet('id'));
         }
 
-        return $all;
+        return $all->where('quarter', $this->quarter)->where('year', $this->year);
     }
 
     public function download($id)

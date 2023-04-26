@@ -2,29 +2,14 @@
 
 namespace App\Http\Livewire\Partnership;
 
-use ZipArchive;
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Repository\Partnership;
 use App\Models\Attachment\PartnershipFile;
+use App\Http\Livewire\Traits\RepositoryIndex;
 
-class Index extends Component
+class Index extends RepositoryIndex
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public $paginate = 10;
-    public $search = "";
+
     public $partnershipId;
-
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
 
     public function updatedSearch()
     {
@@ -46,7 +31,7 @@ class Index extends Component
             $all = $all->where('owner', sessionGet('id'));
         }
 
-        return $all;
+        return $all->where('quarter', $this->quarter)->where('year', $this->year);
     }
 
     public function download($id)
