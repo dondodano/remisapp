@@ -14,16 +14,16 @@
                 <div class="col-12">
                     <dl class="row mb-0">
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Partner:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ $partnership->partner }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $partnershipModel->partner }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Activity</dt>
-                        <dd class="col-sm-10 text-wrap">{{ $partnership->activity  }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $partnershipModel->activity  }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Date From:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ setDate($partnership->date_from) }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ setDate($partnershipModel->date_from) }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Date To:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ setDate($partnership->date_to) }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ setDate($partnershipModel->date_to) }}</dd>
                     </dl>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <h5 class="card-action-title mb-0">Attachments</h5>
         </div>
         <div class="card-body ">
-            @foreach ($partnership->attachments as $file )
+            @foreach ($partnershipModel->attachments as $file )
                 <div class="row">
                     <div class="col-12">
                         <object data="{{ getFileShortLocation($file->file) }}#view=Fit" type="application/pdf" width="100%" height="480" title="{{ basename($file->file) }}" zoom="40">

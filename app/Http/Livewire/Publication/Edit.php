@@ -11,25 +11,31 @@ class Edit extends RepositoryEdit
     public $date_published, $title, $author, $publisher;
     public $volume, $issue, $page;
 
-    public $publication;
+    public $publicationModel;
     public $publicationId;
 
     public function mount($id)
     {
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
-        $this->publication = Publication::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+        $this->publicationModel = Publication::where('quarter', $this->quarter)->where('year', $this->year);
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $this->publicationModel = $this->publicationModel->where('owner', sessionGet('id'));
+        }
+        $this->publicationModel = $this->publicationModel->findOrFail($id);
+
 
         $this->fileInputId = rand();
         $this->publicationId = $id;
 
-        $this->date_published = setDate($this->publication->date_published);
-        $this->title = $this->publication->title;
-        $this->author = $this->publication->author;
-        $this->publisher = $this->publication->publisher;
-        $this->volume = $this->publication->volume;
-        $this->issue = $this->publication->issue;
-        $this->page = $this->publication->page;
+        $this->date_published = setDate($this->publicationModel->date_published);
+        $this->title = $this->publicationModel->title;
+        $this->author = $this->publicationModel->author;
+        $this->publisher = $this->publicationModel->publisher;
+        $this->volume = $this->publicationModel->volume;
+        $this->issue = $this->publicationModel->issue;
+        $this->page = $this->publicationModel->page;
     }
 
     public function remove($id)
@@ -50,7 +56,7 @@ class Edit extends RepositoryEdit
         }
 
 
-        $update = $this->publication->update([
+        $update = $this->publicationModel->update([
             'date_published' => $this->date_published,
             'title' => $this->title,
             'author' => $this->author,
@@ -72,7 +78,7 @@ class Edit extends RepositoryEdit
             {
                 $fileName = $attachment->getClientOriginalName();
                 $storeFile = PublicationFile::firstOrCreate([
-                    'publication_id' => $this->publication->id,
+                    'publication_id' => $this->publicationModel->id,
                     'user_id' => sessionGet('id'),
                     'file' => $path . $fileName
                 ]);

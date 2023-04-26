@@ -8,17 +8,21 @@ use App\Http\Livewire\Traits\RepositoryPreview;
 
 class Preview extends RepositoryPreview
 {
-    public $training;
+    public $trainingModel;
 
     public function mount($id)
     {
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
 
-        $this->training = Training::with('attachments')
+        $this->trainingModel = Training::with('attachments')
             ->where('quarter', $this->quarter)
-            ->where('year', $this->year)
-            ->findOrFail($id);
+            ->where('year', $this->year);
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $this->trainingModel = $this->trainingModel->where('owner', sessionGet('id'));
+        }
+        $this->trainingModel = $this->trainingModel->findOrFail($id);
     }
 
     public function render()

@@ -14,22 +14,22 @@
                 <div class="col-12">
                     <dl class="row mb-0">
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Date Presented:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ setDate($presentation->date_presented) }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ setDate($presentationModel->date_presented) }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Title:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ $presentation->title }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $presentationModel->title }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Author</dt>
-                        <dd class="col-sm-10 text-wrap">{{ $presentation->author  }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $presentationModel->author  }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Forum</dt>
-                        <dd class="col-sm-10 text-wrap">{{ $presentation->forum }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $presentationModel->forum }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Venue</dt>
-                        <dd class="col-sm-10 text-wrap">{{ $presentation->venue }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $presentationModel->venue }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Type</dt>
-                        <dd class="col-sm-10"><span class="badge bg-label-info">{{ $presentation->type->term }}</span></dd>
+                        <dd class="col-sm-10"><span class="badge bg-label-info">{{ $presentationModel->type->term }}</span></dd>
                     </dl>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <h5 class="card-action-title mb-0">Attachments</h5>
         </div>
         <div class="card-body ">
-            @foreach ($presentation->attachments as $file )
+            @foreach ($presentationModel->attachments as $file )
                 <div class="row">
                     <div class="col-12">
                         <object data="{{ getFileShortLocation($file->file) }}#view=Fit" type="application/pdf" width="100%" height="480" title="{{ basename($file->file) }}" zoom="40">

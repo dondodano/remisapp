@@ -12,24 +12,29 @@ class Edit extends RepositoryEdit
 {
     public $date_presented, $type, $title, $author, $forum, $venue;
 
-    public $presentation;
+    public $presentationModel;
     public $presentationId;
 
     public function mount($id)
     {
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
-        $this->presentation = Presentation::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+        $this->presentationModel = Presentation::where('quarter', $this->quarter)->where('year', $this->year);
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $this->presentationModel = $this->presentationModel->where('owner', sessionGet('id'));
+        }
+        $this->presentationModel = $this->presentationModel->findOrFail($id);
 
         $this->fileInputId = rand();
         $this->presentationId = $id;
 
-        $this->date_presented = setDate($this->presentation->date_presented);
-        $this->title = $this->presentation->title;
-        $this->author = $this->presentation->author;
-        $this->forum = $this->presentation->forum;
-        $this->venue = $this->presentation->venue;
-        $this->type = $this->presentation->type_id;
+        $this->date_presented = setDate($this->presentationModel->date_presented);
+        $this->title = $this->presentationModel->title;
+        $this->author = $this->presentationModel->author;
+        $this->forum = $this->presentationModel->forum;
+        $this->venue = $this->presentationModel->venue;
+        $this->type = $this->presentationModel->type_id;
     }
 
     public function remove($id)
@@ -49,7 +54,7 @@ class Edit extends RepositoryEdit
         }
 
 
-        $update = $this->presentation->update([
+        $update = $this->presentationModel->update([
             'title' => $this->title,
             'author' => $this->author,
             'forum' => $this->forum,
@@ -70,7 +75,7 @@ class Edit extends RepositoryEdit
             {
                 $fileName = $attachment->getClientOriginalName();
                 $storeFile = PresentationFile::firstOrCreate([
-                    'presentation_id' => $this->presentation->id,
+                    'presentation_id' => $this->presentationModel->id,
                     'user_id' => sessionGet('id'),
                     'file' => $path . $fileName
                 ]);

@@ -16,7 +16,7 @@ class Edit extends RepositoryEdit
     public $fundType, $category, $commodity, $programTitle, $studySite;
     public $fundingAgency, $collaborativeAgency;
 
-    public $research;
+    public $researchModel;
     public $researchId;
 
 
@@ -25,26 +25,31 @@ class Edit extends RepositoryEdit
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
 
-        $this->research = Research::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+        $this->researchModel = Research::where('quarter', $this->quarter)->where('year', $this->year);
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $this->researchModel = $this->researchModel->where('owner', sessionGet('id'));
+        }
+        $this->researchModel = $this->researchModel->findOrFail($id);
 
 
         // $this->fileInputId = rand();
         // $this->researchId = $id;
 
-        $this->projectTitle = $this->research->project;
-        $this->researcher = $this->research->researcher;
-        $this->budget = $this->research->budget;
-        $this->yearStart = $this->research->year_start;
-        $this->yearEnd = $this->research->year_end;
-        $this->status = $this->research->status_id;
+        $this->projectTitle = $this->researchModel->project;
+        $this->researcher = $this->researchModel->researcher;
+        $this->budget = $this->researchModel->budget;
+        $this->yearStart = $this->researchModel->year_start;
+        $this->yearEnd = $this->researchModel->year_end;
+        $this->status = $this->researchModel->status_id;
 
-        $this->fundType = $this->research->fund_id;
-        $this->category = $this->research->category_id;
-        $this->commodity = $this->research->commodity;
-        $this->programTitle = $this->research->program;
-        $this->studySite = $this->research->sites;
-        $this->fundingAgency = $this->research->agency;
-        $this->collaborativeAgency = $this->research->collaborative;
+        $this->fundType = $this->researchModel->fund_id;
+        $this->category = $this->researchModel->category_id;
+        $this->commodity = $this->researchModel->commodity;
+        $this->programTitle = $this->researchModel->program;
+        $this->studySite = $this->researchModel->sites;
+        $this->fundingAgency = $this->researchModel->agency;
+        $this->collaborativeAgency = $this->researchModel->collaborative;
 
     }
 
@@ -65,7 +70,7 @@ class Edit extends RepositoryEdit
             return ;
         }
 
-        $update = $this->research->update([
+        $update = $this->researchModel->update([
             'commodity' => $this->commodity,
             'category_id' => $this->category,
             'program' => $this->programTitle,
@@ -93,7 +98,7 @@ class Edit extends RepositoryEdit
             {
                 $fileName = $attachment->getClientOriginalName();
                 $storeFile = ResearchFile::firstOrCreate([
-                    'research_id' => $this->research->id,
+                    'research_id' => $this->researchModel->id,
                     'user_id' => sessionGet('id'),
                     'file' => $path . $fileName
                 ]);
@@ -125,7 +130,7 @@ class Edit extends RepositoryEdit
 
     public function render()
     {
-        // if($this->research->owner !== sessionGet('id'))
+        // if($this->researchModel->owner !== sessionGet('id'))
         // {
         //     return abort('404');
         // }

@@ -14,25 +14,25 @@
                 <div class="col-12">
                     <dl class="row mb-0">
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Date Published:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ setDate($publication->date_published) }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ setDate($publicationModel->date_published) }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Title:</dt>
-                        <dd class="col-sm-10 text-wrap">{{ $publication->title }}</dd>
+                        <dd class="col-sm-10 text-wrap">{{ $publicationModel->title }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Author</dt>
-                        <dd class="col-sm-10">{{ $publication->author  }}</dd>
+                        <dd class="col-sm-10">{{ $publicationModel->author  }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Publisher</dt>
-                        <dd class="col-sm-10">{{ $publication->publisher }}</dd>
+                        <dd class="col-sm-10">{{ $publicationModel->publisher }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Volume</dt>
-                        <dd class="col-sm-10">{{ $publication->volume }}</dd>
+                        <dd class="col-sm-10">{{ $publicationModel->volume }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Issue</dt>
-                        <dd class="col-sm-10">{{ $publication->issue }}</dd>
+                        <dd class="col-sm-10">{{ $publicationModel->issue }}</dd>
 
                         <dt class="col-sm-2 fw-semibold mb-3 text-nowrap">Page</dt>
-                        <dd class="col-sm-10">{{ $publication->page }}</dd>
+                        <dd class="col-sm-10">{{ $publicationModel->page }}</dd>
 
                     </dl>
                 </div>
@@ -46,7 +46,7 @@
             <h5 class="card-action-title mb-0">Attachments</h5>
         </div>
         <div class="card-body ">
-            @foreach ($publication->attachments as $file )
+            @foreach ($publicationModel->attachments as $file )
                 <div class="row">
                     <div class="col-12">
                         <object data="{{ getFileShortLocation($file->file) }}#view=Fit" type="application/pdf" width="100%" height="480" title="{{ basename($file->file) }}" zoom="40">

@@ -13,7 +13,7 @@ class Edit extends RepositoryEdit
     public $title, $date_from, $date_to, $duration, $trainees, $weight, $surveyed;
     public $quality, $relevance;
 
-    public $training;
+    public $trainingModel;
     public $trainingId;
 
 
@@ -21,22 +21,27 @@ class Edit extends RepositoryEdit
     {
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
-        $this->training = Training::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+        $this->trainingModel = Training::where('quarter', $this->quarter)->where('year', $this->year);
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $this->trainingModel = $this->trainingModel->where('owner', sessionGet('id'));
+        }
+        $this->trainingModel = $this->trainingModel->findOrFail($id);
 
         $this->fileInputId = rand();
         $this->trainingId = $id;
 
-        $this->title = $this->training->title;
-        $this->date_from = setDate($this->training->date_from);
-        $this->date_to = setDate($this->training->date_to);
+        $this->title = $this->trainingModel->title;
+        $this->date_from = setDate($this->trainingModel->date_from);
+        $this->date_to = setDate($this->trainingModel->date_to);
 
-        $this->duration = $this->training->duration;
-        $this->trainees = $this->training->no_of_trainees;
-        $this->weight = $this->training->weight;
-        $this->surveyed = $this->training->no_of_trainees_surveyed;
+        $this->duration = $this->trainingModel->duration;
+        $this->trainees = $this->trainingModel->no_of_trainees;
+        $this->weight = $this->trainingModel->weight;
+        $this->surveyed = $this->trainingModel->no_of_trainees_surveyed;
 
-        $this->quality = $this->training->quality_id;
-        $this->relevance = $this->training->relevance;
+        $this->quality = $this->trainingModel->quality_id;
+        $this->relevance = $this->trainingModel->relevance;
     }
 
     public function remove($id)
@@ -56,7 +61,7 @@ class Edit extends RepositoryEdit
         }
 
 
-        $update = $this->training->update([
+        $update = $this->trainingModel->update([
             'title' => $this->title,
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,
@@ -80,7 +85,7 @@ class Edit extends RepositoryEdit
             {
                 $fileName = $attachment->getClientOriginalName();
                 $storeFile = TrainingFile::firstOrCreate([
-                    'training_id' => $this->training->id,
+                    'training_id' => $this->trainingModel->id,
                     'user_id' => sessionGet('id'),
                     'file' => $path . $fileName
                 ]);

@@ -10,7 +10,7 @@ class Edit extends RepositoryEdit
 {
     public $partner, $activity, $date_from, $date_to;
 
-    public $partnership;
+    public $partnershipModel;
     public $partnershipId;
 
 
@@ -18,15 +18,20 @@ class Edit extends RepositoryEdit
     {
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
-        $this->partnership = Partnership::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+        $this->partnershipModel = Partnership::where('quarter', $this->quarter)->where('year', $this->year);
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $this->partnershipModel = $this->partnershipModel->where('owner', sessionGet('id'));
+        }
+        $this->partnershipModel = $this->partnershipModel->findOrFail($id);
 
         $this->fileInputId = rand();
         $this->partnershipId = $id;
 
-        $this->partner = $this->partnership->partner;
-        $this->activity = $this->partnership->activity;
-        $this->date_from = setDate($this->partnership->date_from);
-        $this->date_to = setDate($this->partnership->date_to);
+        $this->partner = $this->partnershipModel->partner;
+        $this->activity = $this->partnershipModel->activity;
+        $this->date_from = setDate($this->partnershipModel->date_from);
+        $this->date_to = setDate($this->partnershipModel->date_to);
     }
 
     public function remove($id)
@@ -45,7 +50,7 @@ class Edit extends RepositoryEdit
         }
 
 
-        $update = $this->partnership->update([
+        $update = $this->partnershipModel->update([
             'partner' => $this->partner,
             'activity' => $this->activity,
             'date_from' => $this->date_from,
@@ -64,7 +69,7 @@ class Edit extends RepositoryEdit
             {
                 $fileName = $attachment->getClientOriginalName();
                 $storeFile = PartnershipFile::firstOrCreate([
-                    'partnership_id' => $this->partnership->id,
+                    'partnership_id' => $this->partnershipModel->id,
                     'user_id' => sessionGet('id'),
                     'file' => $path . $fileName
                 ]);

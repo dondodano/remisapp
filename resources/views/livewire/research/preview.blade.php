@@ -15,46 +15,46 @@
                 <div class="col-xl-6 col-12">
                     <dl class="row mb-0">
                         <dt class="col-sm-4 fw-semibold mb-3 text-nowrap">Project Title:</dt>
-                        <dd class="col-sm-8 text-wrap">{{ $research->project }}</dd>
+                        <dd class="col-sm-8 text-wrap">{{ $researchModel->project }}</dd>
 
                         <dt class="col-sm-4 fw-semibold mb-3 text-nowrap">Researcher:</dt>
-                        <dd class="col-sm-8 text-wrap">{{ $research->researcher }}</dd>
+                        <dd class="col-sm-8 text-wrap">{{ $researchModel->researcher }}</dd>
 
                         <dt class="col-sm-4 fw-semibold mb-3 text-nowrap">Budget:</dt>
-                        <dd class="col-sm-8">{{ currencyFormat($research->budget) }}</dd>
+                        <dd class="col-sm-8">{{ currencyFormat($researchModel->budget) }}</dd>
 
                         <dt class="col-sm-4 fw-semibold mb-3 text-nowrap">Year Start:</dt>
-                        <dd class="col-sm-8">{{ $research->year_start }}</dd>
+                        <dd class="col-sm-8">{{ $researchModel->year_start }}</dd>
 
                         <dt class="col-sm-4 fw-semibold mb-3 text-nowrap">Year End</dt>
-                        <dd class="col-sm-8">{{ $research->year_end }}</dd>
+                        <dd class="col-sm-8">{{ $researchModel->year_end }}</dd>
 
                         <dt class="col-sm-4 fw-semibold mb-3 text-nowrap">Status</dt>
-                        <dd class="col-sm-8"><span class="badge {{ badgeBg($research->status_id, [5 => 'bg-label-danger', 6 => 'bg-label-success']) }}">{{ $research->research_status->term }}</span></dd>
+                        <dd class="col-sm-8"><span class="badge {{ badgeBg($researchModel->status_id, [5 => 'bg-label-danger', 6 => 'bg-label-success']) }}">{{ $researchModel->research_status->term }}</span></dd>
                     </dl>
                 </div>
                 <div class="col-xl-6 col-12">
                     <dl class="row mb-0">
                         <dt class="col-sm-5 fw-semibold mb-3 text-nowrap">Fund:</dt>
-                        <dd class="col-sm-7"><span class="badge {{ badgeBg($research->fund_id, [2 => 'bg-label-info', 1 => 'bg-label-primary']) }}">{{ $research->fund->term }}</span></dd>
+                        <dd class="col-sm-7"><span class="badge {{ badgeBg($researchModel->fund_id, [2 => 'bg-label-info', 1 => 'bg-label-primary']) }}">{{ $researchModel->fund->term }}</span></dd>
 
                         <dt class="col-sm-5 fw-semibold mb-3 text-nowrap">Category:</dt>
-                        <dd class="col-sm-7"><span class="badge {{ badgeBg($research->category_id, [4 => 'bg-label-dark', 3 => 'bg-label-warning']) }}">{{ $research->category->term }}</span></dd>
+                        <dd class="col-sm-7"><span class="badge {{ badgeBg($researchModel->category_id, [4 => 'bg-label-dark', 3 => 'bg-label-warning']) }}">{{ $researchModel->category->term }}</span></dd>
 
                         <dt class="col-sm-5 fw-semibold mb-3 text-nowrap">Commodity:</dt>
-                        <dd class="col-sm-7 text-wrap">{{ $research->commodity }}</dd>
+                        <dd class="col-sm-7 text-wrap">{{ $researchModel->commodity }}</dd>
 
                         <dt class="col-sm-5 fw-semibold mb-3 text-nowrap">Program Title:</dt>
-                        <dd class="col-sm-7 text-wrap">{{ $research->program }}</dd>
+                        <dd class="col-sm-7 text-wrap">{{ $researchModel->program }}</dd>
 
                         <dt class="col-sm-5 fw-semibold mb-3 text-nowrap">Study Site:</dt>
-                        <dd class="col-sm-7 text-wrap">{{ $research->sites }}</dd>
+                        <dd class="col-sm-7 text-wrap">{{ $researchModel->sites }}</dd>
 
                         <dt class="col-sm-5 fw-semibold mb-3 text-nowrap">Funding Agency:</dt>
-                        <dd class="col-sm-7 text-wrap">{{ $research->agency }}</dd>
+                        <dd class="col-sm-7 text-wrap">{{ $researchModel->agency }}</dd>
 
                         <dt class="col-sm-5 fw-semibold mb-3 text-nowrap">Collaborative Agency:</dt>
-                        <dd class="col-sm-7 text-wrap">{{ $research->collaborative }}</dd>
+                        <dd class="col-sm-7 text-wrap">{{ $researchModel->collaborative }}</dd>
                     </dl>
                 </div>
             </div>
@@ -67,7 +67,7 @@
             <h5 class="card-action-title mb-0">Attachments</h5>
         </div>
         <div class="card-body ">
-            @foreach ($research->attachments as $file )
+            @foreach ($researchModel->attachments as $file )
                 <div class="row">
                     <div class="col-12">
                         <object data="{{ getFileShortLocation($file->file) }}#view=Fit" type="application/pdf" width="100%" height="480" title="{{ basename($file->file) }}" zoom="40">

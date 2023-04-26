@@ -17,8 +17,14 @@ class Preview extends RepositoryPreview
 
         $this->extensionModel = Extension::with('attachments')
             ->where('quarter', $this->quarter)
-            ->where('year', $this->year)
-            ->findOrFail($id);
+            ->where('year', $this->year);
+
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $this->extensionModel = $this->extensionModel->where('owner', sessionGet('id'));
+        }
+        $this->extensionModel = $this->extensionModel->findOrFail($id);
+
     }
 
     public function render()
