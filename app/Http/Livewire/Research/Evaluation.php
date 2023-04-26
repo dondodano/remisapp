@@ -11,22 +11,17 @@ use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Evaluation\ResearchEvaluation;
 use App\Models\Misc\Miscellaneous as Category;
+use App\Http\Livewire\Traits\RepositoryEvaluation;
 
-class Evaluation extends Component
+class Evaluation extends RepositoryEvaluation
 {
     public $researchId;
-    public $evaluation;
-    public $isEditting;
-    public $evaluationEditId;
-    public $evaluationDeleteId;
-
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+
         $this->isEditting = false;
         $this->researchId = $id;
         $this->all;
@@ -38,7 +33,7 @@ class Evaluation extends Component
     {
         return Research::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }, 'file_owner'])->findOrFail($this->researchId);
+        }, 'file_owner'])->where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($this->researchId);
     }
 
     public function save()
@@ -116,10 +111,6 @@ class Evaluation extends Component
         $this->all;
     }
 
-    public function sweetalertDenied(array $payload)
-    {
-        $this->all;
-    }
 
     public function remark($isEvaluated)
     {

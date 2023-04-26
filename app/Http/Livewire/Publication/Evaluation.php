@@ -5,27 +5,22 @@ namespace App\Http\Livewire\Publication;
 use Livewire\Component;
 use App\Models\Repository\Publication;
 use App\Models\Evaluation\PublicationEvaluation;
+use App\Http\Livewire\Traits\RepositoryEvaluation;
 
 
-
-class Evaluation extends Component
+class Evaluation extends RepositoryEvaluation
 {
     public $publicationId; // get publication id
-    public $evaluation; // get data from Textarea
-    public $isEditting; // if current evaluation is in editting state
-    public $evaluationEditId; // get selected id of evaluation
-    public $evaluationDeleteId;
-
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+
         $this->isEditting = false;
         $this->publicationId = $id;
         $this->evaluationItems();
+
         $this->all;
     }
 
@@ -33,7 +28,7 @@ class Evaluation extends Component
     {
         return Publication::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }])->findOrFail($this->publicationId);
+        }])->where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($this->publicationId);
     }
 
     public function save()
@@ -102,11 +97,6 @@ class Evaluation extends Component
         $delete->update();
 
         $this->evaluationDeleteId = null;
-        $this->all;
-    }
-
-    public function sweetalertDenied(array $payload)
-    {
         $this->all;
     }
 

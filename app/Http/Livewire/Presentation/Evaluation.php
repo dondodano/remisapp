@@ -5,22 +5,17 @@ namespace App\Http\Livewire\Presentation;
 use Livewire\Component;
 use App\Models\Repository\Presentation;
 use App\Models\Evaluation\PresentationEvaluation;
+use App\Http\Livewire\Traits\RepositoryEvaluation;
 
-class Evaluation extends Component
+class Evaluation extends RepositoryEvaluation
 {
     public $presentationId; // get presentation id
-    public $evaluation; // get data from Textarea
-    public $isEditting; // if current evaluation is in editting state
-    public $evaluationEditId; // get selected id of evaluation
-    public $evaluationDeleteId;
-
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+
         $this->isEditting = false;
         $this->presentationId = $id;
         $this->evaluationItems();
@@ -31,7 +26,7 @@ class Evaluation extends Component
     {
         return Presentation::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }])->findOrFail($this->presentationId);
+        }])->where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($this->presentationId);
     }
 
     public function save()
@@ -103,10 +98,6 @@ class Evaluation extends Component
         $this->all;
     }
 
-    public function sweetalertDenied(array $payload)
-    {
-        $this->all;
-    }
 
     public function remark($isEvaluated)
     {

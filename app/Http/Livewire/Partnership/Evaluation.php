@@ -5,22 +5,17 @@ namespace App\Http\Livewire\Partnership;
 use Livewire\Component;
 use App\Models\Repository\Partnership;
 use App\Models\Evaluation\PartnershipEvaluation;
+use App\Http\Livewire\Traits\RepositoryEvaluation;
 
-class Evaluation extends Component
+class Evaluation extends RepositoryEvaluation
 {
     public $partnershipId; // get partnership id
-    public $evaluation; // get data from Textarea
-    public $isEditting; // if current evaluation is in editting state
-    public $evaluationEditId; // get selected id of evaluation
-    public $evaluationDeleteId;
-
-    protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
-    ];
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+
         $this->isEditting = false;
         $this->partnershipId = $id;
         $this->all;
@@ -32,7 +27,7 @@ class Evaluation extends Component
     {
         return Partnership::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }])->findOrFail($this->partnershipId);
+        }])->where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($this->partnershipId);
     }
 
     public function save()
@@ -106,10 +101,6 @@ class Evaluation extends Component
         $this->all;
     }
 
-    public function sweetalertDenied(array $payload)
-    {
-        $this->all;
-    }
 
     public function remark($isEvaluated)
     {

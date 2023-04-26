@@ -1,6 +1,5 @@
 <?php return array (
   'components.activity-timeline' => 'App\\Http\\Livewire\\Components\\ActivityTimeline',
-  'components.card' => 'App\\Http\\Livewire\\Components\\Card',
   'components.document-table' => 'App\\Http\\Livewire\\Components\\DocumentTable',
   'components.nav-bar' => 'App\\Http\\Livewire\\Components\\NavBar',
   'components.notification' => 'App\\Http\\Livewire\\Components\\Notification',
@@ -46,6 +45,7 @@
   'training.evaluation' => 'App\\Http\\Livewire\\Training\\Evaluation',
   'training.index' => 'App\\Http\\Livewire\\Training\\Index',
   'training.preview' => 'App\\Http\\Livewire\\Training\\Preview',
+  'traits.repository-evaluation' => 'App\\Http\\Livewire\\Traits\\RepositoryEvaluation',
   'traits.repository-index' => 'App\\Http\\Livewire\\Traits\\RepositoryIndex',
   'user.create' => 'App\\Http\\Livewire\\User\\Create',
   'user.edit' => 'App\\Http\\Livewire\\User\\Edit',
