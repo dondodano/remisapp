@@ -2,20 +2,13 @@
 
 namespace App\Http\Livewire\Partnership;
 
-use Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\Repository\Partnership;
 use App\Models\Attachment\PartnershipFile;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Livewire\Traits\RepositoryEdit;
 
-class Edit extends Component
+class Edit extends RepositoryEdit
 {
-    use WithFileUploads;
-
     public $partner, $activity, $date_from, $date_to;
-    public $fileInputId;
-    public $attachments = [];
 
     public $partnership;
     public $partnershipId;
@@ -23,8 +16,11 @@ class Edit extends Component
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+        $this->partnership = Partnership::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+
         $this->fileInputId = rand();
-        $this->partnership = Partnership::findOrFail($id);
         $this->partnershipId = $id;
 
         $this->partner = $this->partnership->partner;

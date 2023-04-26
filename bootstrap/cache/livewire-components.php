@@ -45,6 +45,7 @@
   'training.evaluation' => 'App\\Http\\Livewire\\Training\\Evaluation',
   'training.index' => 'App\\Http\\Livewire\\Training\\Index',
   'training.preview' => 'App\\Http\\Livewire\\Training\\Preview',
+  'traits.repository-edit' => 'App\\Http\\Livewire\\Traits\\RepositoryEdit',
   'traits.repository-evaluation' => 'App\\Http\\Livewire\\Traits\\RepositoryEvaluation',
   'traits.repository-index' => 'App\\Http\\Livewire\\Traits\\RepositoryIndex',
   'user.create' => 'App\\Http\\Livewire\\User\\Create',

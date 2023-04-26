@@ -12,12 +12,20 @@ use App\Models\Misc\Miscellaneous as Category;
 
 class Preview extends Component
 {
-
     public $research;
+
+    public $quarter;
+    public $year;
 
     public function mount($id)
     {
-        $this->research = Research::with('attachments')->findOrFail($id);
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+
+        $this->research = Research::with('attachments')
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year)
+            ->findOrFail($id);
     }
 
     public function render()

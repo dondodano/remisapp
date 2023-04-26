@@ -2,28 +2,26 @@
 
 namespace App\Http\Livewire\Presentation;
 
-use Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\Repository\Presentation;
 use App\Models\Misc\Miscellaneous as Type;
 use App\Models\Attachment\PresentationFile;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Livewire\Traits\RepositoryEdit;
 
 
-class Edit extends Component
+class Edit extends RepositoryEdit
 {
-    use WithFileUploads;
     public $date_presented, $type, $title, $author, $forum, $venue;
-    public $fileInputId;
-    public $attachments = [];
+
     public $presentation;
     public $presentationId;
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+        $this->presentation = Presentation::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+
         $this->fileInputId = rand();
-        $this->presentation = Presentation::findOrFail($id);
         $this->presentationId = $id;
 
         $this->date_presented = setDate($this->presentation->date_presented);

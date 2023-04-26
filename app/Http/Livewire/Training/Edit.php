@@ -2,22 +2,16 @@
 
 namespace App\Http\Livewire\Training;
 
-use Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\Repository\Training;
 use App\Models\Misc\Miscellaneous as Quality;
 use App\Models\Attachment\TrainingFile;
-use Illuminate\Support\Facades\Validator;
 
-class Edit extends Component
+class Edit extends RepositoryEdit
 {
     use WithFileUploads;
 
     public $title, $date_from, $date_to, $duration, $trainees, $weight, $surveyed;
     public $quality, $relevance;
-    public $fileInputId;
-    public $attachments = [];
 
     public $training;
     public $trainingId;
@@ -25,8 +19,11 @@ class Edit extends Component
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+        $this->training = Training::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+
         $this->fileInputId = rand();
-        $this->training = Training::findOrFail($id);
         $this->trainingId = $id;
 
         $this->title = $this->training->title;

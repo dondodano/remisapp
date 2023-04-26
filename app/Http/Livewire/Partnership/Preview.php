@@ -10,9 +10,18 @@ class Preview extends Component
 {
     public $partnership;
 
+    public $quarter;
+    public $year;
+
     public function mount($id)
     {
-        $this->partnership = Partnership::with('attachments')->findOrFail($id);
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+
+        $this->partnership = Partnership::with('attachments')
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year)
+            ->findOrFail($id);
     }
 
     public function render()

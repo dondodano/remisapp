@@ -2,27 +2,18 @@
 
 namespace App\Http\Livewire\Research;
 
-use Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\Repository\Research;
 use App\Models\Attachment\ResearchFile;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
 
-class Edit extends Component
+class Edit extends RepositoryEdit
 {
-
-    use WithFileUploads;
-
     public $projectTitle, $researcher, $budget, $yearStart, $yearEnd, $status;
     public $fundType, $category, $commodity, $programTitle, $studySite;
     public $fundingAgency, $collaborativeAgency;
-    public $fileInputId;
-    public $attachments = [];
 
     public $research;
     public $researchId;
@@ -30,8 +21,11 @@ class Edit extends Component
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+        $this->research = Research::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+
         $this->fileInputId = rand();
-        $this->research = Research::findOrFail($id);
         $this->researchId = $id;
 
         $this->projectTitle = $this->research->project;

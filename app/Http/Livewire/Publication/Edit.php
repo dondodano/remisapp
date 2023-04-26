@@ -2,27 +2,26 @@
 
 namespace App\Http\Livewire\Publication;
 
-use Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\Repository\Publication;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Attachment\PublicationFile;
+use App\Http\Livewire\Traits\RepositoryEdit;
 
-class Edit extends Component
+class Edit extends RepositoryEdit
 {
-    use WithFileUploads;
-
     public $date_published, $title, $author, $publisher;
     public $volume, $issue, $page;
-    public $fileInputId;
-    public $attachments;
+
     public $publication;
+    public $publicationId;
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+        $this->publication = Publication::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+
         $this->fileInputId = rand();
-        $this->publication = Publication::findOrFail($id);
+        $this->publicationId = $id;
 
         $this->date_published = setDate($this->publication->date_published);
         $this->title = $this->publication->title;
@@ -105,7 +104,7 @@ class Edit extends Component
     public function render()
     {
         return view('livewire.publication.edit',[
-            'publicationFiles' => PublicationFile::where('publication_id', $this->publication->id)->get()
+            'publicationFiles' => PublicationFile::where('publication_id', $this->publicationId)->get()
         ])
         ->extends('layouts.master')
         ->section('site-content');

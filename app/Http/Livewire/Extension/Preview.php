@@ -10,9 +10,18 @@ class Preview extends Component
 {
     public $extensionModel;
 
+    public $quarter;
+    public $year;
+
     public function mount($id)
     {
-        $this->extensionModel = Extension::with('attachments')->findOrFail($id);
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+
+        $this->extensionModel = Extension::with('attachments')
+            ->where('quarter', $this->quarter)
+            ->where('year', $this->year)
+            ->findOrFail($id);
     }
 
     public function render()

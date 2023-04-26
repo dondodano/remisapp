@@ -2,28 +2,25 @@
 
 namespace App\Http\Livewire\Extension;
 
-use Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
+
 use App\Models\Repository\Extension;
 use App\Models\Attachment\ExtensionFile;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Livewire\Traits\RepositoryEdit;
 
-class Edit extends Component
+class Edit extends RepositoryEdit
 {
-    use WithFileUploads;
-
     public $extension, $date_from, $date_to, $quantity, $beneficiaries;
-    public $fileInputId;
-    public $attachments = [];
 
     public $extensionModel;
     public $extensionId;
 
     public function mount($id)
     {
+        $this->quarter = getCurrentQuarter()['value'];
+        $this->year = getCurrentYear()['value'];
+        $this->extensionModel = Extension::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
+
         $this->fileInputId = rand();
-        $this->extensionModel = Extension::findOrFail($id);
         $this->extensionId = $id;
 
         $this->date_from = setDate($this->extensionModel->date_from);
