@@ -21,17 +21,36 @@ use App\Models\Feed\FeedableItem;
 class Index extends Component
 {
     protected $listeners = [
-        'NewNotification' => '$refresh',
-        //'refreshDashboard' =>  '$refresh',
+        'NewNotification' => 'getAllData',
+        'refreshDashboard' =>  'getAllData',
     ];
 
     public $quarter;
     public $year;
 
+    public $researchCount, $publicationCount, $presentationCount, $trainingCount, $extensionCount, $partnershipCount;
+
     public function mount()
     {
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
+
+        $this->researchCount = $this->researches->latest()->count();
+        $this->publicationCount = $this->publications->latest()->count();
+        $this->presentationCount = $this->presentations->latest()->count();
+        $this->trainingCount = $this->trainings->latest()->count();
+        $this->extensionCount = $this->extensions->latest()->count();
+        $this->partnershipCount = $this->partnerships->latest()->count();
+    }
+
+    public function getAllData()
+    {
+        $this->researchCount = $this->researches->latest()->count();
+        $this->publicationCount = $this->publications->latest()->count();
+        $this->presentationCount = $this->presentations->latest()->count();
+        $this->trainingCount = $this->trainings->latest()->count();
+        $this->extensionCount = $this->extensions->latest()->count();
+        $this->partnershipCount = $this->partnerships->latest()->count();
     }
 
     public function getResearchesProperty()
@@ -114,13 +133,20 @@ class Index extends Component
 
     public function render()
     {
+        // 'researches' => $this->researches->latest(),
+        // 'publications' => $this->publications->latest(),
+        // 'presentations' => $this->presentations->latest(),
+        // 'trainings' => $this->trainings->latest(),
+        // 'extensions' => $this->extensions->latest(),
+        // 'partnerships' => $this->partnerships->latest(),
+
         return view('livewire.dashboard.index',[
-            'researches' => $this->researches->latest(),
-            'publications' => $this->publications->latest(),
-            'presentations' => $this->presentations->latest(),
-            'trainings' => $this->trainings->latest(),
-            'extensions' => $this->extensions->latest(),
-            'partnerships' => $this->partnerships->latest(),
+            'researches' => $this->researchCount,
+            'publications' => $this->publicationCount,
+            'presentations' => $this->presentationCount,
+            'trainings' => $this->trainingCount,
+            'extensions' => $this->extensionCount,
+            'partnerships' => $this->partnershipCount,
         ])
         ->extends('layouts.master')
         ->section('site-content');

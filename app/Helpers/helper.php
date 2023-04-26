@@ -1242,3 +1242,11 @@ function getCurrentYear()
         'value' => setToday('Y')
     ];
 }
+
+function setDisableQuarter($quarter)
+{
+    if($quarter == getCurrentQuarter()['value'])
+    {
+        return ' disabled ';
+    }
+}

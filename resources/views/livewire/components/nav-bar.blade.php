@@ -11,9 +11,9 @@
                 <li class="nav-item lh-1 me-3">
                     <x-dropdown-list id="dropdownQuarter" text="{{ $quarter }}">
                         <li><h6 class="dropdown-header text-uppercase">Select quarter</h6></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cQ==')">1st Quarter</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cg==')">2nd Quarter</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cw==')">3rd Quarter</a></li>
+                        <li><a class="dropdown-item {{ setDisableQuarter('1') }}" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cQ==')">1st Quarter</a></li>
+                        <li><a class="dropdown-item {{ setDisableQuarter('2') }}" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cg==')">2nd Quarter</a></li>
+                        <li><a class="dropdown-item {{ setDisableQuarter('3') }}" href="javascript:void(0)"  wire:click.prevent="selectQuarter('cw==')">3rd Quarter</a></li>
                     </x-dropdown-list>
                 </li>
                 <li class="nav-item lh-1 me-3">

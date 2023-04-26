@@ -1,25 +1,25 @@
 <div>
     <div class="row">
         <div class="col-xl-4 mb-4">
-            <x-mini-card title="Research" text="{{ $researches->count() }}" icon="bx-search" />
+            <x-mini-card title="Research" text="{{ $researches }}" icon="bx-search"  />
         </div>
         <div class="col-xl-4 mb-4">
-            <x-mini-card title="Publication" text="{{ $publications->count() }}" icon="bx-file"/>
+            <x-mini-card title="Publication" text="{{ $publications }}" icon="bx-file"  />
         </div>
         <div class="col-xl-4 mb-4">
-            <x-mini-card title="Presentation" text="{{ $presentations->count() }}" icon="bx-slideshow" />
+            <x-mini-card title="Presentation" text="{{ $presentations }}" icon="bx-slideshow"  />
         </div>
     </div>
 
     <div class="row">
         <div class="col-xl-4 mb-4">
-            <x-mini-card title="Training" text="{{ $trainings->count() }}" icon="bx-run"/>
+            <x-mini-card title="Training" text="{{ $trainings }}" icon="bx-run" />
         </div>
         <div class="col-xl-4 mb-4">
-            <x-mini-card title="Extension" text="{{ $extensions->count() }}" icon="bx-chalkboard"/>
+            <x-mini-card title="Extension" text="{{ $extensions }}" icon="bx-chalkboard" />
         </div>
         <div class="col-xl-4 mb-4">
-            <x-mini-card title="Partnership" text="{{ $partnerships->count() }}" icon="bx-trip"/>
+            <x-mini-card title="Partnership" text="{{ $partnerships }}" icon="bx-trip" />
         </div>
     </div>
 
@@ -35,7 +35,6 @@
 
     <div class="row">
         <div class="col-12">
-
             @livewire('components.document-table')
         </div>
     </div>
@@ -45,7 +44,8 @@
     @once
         <script>
             window.addEventListener('refreshComponent', event => {
-                Livewire.emit('NewNotification')
+                Livewire.emit('refreshDashboard')
+                console.log('emitting...')
             })
         </script>
     @endonce
