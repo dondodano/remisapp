@@ -1,6 +1,11 @@
 <div class="card">
     <div class="card-header  d-flex align-items-center justify-content-between">
-        <h5 class="card-title m-0 me-2"><i class="bx bx-list-ul me-2"></i>Activity Timeline</h5>
+        <h5 class="card-title m-0 me-2">
+            <i class="bx bx-list-ul me-2"></i>Activity Timeline
+        </h5>
+        @if(count($activityTimelines) > 0)
+            <span class="badge badge-center bg-danger rounded-pill">{{ count($activityTimelines) }}</span>
+        @endif
     </div>
     <div class="card-body perfect-sc" id="perfect-1" style="max-height: 320px !important; overflow:hidden;">
 
