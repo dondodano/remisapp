@@ -48,6 +48,7 @@
   'traits.repository-edit' => 'App\\Http\\Livewire\\Traits\\RepositoryEdit',
   'traits.repository-evaluation' => 'App\\Http\\Livewire\\Traits\\RepositoryEvaluation',
   'traits.repository-index' => 'App\\Http\\Livewire\\Traits\\RepositoryIndex',
+  'traits.repository-preview' => 'App\\Http\\Livewire\\Traits\\RepositoryPreview',
   'user.create' => 'App\\Http\\Livewire\\User\\Create',
   'user.edit' => 'App\\Http\\Livewire\\User\\Edit',
   'user.index' => 'App\\Http\\Livewire\\User\\Index',

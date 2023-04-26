@@ -2,20 +2,16 @@
 
 namespace App\Http\Livewire\Research;
 
-use Livewire\Component;
-
 use App\Models\Repository\Research;
 use App\Models\Attachment\ResearchFile;
 use App\Models\Misc\Miscellaneous as Fund;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
+use App\Http\Livewire\Traits\RepositoryPreview;
 
-class Preview extends Component
+class Preview extends RepositoryPreview
 {
     public $research;
-
-    public $quarter;
-    public $year;
 
     public function mount($id)
     {

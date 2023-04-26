@@ -2,16 +2,13 @@
 
 namespace App\Http\Livewire\Partnership;
 
-use Livewire\Component;
 use App\Models\Repository\Partnership;
 use App\Models\Attachment\PartnershipFile;
+use App\Http\Livewire\Traits\RepositoryPreview;
 
-class Preview extends Component
+class Preview extends RepositoryPreview
 {
     public $partnership;
-
-    public $quarter;
-    public $year;
 
     public function mount($id)
     {

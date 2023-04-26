@@ -2,16 +2,13 @@
 
 namespace App\Http\Livewire\Presentation;
 
-use Livewire\Component;
 use App\Models\Repository\Presentation;
 use App\Models\Attachment\PresentationFile;
+use App\Http\Livewire\Traits\RepositoryPreview;
 
-class Preview extends Component
+class Preview extends RepositoryPreview
 {
     public $presentation;
-
-    public $quarter;
-    public $year;
 
     public function mount($id)
     {

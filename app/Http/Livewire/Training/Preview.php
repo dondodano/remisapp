@@ -2,16 +2,13 @@
 
 namespace App\Http\Livewire\Training;
 
-use Livewire\Component;
 use App\Models\Repository\Training;
 use App\Models\Attachment\TrainingFile;
+use App\Http\Livewire\Traits\RepositoryPreview;
 
-class Preview extends Component
+class Preview extends RepositoryPreview
 {
     public $training;
-
-    public $quarter;
-    public $year;
 
     public function mount($id)
     {
