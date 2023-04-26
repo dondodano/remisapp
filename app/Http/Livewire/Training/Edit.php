@@ -3,12 +3,12 @@
 namespace App\Http\Livewire\Training;
 
 use App\Models\Repository\Training;
-use App\Models\Misc\Miscellaneous as Quality;
 use App\Models\Attachment\TrainingFile;
+use App\Http\Livewire\Traits\RepositoryEdit;
+use App\Models\Misc\Miscellaneous as Quality;
 
 class Edit extends RepositoryEdit
 {
-    use WithFileUploads;
 
     public $title, $date_from, $date_to, $duration, $trainees, $weight, $surveyed;
     public $quality, $relevance;

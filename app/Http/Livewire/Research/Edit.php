@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Research;
 use App\Models\Repository\Research;
 use App\Models\Attachment\ResearchFile;
 use App\Models\Misc\Miscellaneous as Fund;
+use App\Http\Livewire\Traits\RepositoryEdit;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
 
@@ -23,10 +24,12 @@ class Edit extends RepositoryEdit
     {
         $this->quarter = getCurrentQuarter()['value'];
         $this->year = getCurrentYear()['value'];
+
         $this->research = Research::where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($id);
 
-        $this->fileInputId = rand();
-        $this->researchId = $id;
+
+        // $this->fileInputId = rand();
+        // $this->researchId = $id;
 
         $this->projectTitle = $this->research->project;
         $this->researcher = $this->research->researcher;
@@ -122,10 +125,10 @@ class Edit extends RepositoryEdit
 
     public function render()
     {
-        if($this->research->owner !== sessionGet('id'))
-        {
-            return abort('404');
-        }
+        // if($this->research->owner !== sessionGet('id'))
+        // {
+        //     return abort('404');
+        // }
 
         return view('livewire.research.edit', [
             'researchFiles' => ResearchFile::where('research_id',$this->researchId)->get(),
