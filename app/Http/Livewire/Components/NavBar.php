@@ -66,7 +66,7 @@ class NavBar extends Component
                 'suffix' => $this->suffix[$currentQuarter]
             ]);
 
-            $this->emit('QuarterAndYearSelected');
+            $this->dispatchBrowserEvent('refreshComponent');
         }else{
             toastr('Please select a valid quarter!' . $currentQuarter,'error');
         }
@@ -84,7 +84,7 @@ class NavBar extends Component
 
         $this->year = (int)filter_var( $this->year, FILTER_SANITIZE_NUMBER_INT);
 
-        $this->emit('QuarterAndYearSelected');
+        $this->dispatchBrowserEvent('refreshComponent');
     }
 
     public function render()

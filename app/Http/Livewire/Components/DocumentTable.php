@@ -24,7 +24,9 @@ class DocumentTable extends Component
         $lastSevenDays = Carbon::today()->subDays(7);
 
         return view('livewire.components.document-table',[
-            'documentRecords' => FeedableItem::where('date_created', '>=', $lastSevenDays)->orderBy('date_created', 'desc')->paginate($this->paginate)
+            'documentRecords' => FeedableItem::where('date_created', '>=', $lastSevenDays)
+                ->latest()
+                ->paginate($this->paginate)
         ]);
     }
 }

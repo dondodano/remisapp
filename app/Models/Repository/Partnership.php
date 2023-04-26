@@ -66,6 +66,15 @@ class Partnership extends Model
         return $this->partner;
     }
 
+    public function quarter()
+    {
+        return $this->quarter;
+    }
+
+    public function year()
+    {
+        return $this->year;
+    }
 
     /**
      * Override boot

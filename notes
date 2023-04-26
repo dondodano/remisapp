@@ -38,3 +38,4 @@ Livewire\Modals\SeletYear.php
 
 resource\views\components\modal.blade.php
 resource\views\livewire\modals\select-year.blade.php
+resource\views\vendor\reis-components\mini-card.blade.php

@@ -66,6 +66,15 @@ class Extension extends Model
         return $this->extension;
     }
 
+    public function quarter()
+    {
+        return $this->quarter;
+    }
+
+    public function year()
+    {
+        return $this->year;
+    }
 
     /**
      * Override boot

@@ -23,7 +23,15 @@
                                 </div>
                                 <p class="mb-0"><span class="badge bg-label-primary">{{ basenameV2($timeline->feedable_type) }}</span></p>
                                 <p class="mb-0">{{ $timeline->feed_content() }}</p>
-                                <small>Created at : {{ setDate($timeline->date_created ) }}</small>
+                                <div class="divider divider-dashed">
+                                    <div class="divider-text">
+                                        <i class='bx bx-calendar'></i>
+                                        <small>Created at : {{ setDate($timeline->date_created ) }}</small>
+                                    </div>
+                                </div>
+                                <center>
+                                    <small class="badge bg-label-info">{{ $timeline->feed_quarter().getQuarterSuffix()[$timeline->feed_quarter()] }} Quarter of {{ $timeline->feed_year() }}</small>
+                                </center>
                             </div>
                         </li>
                     @endforeach

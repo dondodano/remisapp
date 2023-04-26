@@ -97,6 +97,5 @@
         </script>
         @stack('footer-2')
 
-
     </body>
 </html>

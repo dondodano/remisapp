@@ -1,50 +1,25 @@
 <div>
-    {{ now() }}
     <div class="row">
         <div class="col-xl-4 mb-4">
-            @include('vendor.remis-components.mini-card',[
-                'miniCardTitle' => "Research",
-                'miniCardText' => $researches->count(),
-                'miniCardIcon' => 'bx-search'
-            ])
+            <x-mini-card title="Research" text="{{ $researches->count() }}" icon="bx-search" />
         </div>
         <div class="col-xl-4 mb-4">
-            @include('vendor.remis-components.mini-card',[
-                'miniCardTitle' => "Publication",
-                'miniCardText' => $publications->count(),
-                'miniCardIcon' => 'bx-file'
-            ])
+            <x-mini-card title="Publication" text="{{ $publications->count() }}" icon="bx-file"/>
         </div>
         <div class="col-xl-4 mb-4">
-            @include('vendor.remis-components.mini-card',[
-                'miniCardTitle' => "Presentation",
-                'miniCardText' => $presentations->count(),
-                'miniCardIcon' => 'bx-slideshow'
-            ])
+            <x-mini-card title="Presentation" text="{{ $presentations->count() }}" icon="bx-slideshow" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-xl-4 mb-4">
-            @include('vendor.remis-components.mini-card',[
-                'miniCardTitle' => "Training",
-                'miniCardText' => $trainings->count(),
-                'miniCardIcon' => 'bx-run'
-            ])
+            <x-mini-card title="Training" text="{{ $trainings->count() }}" icon="bx-run"/>
         </div>
         <div class="col-xl-4 mb-4">
-            @include('vendor.remis-components.mini-card',[
-                'miniCardTitle' => "Extension",
-                'miniCardText' => $extensions->count(),
-                'miniCardIcon' => 'bx-chalkboard'
-            ])
+            <x-mini-card title="Extension" text="{{ $extensions->count() }}" icon="bx-chalkboard"/>
         </div>
         <div class="col-xl-4 mb-4">
-            @include('vendor.remis-components.mini-card',[
-                'miniCardTitle' => "Partnership",
-                'miniCardText' => $partnerships->count(),
-                'miniCardIcon' => 'bx-trip'
-            ])
+            <x-mini-card title="Partnership" text="{{ $partnerships->count() }}" icon="bx-trip"/>
         </div>
     </div>
 
@@ -65,3 +40,13 @@
         </div>
     </div>
 </div>
+
+@push('footer-2')
+    @once
+        <script>
+            window.addEventListener('refreshComponent', event => {
+                Livewire.emit('NewNotification')
+            })
+        </script>
+    @endonce
+@endpush

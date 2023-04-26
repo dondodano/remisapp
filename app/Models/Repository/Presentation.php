@@ -74,6 +74,15 @@ class Presentation extends Model
         return $this->title;
     }
 
+    public function quarter()
+    {
+        return $this->quarter;
+    }
+
+    public function year()
+    {
+        return $this->year;
+    }
 
     /**
      * Override boot

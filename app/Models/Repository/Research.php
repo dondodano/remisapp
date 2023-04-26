@@ -94,6 +94,15 @@ class Research extends Model
         return $this->project;
     }
 
+    public function quarter()
+    {
+        return $this->quarter;
+    }
+
+    public function year()
+    {
+        return $this->year;
+    }
 
     /**
      * Override boot

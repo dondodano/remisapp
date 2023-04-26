@@ -31,6 +31,16 @@ class FeedableItem extends Model
         return $this->feedable->file_owner();
     }
 
+    public function feed_quarter()
+    {
+        return $this->feedable->quarter();
+    }
+
+    public function feed_year()
+    {
+        return $this->feedable->year();
+    }
+
     public function feed_content()
     {
         return $this->feedable->content();

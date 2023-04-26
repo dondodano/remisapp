@@ -14,11 +14,6 @@ class ActivityTimeline extends Component
         //'QuarterAndYearSelected' => '$refresh',
     ];
 
-    public function markread($id)
-    {
-        $newId = decipher($id);
-        toastr($newId, 'info');
-    }
 
     public function render()
     {

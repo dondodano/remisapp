@@ -22,7 +22,7 @@ class Index extends Component
 {
     protected $listeners = [
         'NewNotification' => '$refresh',
-        'QuarterAndYearSelected' => '$refresh',
+        //'refreshDashboard' =>  '$refresh',
     ];
 
     public $quarter;

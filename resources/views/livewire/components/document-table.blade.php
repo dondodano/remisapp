@@ -10,7 +10,9 @@
                     <th>User</th>
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Date</th>
+                    <td>Quarter</td>
+                    <td>Year</td>
+                    <th>Date Created</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +32,8 @@
                                 </td>
                                 <td>{{ $record->feed_content() }}</td>
                                 <td>{{ basenameV2($record->feedable_type) }}</td>
+                                <td>{{ $record->feed_quarter().getQuarterSuffix()[$record->feed_quarter()] }}</td>
+                                <td>{{ $record->feed_year() }}</td>
                                 <td><span class="badge bg-label-secondary">{{ setDate($record->date_created ) }}</span></td>
                             </tr>
                         @endforeach
