@@ -15,4 +15,8 @@ class RepositoryEdit extends Component
 
     public $quarter;
     public $year;
+
+    protected $listeners = [
+        //'refreshRepository' =>  'mount',
+    ];
 }
