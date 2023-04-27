@@ -42,9 +42,7 @@ class Edit extends RepositoryEdit
         $this->studySite = $this->researchModel->sites;
         $this->fundingAgency = $this->researchModel->agency;
         $this->collaborativeAgency = $this->researchModel->collaborative;
-
     }
-
     public function remove($id)
     {
         $dataId = decipher($id);
@@ -122,13 +120,8 @@ class Edit extends RepositoryEdit
 
     public function render()
     {
-        // if($this->researchModel->owner !== sessionGet('id'))
-        // {
-        //     return abort('404');
-        // }
-
         return view('livewire.research.edit', [
-            'researchFiles' => ResearchFile::where('research_id',$this->researchId)->get(),
+            'researchFiles' =>  ResearchFile::where('research_id',$this->researchId)->get(),
             'statuses' => Status::where('group', 'projectstatus')->get(),
             'fundtypes' => Fund::where('group', 'fundclass')->get(),
             'categories' => Category::where('group', 'projectcategory')->get()

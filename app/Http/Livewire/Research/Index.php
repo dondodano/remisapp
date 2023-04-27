@@ -134,7 +134,7 @@ class Index extends RepositoryIndex
     public function render()
     {
         return view('livewire.research.index',[
-            'researches' => $this->all->orderBy('id', 'desc')->paginate($this->paginate),
+            'researches' => $this->all->latest()->paginate($this->paginate),
             'categories' => Category::where('group', 'projectcategory')->get(),
             'funds' => Category::where('group', 'fundclass')->get(),
             'research_statuses' => Category::where('group', 'projectstatus')->get(),

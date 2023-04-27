@@ -16,6 +16,7 @@ class RepositoryIndex extends Component
     protected $listeners = [
         'sweetalertConfirmed',
         'sweetalertDenied',
+        'refreshIndexComponent' => 'render'
     ];
 
     public function mount()

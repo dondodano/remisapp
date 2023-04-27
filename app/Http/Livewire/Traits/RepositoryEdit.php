@@ -16,6 +16,6 @@ class RepositoryEdit extends Component
     public $attachments = [];
 
     protected $listeners = [
-        //'refreshRepository' =>  'mount',
+        //'refreshEditComponent' => 'loadAll'
     ];
 }

@@ -94,6 +94,10 @@
                     }
                 }
             });
+
+            window.addEventListener('reloadComponent', event => {
+                location.reload();
+            })
         </script>
         @stack('footer-2')
 
