@@ -17,7 +17,7 @@
                     <!-- /Logo -->
                     <h4 class="mb-2">Change Password</h4>
                     <p class="mb-4">for <span class="fw-bold">{{ $user->user->email }}</span></p>
-                    <form id="formAuthentication" class="mb-3 fv-plugins-bootstrap5 fv-plugins-framework" action="/change-password/{{ encipher($user->token) }}" method="POST" novalidate="novalidate">
+                    <form id="formAuthentication" class="mb-3 fv-plugins-bootstrap5 fv-plugins-framework" action="/change-password/{{ $user->token }}" method="POST" novalidate="novalidate">
                         @csrf
                         @method('PUT')
                         <div class="mb-3 form-password-toggle fv-plugins-icon-container">

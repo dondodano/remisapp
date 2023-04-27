@@ -97,7 +97,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.user.index',[
-            'users' =>  $this->all->latest()->get()
+            'users' =>  $this->all->latest()->paginate($this->paginate)
         ])
         ->extends('layouts.master')
         ->section('site-content');
