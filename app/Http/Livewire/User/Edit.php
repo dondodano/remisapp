@@ -24,7 +24,7 @@ class Edit extends Component
         $this->user = User::findOrFail($id);
 
         $this->email = $this->user->email;
-        $this->password = $this->user->password;
+        //$this->password = $this->user->password;
         $this->role = $this->user->role_id;
 
         $this->firstname = $this->user->firstname;
@@ -35,7 +35,7 @@ class Edit extends Component
 
     public function update()
     {
-        if(strlen($this->email) == 0 || strlen($this->password) == 0 || strlen($this->role) == 0 || strlen($this->firstname) == 0 ||
+        if(strlen($this->email) == 0 || strlen($this->role) == 0 || strlen($this->firstname) == 0 ||
         strlen($this->middlename) == 0 || strlen($this->lastname) == 0 )
         {
             toastr("Please fill all required fields!", "error");
@@ -51,16 +51,23 @@ class Edit extends Component
         }
 
         $update = $this->user;
-        $update->update([
+
+        $dataUpdate = [
             'firstname' => $this->firstname,
             'middlename' => $this->middlename,
             'lastname' => $this->lastname,
             'extension' => $this->extension,
             'title' => $this->title,
             'email' => $this->email,
-            'password' => $this->password,
             'role_id' => $this->role,
-        ]);
+        ];
+
+        if(strlen($this->password) > 0)
+        {
+            $dataUpdate += ['password' => bcrypt($this->password)];
+        }
+
+        $update->update($dataUpdate);
 
         $tempAvatar = UserTempAvatar::where('user_id', $this->user->id);
         $tempAvatar->update([

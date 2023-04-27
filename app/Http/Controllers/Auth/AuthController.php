@@ -40,10 +40,14 @@ class AuthController extends Controller
 
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt([
+            'email' => $email,
+            'password' => $password,
+            'status' => '1'
+        ])) {
             $request->session()->regenerate();
 
 
@@ -89,8 +93,6 @@ class AuthController extends Controller
             toastr("These credentials do not match our records.", "error");
             return redirect("login");
         }
-
-
     }
 
     public function attempt($credentials)
