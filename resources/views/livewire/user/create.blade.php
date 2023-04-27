@@ -10,7 +10,7 @@
                         </a>
                     </div>
                 </h5>
-                <form class="card-body" wire:submit.prevent="store" enctype="multipart/form-data">
+                <form class="card-body" wire:submit.prevent="store" enctype="multipart/form-data" autocomplete="off">
 
                     @csrf
 
@@ -19,7 +19,7 @@
                         <label class="col-sm-3 col-form-label text-sm-end" for="email">Email</label>
                         <div class="col-sm-9">
                             <div class="input-group input-group-merge">
-                                <input type="text" id="email" class="form-control"  aria-describedby="email2" name="email" wire:model.debounce.1500ms="email">
+                                <input type="text" id="email" class="form-control"  aria-describedby="email2" name="email" wire:model.defer="email" autocomplete="off">
                                 <span class="input-group-text" id="email2"><i class="bx bx-envelope"></i></span>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                         <label class="col-sm-3 col-form-label text-sm-end" for="password">Password</label>
                         <div class="col-sm-9">
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control"  aria-describedby="password2" name="password"  wire:model.debounce.1500ms="password">
+                                <input type="password" id="password" class="form-control"  aria-describedby="password2" name="password"  wire:model.defer="password" autocomplete="off">
                                 <span class="input-group-text cursor-pointer" id="password2"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-sm-end" for="role">Role</label>
                         <div class="col-sm-9">
-                            <select  id="role" class="form-select" name="role"  wire:model.debounce.500ms="role">
+                            <select  id="role" class="form-select" name="role"  wire:model.defer="role">
                                 <option value="">-- Select Role --</option>
                                 @foreach($roles as $role)
                                     <option value="{{ $role->id }}" selected>{{ $role->term }}</option>
@@ -51,31 +51,31 @@
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-sm-end" for="firstname">First Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="firstname" class="form-control" name="firstname"  wire:model.debounce.1500ms="firstname">
+                            <input type="text" id="firstname" class="form-control" name="firstname"  wire:model.defer="firstname">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-sm-end" for="middlename">Middle Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="middlename" class="form-control" name="middlename"   wire:model.debounce.1500ms="middlename">
+                            <input type="text" id="middlename" class="form-control" name="middlename"   wire:model.defer="middlename">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-sm-end" for="lastname">Last Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="lastname" class="form-control" name="lastname"   wire:model.debounce.1500ms="lastname">
+                            <input type="text" id="lastname" class="form-control" name="lastname"   wire:model.defer="lastname">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-sm-end" for="extension">Extension</label>
                         <div class="col-sm-9">
-                            <input type="text" id="extension" class="form-control" name="extension"  wire:model.debounce.1500ms="extension">
+                            <input type="text" id="extension" class="form-control" name="extension"  wire:model.defer="extension">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-sm-end" for="title">Title</label>
                         <div class="col-sm-9">
-                            <input type="text" id="title" class="form-control" name="title" wire:model.debounce.1500ms="title">
+                            <input type="text" id="title" class="form-control" name="title" wire:model.defer="title">
                         </div>
                     </div>
 
