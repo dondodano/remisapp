@@ -30,6 +30,14 @@ class Program extends Model
         return $this->belongsTo(Institute::class, 'institute_id', 'id');
     }
 
+    /**
+     * Scope
+     */
+    public function scopeActiveStatus($query)
+    {
+        $query->where('status',1);
+    }
+
      /**
      * Override boot
      */

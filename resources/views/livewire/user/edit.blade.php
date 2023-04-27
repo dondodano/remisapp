@@ -24,6 +24,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row mb-3 form-password-toggle">
                         <label class="col-sm-3 col-form-label text-sm-end" for="password">Password</label>
                         <div class="col-sm-9">
@@ -33,6 +34,19 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label text-sm-end" for="institute">Institute</label>
+                        <div class="col-sm-9">
+                            <select  id="institute" class="form-select" name="institute"  wire:model.defer="institute">
+                                <option value="0">-- Select Institute --</option>
+                                @foreach($institutes as $institute)
+                                    <option value="{{ $institute->id }}" selected>{{ $institute->term }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-sm-end" for="role">Role</label>
                         <div class="col-sm-9">

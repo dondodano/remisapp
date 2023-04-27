@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use App\Models\User\User;
 use App\Models\User\UserRole;
+use App\Models\Requisite\Institute;
 use App\Models\User\UserTempAvatar;
 
 class Create extends Component
@@ -15,7 +16,7 @@ class Create extends Component
      * @password =
      */
 
-    public $email, $password, $role;
+    public $email, $password, $role, $institute;
     public $firstname, $middlename, $lastname, $extension, $title;
 
     public function getRolesProperty()
@@ -23,9 +24,14 @@ class Create extends Component
         return UserRole::where('is_visible',1)->get();
     }
 
+    public function getInstitutesProperty()
+    {
+        return Institute::activeStatus()->get();
+    }
+
     public function store()
     {
-        if(strlen($this->email) == 0  || strlen($this->role) == 0 || strlen($this->firstname) == 0 ||
+        if(strlen($this->email) == 0   || strlen($this->institute) == 0  || strlen($this->role) == 0 || strlen($this->firstname) == 0 ||
         strlen($this->middlename) == 0 || strlen($this->lastname) == 0 )
         {
             toastr("Please fill all required fields!", "error");
@@ -48,6 +54,7 @@ class Create extends Component
             'title' => $this->title,
             'email' => $this->email,
             'password' => (strlen($this->password) > 0 ? bcrypt($this->password) : null),
+            'institute_id' => $this->institute,
             'role_id' => $this->role,
         ]);
         $user->save();
@@ -62,6 +69,7 @@ class Create extends Component
             toastr("User successfully saved!", "success");
             $this->email=null;
             $this->password=null;
+            $this->institute=null;
             $this->role=null;
             $this->firstname=null;
             $this->middlename=null;
@@ -73,7 +81,8 @@ class Create extends Component
     public function render()
     {
         return view('livewire.user.create',[
-            'roles' => $this->roles
+            'roles' => $this->roles,
+            'institutes' => $this->institutes
         ])
         ->extends('layouts.master')
         ->section('site-content');

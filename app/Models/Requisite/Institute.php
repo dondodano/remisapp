@@ -29,6 +29,16 @@ class Institute extends Model
         return $this->hasOne(Program::class, 'id', 'institute_id');
     }
 
+
+    /**
+     * Scope
+     */
+    public function scopeActiveStatus($query)
+    {
+        $query->where('status',1);
+    }
+
+
      /**
      * Override boot
      */

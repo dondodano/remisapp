@@ -2,23 +2,24 @@
 
 namespace App\Models\User;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-use App\Models\Log\LogUserActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-//use Illuminate\Database\Eloquent\Model;
 use Cache;
 
 use App\Models\Log\LogUser;
 use App\Models\User\UserRole;
 use App\Models\User\UserToken;
+
+use App\Models\Log\LogUserActivity;
+use App\Models\Requisite\Institute;
+
+//use Illuminate\Database\Eloquent\Model;
 use App\Models\User\UserTempAvatar;
+
+use Illuminate\Notifications\Notifiable;
 use App\Models\Evaluation\ResearchEvaluation;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -36,6 +37,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'institute_id',
         'status',
     ];
 
@@ -46,6 +48,11 @@ class User extends Authenticatable
     public function user_role()
     {
         return $this->hasOne(UserRole::class, 'id', 'role_id');
+    }
+
+    public function user_institute()
+    {
+        return $this->hasOne(Institute::class, 'id', 'institute_id');
     }
 
     public function temp_avatar()
