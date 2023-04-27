@@ -12,7 +12,7 @@ class Preview extends RepositoryPreview
 
     public function mount($id)
     {
-        $this->partnershipModel = Partnership::with('attachments')->findOrFail($id);
+        $this->partnershipModel = Partnership::with('attachments')->repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->partnershipModel);
     }
 

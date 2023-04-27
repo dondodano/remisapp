@@ -24,7 +24,7 @@ class Evaluation extends RepositoryEvaluation
     {
         return Training::with(['quality','attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }])->findOrFail($this->trainingId);
+        }])->repositoryOwner()->findOrFail($this->trainingId);
     }
 
     public function save()

@@ -12,7 +12,7 @@ class Preview extends RepositoryPreview
 
     public function mount($id)
     {
-        $this->presentationModel = Presentation::with('attachments')->findOrFail($id);
+        $this->presentationModel = Presentation::with('attachments')->repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->presentationModel);
     }
 

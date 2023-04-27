@@ -12,10 +12,12 @@ class RepositoryOwner implements Scope
     {
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
-            $builder->where('owner', sessionGet('id'));
-        }
-
-        $builder = $builder->where('quarter', getCurrentQuarter()['value'])
+            $builder->where('owner', sessionGet('id'))
+                ->where('quarter', getCurrentQuarter()['value'])
+                ->where('year', getCurrentYear()['value']);
+        }else{
+            $builder->where('quarter', getCurrentQuarter()['value'])
             ->where('year', getCurrentYear()['value']);
+        }
     }
 }

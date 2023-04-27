@@ -16,7 +16,7 @@ class Edit extends RepositoryEdit
 
     public function mount($id)
     {
-        $this->partnershipModel = Partnership::findOrFail($id);
+        $this->partnershipModel = Partnership::repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->partnershipModel);
 
 

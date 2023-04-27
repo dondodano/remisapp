@@ -30,7 +30,7 @@ class Evaluation extends RepositoryEvaluation
     {
         return Research::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }, 'file_owner'])->findOrFail($this->researchId);
+        }, 'file_owner'])->repositoryOwner()->findOrFail($this->researchId);
     }
 
     public function save()

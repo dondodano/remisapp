@@ -17,7 +17,7 @@ class Edit extends RepositoryEdit
 
     public function mount($id)
     {
-        $this->presentationModel = Presentation::findOrFail($id);
+        $this->presentationModel = Presentation::repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->presentationModel);
 
         $this->fileInputId = rand();

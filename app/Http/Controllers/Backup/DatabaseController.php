@@ -12,6 +12,11 @@ class DatabaseController extends Controller
 {
     public function index()
     {
+        if(!Storage::exists('/public/database/'))
+        {
+            Storage::makeDirectory( '/public/database/');
+        }
+
         $files = []; $fileExtension = 'sql';
         $scan_files = scandir(public_path() . '/storage/database/');
 

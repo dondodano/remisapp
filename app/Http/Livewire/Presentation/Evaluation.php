@@ -23,7 +23,7 @@ class Evaluation extends RepositoryEvaluation
     {
         return Presentation::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }])->findOrFail($this->presentationId);
+        }])->repositoryOwner()->findOrFail($this->presentationId);
     }
 
     public function save()

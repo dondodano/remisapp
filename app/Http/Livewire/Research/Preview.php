@@ -15,7 +15,7 @@ class Preview extends RepositoryPreview
 
     public function mount($id)
     {
-        $this->researchModel = Research::with('attachments')->findOrFail($id);
+        $this->researchModel = Research::with('attachments')->repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->researchModel);
     }
 

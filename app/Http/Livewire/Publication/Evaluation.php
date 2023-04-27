@@ -25,7 +25,7 @@ class Evaluation extends RepositoryEvaluation
     {
         return Publication::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }])->findOrFail($this->publicationId);
+        }])->repositoryOwner()->findOrFail($this->publicationId);
     }
 
     public function save()

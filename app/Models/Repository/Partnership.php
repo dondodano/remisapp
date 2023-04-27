@@ -2,7 +2,7 @@
 
 namespace App\Models\Repository;
 
-use App\Scopes\RepositoryOwner;
+#use App\Scopes\RepositoryOwner;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -79,6 +79,23 @@ class Partnership extends Model
     }
 
     /**
+     * Local Scope
+     */
+    public function scopeRepositoryOwner($query)
+    {
+        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
+        {
+            $query->where('owner', sessionGet('id'))
+                ->where('quarter', getCurrentQuarter()['value'])
+                ->where('year', getCurrentYear()['value']);
+        }else{
+            $query->where('quarter', getCurrentQuarter()['value'])
+                ->where('year', getCurrentYear()['value']);
+        }
+    }
+
+
+    /**
      * Override boot
      */
     public static function boot()
@@ -142,6 +159,6 @@ class Partnership extends Model
      */
     public static function booted()
     {
-        static::addGlobalScope(new RepositoryOwner);
+        #static::addGlobalScope(new RepositoryOwner);
     }
 }

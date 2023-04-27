@@ -22,7 +22,7 @@ class Edit extends RepositoryEdit
 
     public function mount($id)
     {
-        $this->researchModel = Research::findOrFail($id);
+        $this->researchModel = Research::repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->researchModel);
 
         // $this->fileInputId = rand();

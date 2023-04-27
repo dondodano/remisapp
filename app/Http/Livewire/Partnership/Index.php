@@ -26,7 +26,7 @@ class Index extends RepositoryIndex
             $query->where('is_read',0);
         }]);
 
-        return $all;
+        return $all->repositoryOwner();
     }
 
     public function download($id)

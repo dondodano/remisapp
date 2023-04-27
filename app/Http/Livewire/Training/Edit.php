@@ -20,7 +20,7 @@ class Edit extends RepositoryEdit
     public function mount($id)
     {
 
-        $this->trainingModel = Training::findOrFail($id);
+        $this->trainingModel = Training::repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->trainingModel);
 
 

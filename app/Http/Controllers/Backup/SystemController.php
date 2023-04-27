@@ -4,15 +4,20 @@ namespace App\Http\Controllers\Backup;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Storage;
 
 class SystemController extends Controller
 {
     public function index()
     {
+        if(!Storage::exists('/public/backups/'))
+        {
+            Storage::makeDirectory( '/public/backups/');
+        }
+
         $files = []; $fileExtension = 'zip';
         $scan_files = scandir(public_path() . '/storage/backups/');
+
         foreach($scan_files as $file)
         {
             if(!is_dir($file))

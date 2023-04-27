@@ -12,7 +12,7 @@ class Preview extends RepositoryPreview
 
     public function mount($id)
     {
-        $this->extensionModel = Extension::with('attachments')->findOrFail($id);
+        $this->extensionModel = Extension::with('attachments')->repositoryOwner()->findOrFail($id);
         $this->authorize('view', $this->extensionModel);
     }
 

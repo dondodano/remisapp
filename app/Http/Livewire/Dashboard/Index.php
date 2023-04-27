@@ -26,16 +26,11 @@ class Index extends Component
         'refreshDashboard' =>  'mount',
     ];
 
-    public $quarter;
-    public $year;
 
     public $researchCount, $publicationCount, $presentationCount, $trainingCount, $extensionCount, $partnershipCount;
 
     public function mount()
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-
         $this->researchCount = $this->researches->latest()->count();
         $this->publicationCount = $this->publications->latest()->count();
         $this->presentationCount = $this->presentations->latest()->count();
@@ -46,79 +41,37 @@ class Index extends Component
 
     public function getResearchesProperty()
     {
-        $data = Research::with(['category', 'fund', 'research_status', 'evaluations','attachments'])
-            ->where('quarter', $this->quarter)
-            ->where('year', $this->year);
-
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $data = $data->where('owner', sessionGet('id'));
-        }
+        $data = Research::with(['category', 'fund', 'research_status', 'evaluations','attachments'])->repositoryOwner();
         return $data;
     }
 
     public function getPublicationsProperty()
     {
-        $data = Publication::with([ 'evaluations','attachments'])
-            ->where('quarter', $this->quarter)
-            ->where('year', $this->year);
-
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $data = $data->where('owner', sessionGet('id'));
-        }
+        $data = Publication::with([ 'evaluations','attachments'])->repositoryOwner();
         return $data;
     }
 
     public function getPresentationsProperty()
     {
-        $data = Presentation::with([ 'type','attachments','evaluations'])
-            ->where('quarter', $this->quarter)
-            ->where('year', $this->year);
-
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $data = $data->where('owner', sessionGet('id'));
-        }
+        $data = Presentation::with([ 'type','attachments','evaluations'])->repositoryOwner();
         return $data;
     }
 
     public function getTrainingsProperty()
     {
-        $data = Training::with([ 'quality','attachments','evaluations'])
-            ->where('quarter', $this->quarter)
-            ->where('year', $this->year);
-
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $data = $data->where('owner', sessionGet('id'));
-        }
+        $data = Training::with([ 'quality','attachments','evaluations'])->repositoryOwner();
         return $data;
     }
 
     public function getExtensionsProperty()
     {
-        $data = Extension::with([ 'attachments','evaluations'])
-            ->where('quarter', $this->quarter)
-            ->where('year', $this->year);
-
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $data = $data->where('owner', sessionGet('id'));
-        }
+        $data = Extension::with([ 'attachments','evaluations'])->repositoryOwner();
         return $data;
     }
 
     public function getPartnershipsProperty()
     {
-        $data = Partnership::with([ 'attachments','evaluations'])
-            ->where('quarter', $this->quarter)
-            ->where('year', $this->year);
-
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $data = $data->where('owner', sessionGet('id'));
-        }
+        $data = Partnership::with([ 'attachments','evaluations'])->repositoryOwner();
         return $data;
     }
 

@@ -27,7 +27,7 @@ class Index extends RepositoryIndex
     {
         $data = Research::with(['category', 'fund', 'research_status', 'evaluations'=>function($query){
             $query->where('is_read',0);
-        }])
+        }])->repositoryOwner()
             ->when($this->filterCategory, function($query){
                 if(strlen($this->filterCategory) > 0)
                     return $query->where('category_id', $this->filterCategory)->where('active',1);
