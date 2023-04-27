@@ -17,14 +17,7 @@ class Edit extends RepositoryEdit
 
     public function mount($id)
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-        $this->presentationModel = Presentation::where('quarter', $this->quarter)->where('year', $this->year);
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $this->presentationModel = $this->presentationModel->where('owner', sessionGet('id'));
-        }
-        $this->presentationModel = $this->presentationModel->findOrFail($id);
+        $this->presentationModel = Presentation::findOrFail($id);
         $this->authorize('view', $this->presentationModel);
 
         $this->fileInputId = rand();

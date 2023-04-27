@@ -22,15 +22,7 @@ class Edit extends RepositoryEdit
 
     public function mount($id)
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-
-        $this->researchModel = Research::where('quarter', $this->quarter)->where('year', $this->year);
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $this->researchModel = $this->researchModel->where('owner', sessionGet('id'));
-        }
-        $this->researchModel = $this->researchModel->findOrFail($id);
+        $this->researchModel = Research::findOrFail($id);
         $this->authorize('view', $this->researchModel);
 
         // $this->fileInputId = rand();

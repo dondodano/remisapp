@@ -19,9 +19,6 @@ class Evaluation extends RepositoryEvaluation
 
     public function mount($id)
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-
         $this->isEditting = false;
         $this->researchId = $id;
         $this->all;
@@ -33,7 +30,7 @@ class Evaluation extends RepositoryEvaluation
     {
         return Research::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }, 'file_owner'])->where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($this->researchId);
+        }, 'file_owner'])->findOrFail($this->researchId);
     }
 
     public function save()

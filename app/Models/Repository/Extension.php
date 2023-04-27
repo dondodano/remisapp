@@ -2,6 +2,8 @@
 
 namespace App\Models\Repository;
 
+use App\Scopes\RepositoryOwner;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -133,4 +135,14 @@ class Extension extends Model
             event(new PusherNotificationEvent('NewNotification'));
         });
     }
+
+
+    /**
+     * Appply Global Scopes
+     */
+    public static function booted()
+    {
+        static::addGlobalScope(new RepositoryOwner);
+    }
+
 }

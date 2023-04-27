@@ -14,9 +14,6 @@ class Evaluation extends RepositoryEvaluation
 
     public function mount($id)
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-
         $this->isEditting = false;
         $this->publicationId = $id;
         $this->evaluationItems();
@@ -28,7 +25,7 @@ class Evaluation extends RepositoryEvaluation
     {
         return Publication::with(['attachments', 'evaluations' => function($query){
             $query->with('evaluators')->where('active',1)->orderBy('date_modified', 'DESC');
-        }])->where('quarter', $this->quarter)->where('year', $this->year)->findOrFail($this->publicationId);
+        }])->findOrFail($this->publicationId);
     }
 
     public function save()

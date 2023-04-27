@@ -26,12 +26,7 @@ class Index extends RepositoryIndex
             $query->where('is_read',0);
         }]);
 
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $all = $all->where('owner', sessionGet('id'));
-        }
-
-        return $all->where('quarter', $this->quarter)->where('year', $this->year);
+        return $all;
     }
 
     public function download($id)

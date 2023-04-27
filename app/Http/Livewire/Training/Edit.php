@@ -19,14 +19,8 @@ class Edit extends RepositoryEdit
 
     public function mount($id)
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-        $this->trainingModel = Training::where('quarter', $this->quarter)->where('year', $this->year);
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $this->trainingModel = $this->trainingModel->where('owner', sessionGet('id'));
-        }
-        $this->trainingModel = $this->trainingModel->findOrFail($id);
+
+        $this->trainingModel = Training::findOrFail($id);
         $this->authorize('view', $this->trainingModel);
 
 

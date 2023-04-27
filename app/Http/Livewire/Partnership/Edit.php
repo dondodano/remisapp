@@ -16,14 +16,7 @@ class Edit extends RepositoryEdit
 
     public function mount($id)
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-        $this->partnershipModel = Partnership::where('quarter', $this->quarter)->where('year', $this->year);
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $this->partnershipModel = $this->partnershipModel->where('owner', sessionGet('id'));
-        }
-        $this->partnershipModel = $this->partnershipModel->findOrFail($id);
+        $this->partnershipModel = Partnership::findOrFail($id);
         $this->authorize('view', $this->partnershipModel);
 
 

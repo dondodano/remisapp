@@ -12,18 +12,7 @@ class Preview extends RepositoryPreview
 
     public function mount($id)
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
-
-        $this->publicationModel = Publication::with('attachments')
-            ->where('quarter', $this->quarter)
-            ->where('year', $this->year);
-
-        if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
-        {
-            $this->publicationModel = $this->publicationModel->where('owner', sessionGet('id'));
-        }
-        $this->publicationModel = $this->publicationModel->findOrFail($id);
+        $this->publicationModel = Publication::with('attachments')->findOrFail($id);
         $this->authorize('view', $this->publicationModel);
     }
 

@@ -27,7 +27,7 @@ class Index extends RepositoryIndex
     {
         $data = Research::with(['category', 'fund', 'research_status', 'evaluations'=>function($query){
             $query->where('is_read',0);
-        }])->where('quarter', $this->quarter)->where('year', $this->year)
+        }])
             ->when($this->filterCategory, function($query){
                 if(strlen($this->filterCategory) > 0)
                     return $query->where('category_id', $this->filterCategory)->where('active',1);
@@ -40,11 +40,6 @@ class Index extends RepositoryIndex
                 if(strlen($this->filterStatus) > 0)
                     return $query->where('status_id', $this->filterStatus)->where('active',1);
             });
-
-        if(!in_array(sessionGet('role_id'), [1,2]))
-        {
-            $data = $data->where('owner', sessionGet('id'));
-        }
 
         return $data;
     }

@@ -15,9 +15,6 @@ class RepositoryEdit extends Component
     public $fileInputId;
     public $attachments = [];
 
-    public $quarter;
-    public $year;
-
     protected $listeners = [
         //'refreshRepository' =>  'mount',
     ];

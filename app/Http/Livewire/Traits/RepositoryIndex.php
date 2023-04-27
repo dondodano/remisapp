@@ -13,9 +13,6 @@ class RepositoryIndex extends Component
     public $paginate = 10;
     public $search = "";
 
-    public $quarter;
-    public $year;
-
     protected $listeners = [
         'sweetalertConfirmed',
         'sweetalertDenied',
@@ -23,8 +20,7 @@ class RepositoryIndex extends Component
 
     public function mount()
     {
-        $this->quarter = getCurrentQuarter()['value'];
-        $this->year = getCurrentYear()['value'];
+
     }
 
 

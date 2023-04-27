@@ -8,9 +8,6 @@ class RepositoryEvaluation extends Component
 {
     use AuthorizesRequests;
 
-    public $quarter;
-    public $year;
-
     public $evaluation; // get data from Textarea
     public $isEditting; // if current evaluation is in editting state
     public $evaluationEditId; // get selected id of evaluation

@@ -9,6 +9,4 @@ class RepositoryPreview extends Component
 {
     use AuthorizesRequests;
 
-    public $quarter;
-    public $year;
 }
