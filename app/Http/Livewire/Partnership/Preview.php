@@ -23,6 +23,8 @@ class Preview extends RepositoryPreview
             $this->partnershipModel = $this->partnershipModel->where('owner', sessionGet('id'));
         }
         $this->partnershipModel = $this->partnershipModel->findOrFail($id);
+        $this->authorize('view', $this->partnershipModel);
+
     }
 
     public function render()

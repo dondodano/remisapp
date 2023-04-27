@@ -27,6 +27,8 @@ class Edit extends RepositoryEdit
             $this->trainingModel = $this->trainingModel->where('owner', sessionGet('id'));
         }
         $this->trainingModel = $this->trainingModel->findOrFail($id);
+        $this->authorize('view', $this->trainingModel);
+
 
         $this->fileInputId = rand();
         $this->trainingId = $id;

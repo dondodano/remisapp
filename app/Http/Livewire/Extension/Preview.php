@@ -25,6 +25,7 @@ class Preview extends RepositoryPreview
         }
         $this->extensionModel = $this->extensionModel->findOrFail($id);
 
+        $this->authorize('view', $this->extensionModel);
     }
 
     public function render()

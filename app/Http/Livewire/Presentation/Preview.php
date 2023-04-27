@@ -23,6 +23,7 @@ class Preview extends RepositoryPreview
             $this->presentationModel = $this->presentationModel->where('owner', sessionGet('id'));
         }
         $this->presentationModel = $this->presentationModel->findOrFail($id);
+        $this->authorize('view', $this->presentationModel);
     }
 
     public function render()

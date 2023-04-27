@@ -24,7 +24,7 @@ class Edit extends RepositoryEdit
             $this->publicationModel = $this->publicationModel->where('owner', sessionGet('id'));
         }
         $this->publicationModel = $this->publicationModel->findOrFail($id);
-
+        $this->authorize('view', $this->publicationModel);
 
         $this->fileInputId = rand();
         $this->publicationId = $id;

@@ -24,6 +24,7 @@ class Preview extends RepositoryPreview
             $this->publicationModel = $this->publicationModel->where('owner', sessionGet('id'));
         }
         $this->publicationModel = $this->publicationModel->findOrFail($id);
+        $this->authorize('view', $this->publicationModel);
     }
 
     public function render()

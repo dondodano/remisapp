@@ -31,7 +31,7 @@ class Edit extends RepositoryEdit
             $this->researchModel = $this->researchModel->where('owner', sessionGet('id'));
         }
         $this->researchModel = $this->researchModel->findOrFail($id);
-
+        $this->authorize('view', $this->researchModel);
 
         // $this->fileInputId = rand();
         // $this->researchId = $id;

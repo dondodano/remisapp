@@ -1250,3 +1250,22 @@ function setDisableQuarter($quarter)
         return ' disabled ';
     }
 }
+
+/**
+ * Super and Admin
+ */
+function isRoleNotAdmin($roles = ['super', 'admin']){
+    if(!in_array(strtolower(sessionGet('role')), $roles))
+    {
+        return true;
+    }
+    return false;
+}
+
+function isRoleBelongsTo($roles = ['super', 'admin']){
+    if(in_array(strtolower(sessionGet('role')), $roles))
+    {
+        return true;
+    }
+    return false;
+}

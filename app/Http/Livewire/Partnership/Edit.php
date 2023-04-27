@@ -24,6 +24,8 @@ class Edit extends RepositoryEdit
             $this->partnershipModel = $this->partnershipModel->where('owner', sessionGet('id'));
         }
         $this->partnershipModel = $this->partnershipModel->findOrFail($id);
+        $this->authorize('view', $this->partnershipModel);
+
 
         $this->fileInputId = rand();
         $this->partnershipId = $id;

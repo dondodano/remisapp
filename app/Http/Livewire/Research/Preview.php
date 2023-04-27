@@ -27,6 +27,7 @@ class Preview extends RepositoryPreview
             $this->researchModel = $this->researchModel->where('owner', sessionGet('id'));
         }
         $this->researchModel = $this->researchModel->findOrFail($id);
+        $this->authorize('view', $this->researchModel);
     }
 
     public function render()

@@ -25,6 +25,7 @@ class Edit extends RepositoryEdit
             $this->presentationModel = $this->presentationModel->where('owner', sessionGet('id'));
         }
         $this->presentationModel = $this->presentationModel->findOrFail($id);
+        $this->authorize('view', $this->presentationModel);
 
         $this->fileInputId = rand();
         $this->presentationId = $id;
