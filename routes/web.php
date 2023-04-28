@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Cache;
 
 /**
  * Controller
@@ -41,12 +42,22 @@ use App\Http\Livewire\Requisite\Institute;
 
 
 
+/**
+ * Landing Page
+ */
+Route::get('/', function(){
+    return view('landing.index');
+})->middleware('guest');
+Route::get('/home', function(){
+    return view('landing.index');
+})->middleware('guest');
+
 
 
 /**
  * Auth
  */
-Route::get('/', function(){ return redirect('/login'); })->middleware('guest');
+//Route::get('/', function(){ return redirect('/login'); })->middleware('guest');
 Route::get('/login', [AuthController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [AuthController::class, 'signin'])->middleware('guest')->name('login.submit');
 Route::get('/logout', [AuthController::class, 'signout'])->name('guest');
