@@ -79,9 +79,9 @@
     <div class="container px-5">
         <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
             <div class="col-12 col-lg-5">
-                <h2 class="display-4 lh-1 mb-4">Research and Extension Management Information System</h2>
+                <h2 class="display-4 lh-1 mb-4">REMIS</h2>
                 <p class="lead fw-normal text-muted mb-5 mb-lg-0">
-                    A web-based application designed to manage and organize data related to research and extension activities. It provides a centralized platform to collect, store, manage, and analyze information related to research projects, funding sources, publications, and events. REMIS typically allows researchers, extension workers, and administrators to access and share data and collaborate on various projects.
+                    A web-based application designed to manage and organize data related to research and extension activities. It provides a centralized platform to collect, store, manage, and analyze information related to research projects, funding sources, publications, and events.
                 </p>
             </div>
             <div class="col-sm-8 col-md-6">
@@ -92,16 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="px-5 px-sm-0 mb-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <img class="img-fluid " src="{{ getFileShortLocation('/media/dashboard_light.png') }}" alt="REMIS - Dashboard" />
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </section>
-
-
