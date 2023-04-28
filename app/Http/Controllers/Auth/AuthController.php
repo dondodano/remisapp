@@ -37,6 +37,7 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
+        $remember = $request->input('remember');
 
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -47,7 +48,7 @@ class AuthController extends Controller
             'email' => $email,
             'password' => $password,
             'status' => '1'
-        ])) {
+        ], $remember)) {
             $request->session()->regenerate();
 
 
@@ -123,7 +124,10 @@ class AuthController extends Controller
         $request->session()->forget('session');
         $request->session()->invalidate();
 
-        return redirect('/login');
+
+        Auth::logout();
+
+       return redirect('/login');
     }
 
     public function logUser($request, $state)

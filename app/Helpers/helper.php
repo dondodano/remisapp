@@ -761,7 +761,11 @@ function initialName()
 {
     $name = (array)sessionGet('name_array');
 
-    return $name['firstname'][0] . '. '. (strlen($name['middlename']) > 1 ? $name['middlename'][0].'. ' :  '' ).' '. $name['lastname'];
+    $firstName = isset($name['firstname']) ? $name['firstname'][0] : 'Temp';
+    $middleName = isset($name['middlename']) ? (strlen($name['middlename']) > 1 ? $name['middlename'][0].'. ' :  '') : '';
+    $lastName = isset($name['lastname']) ? $name['lastname'] : 'Name';
+
+    return $firstName . '. '.$middleName.' '. $lastName;
 }
 
 /**
@@ -1045,7 +1049,10 @@ function avatar($size = "")
         return avatarWrapper($temp_avatar, $size);
     }
 
-    return avatarWrapper('<span class="avatar-initial rounded-circle '.bgSwitch().'">'.getFirstLettersOfName(sessionGet('name_array')['firstname'], sessionGet('name_array')['lastname']).'</span>', $size);
+    $firstName = isset(sessionGet('name_array')['firstname']) ? sessionGet('name_array')['firstname'] : 'Temp';
+    $lastName = isset(sessionGet('name_array')['lastname']) ? sessionGet('name_array')['lastname'] : 'Name';
+
+    return avatarWrapper('<span class="avatar-initial rounded-circle '.bgSwitch().'">'.getFirstLettersOfName( $firstName, $lastName).'</span>', $size);
 }
 
 function avatarWrapper($content , $size = "")
