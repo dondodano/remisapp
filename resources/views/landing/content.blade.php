@@ -86,10 +86,18 @@
             </div>
             <div class="col-sm-8 col-md-6">
                 <div class="px-5 px-sm-0 mb-5">
-                    <img class="img-fluid " src="{{ getFileShortLocation('/media/dashboard_dark.png') }}" alt="REMIS - Dashboard" />
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-fluid " src="{{ getFileShortLocation('/media/dashboard_dark.png') }}" alt="REMIS - Dashboard" />
+                        </div>
+                    </div>
                 </div>
                 <div class="px-5 px-sm-0 mb-5">
-                    <img class="img-fluid " src="{{ getFileShortLocation('/media/dashboard_light.png') }}" alt="REMIS - Dashboard" />
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-fluid " src="{{ getFileShortLocation('/media/dashboard_light.png') }}" alt="REMIS - Dashboard" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
