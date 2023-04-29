@@ -19,7 +19,7 @@
     <meta name="description" content="SPAMAST REMIS" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ '/storage/images/default_logo.png' }}" />
+    <link rel="icon" type="image/x-icon" href="{{  appFavIcon() }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

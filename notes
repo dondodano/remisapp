@@ -39,3 +39,16 @@ Livewire\Modals\SeletYear.php
 resource\views\components\modal.blade.php
 resource\views\livewire\modals\select-year.blade.php
 resource\views\vendor\reis-components\mini-card.blade.php
+
+
+# Last Action (04-29-2023)
+require review on User creation and alteration
+Email during creation and alteration should be unique
+Make relationships for PasswordReset model
+Optimize master template of
+    \resources\views\content\change_password\index.blade.php
+    \resources\views\content\invalid_token\index.blade.php
+implement extends from
+    \resources\views\layouts\signleton.blade.php
+to
+    \resources\views\layouts\authentications.blade.php
