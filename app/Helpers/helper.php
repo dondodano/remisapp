@@ -1276,3 +1276,19 @@ function isRoleBelongsTo($roles = ['super', 'admin']){
     }
     return false;
 }
+
+
+/**
+ * Login and Forgot-Password and Reset-Password
+ */
+function appFavIcon()
+{
+    $favIcon = 'images/default_logo';
+
+    if(cache()->get('favicon'))
+    {
+        $favIcon =cache()->get('favicon')['path'];
+    }
+
+    return getFileShortLocation($favIcon);
+}

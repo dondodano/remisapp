@@ -1,73 +1,92 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Cache;
+use App\Http\Livewire\Log;
 
 /**
  * Controller
  */
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\User\UserSendMailController;
-use App\Http\Controllers\Log\LogUserController;
-use App\Http\Controllers\Log\LogUserActivityController;
-use App\Http\Controllers\Requisite\InstituteController;
-use App\Http\Controllers\Requisite\ProgramController;
-use App\Http\Controllers\Backup\SystemController;
-use App\Http\Controllers\Backup\DatabaseController;
-use App\Http\Controllers\Setting\FaviconController;
-use App\Http\Controllers\Setting\GeneralSettingController;
-use App\Http\Controllers\Maintenance\MaintenanceController;
-use App\Http\Controllers\User\PasswordController;
-use App\Http\Controllers\User\ProfileController;
-use App\Http\Controllers\User\UserAuthorizationController;
-use App\Http\Controllers\User\FirstAccessChangePasswordController;
-use App\Http\Controllers\FileUpload\FileUploadController;
-
-/**
- * Livewire
- */
-use App\Http\Livewire\Log;
 use App\Http\Livewire\User;
-use App\Http\Livewire\Training;
 use App\Http\Livewire\Research;
+use App\Http\Livewire\Training;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Extension;
 use App\Http\Livewire\Partnership;
 use App\Http\Livewire\Publication;
 use App\Http\Livewire\Presentation;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Requisite\Program;
 use App\Http\Livewire\Requisite\Institute;
-
-
-
-
-/**
- * Landing Page
- */
-Route::get('/', function(){
-    return view('landing.index');
-})->middleware('guest');
-Route::get('/home', function(){
-    return view('landing.index');
-})->middleware('guest');
-
-
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Log\LogUserController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Backup\SystemController;
+use App\Http\Controllers\User\PasswordController;
 
 /**
- * Auth
+ * Livewire
  */
-//Route::get('/', function(){ return redirect('/login'); })->middleware('guest');
-Route::get('/login', [AuthController::class, 'index'])->middleware('guest')->name('login');
-Route::post('/login', [AuthController::class, 'signin'])->middleware('guest')->name('login.submit');
-Route::get('/logout', [AuthController::class, 'signout'])->name('guest');
+use App\Http\Controllers\Backup\DatabaseController;
+use App\Http\Controllers\Setting\FaviconController;
+use App\Http\Controllers\Requisite\ProgramController;
+use App\Http\Controllers\User\UserSendMailController;
+use App\Http\Controllers\User\ResetPasswordController;
+use App\Http\Controllers\Log\LogUserActivityController;
+use App\Http\Controllers\Requisite\InstituteController;
+use App\Http\Controllers\User\ForgotPasswordController;
+use App\Http\Controllers\FileUpload\FileUploadController;
+use App\Http\Controllers\Setting\GeneralSettingController;
+use App\Http\Controllers\User\UserAuthorizationController;
+use App\Http\Controllers\Maintenance\MaintenanceController;
+use App\Http\Controllers\User\FirstAccessChangePasswordController;
 
+
+
+
+
+Route::middleware('guest')->group(function(){
+    /**
+     * Landing Page
+     */
+    Route::get('/', function(){
+        return view('landing.index');
+    });
+    Route::get('/home', function(){
+        return view('landing.index');
+    });
+
+    /**
+     * Auth
+     */
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'signin'])->name('login.submit');
+});
+
+/**
+ * Logged Out
+ */
+Route::get('/logout', [AuthController::class, 'signout'])->middleware(['auth'])->name('guest');
 
 
 /**
  * Authorized
  */
 Route::get('/auth/{token}', [UserAuthorizationController::class, 'index']);
+
+
+/**
+ * Forgot Password
+ */
+Route::get('/forgot-password', [ForgotPasswordController::class, 'index']);
+Route::post('/forgot-password', [ForgotPasswordController::class, 'send']);
+
+
+/**
+ * Reset Password
+ */
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'index']);
+Route::put('/reset-password/{token}', [ResetPasswordController::class, 'reset']);
+
 
 /**
  * Change Password for First Time

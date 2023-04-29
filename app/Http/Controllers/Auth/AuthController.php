@@ -20,17 +20,16 @@ class AuthController extends Controller
 {
     public function index()
     {
+        // $favIcon = 'images/default_logo';
+        // if(Cache::get('favicon'))
+        // {
+        //     $favIcon = Cache::get('favicon')['path'];
+        // }
 
-        $favIcon = 'images/default_logo';
-
-        if(Cache::get('favicon'))
-        {
-            $favIcon = Cache::get('favicon')['path'];
-        }
-
-        return view('content.auth.login',[
-            'favicon' => getFileShortLocation($favIcon)
-        ]);
+        return view('content.auth.login');
+        // ,[
+        //     'favicon' => getFileShortLocation($favIcon)
+        // ]);
     }
 
     public function signin(Request $request)
@@ -112,14 +111,17 @@ class AuthController extends Controller
         /**
          * Log User
          */
-        $this->logUser($request, 0);
+        if(Auth::check())
+        {
+            $this->logUser($request, 0);
 
-        Cache::put('user-' . Auth::user()->id, [
-            'time' => now(),
-            'isOnline' => 0
-        ]);
+            Cache::put('user-' . Auth::user()->id, [
+                'time' => now(),
+                'isOnline' => 0
+            ]);
 
-        event(new PusherNotificationEvent('UserOnlineStatus'));
+            event(new PusherNotificationEvent('UserOnlineStatus'));
+        }
 
         $request->session()->forget('session');
         $request->session()->invalidate();
