@@ -1,85 +1,9 @@
 
-<section id="features">
-    <div class="container px-5">
-        <div class="row gx-5 align-items-center">
-            <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
-                <div class="container-fluid px-5">
-                    <div class="row gx-5">
-                        <div class="col-md-6 mb-5">
-                            <!-- Feature item-->
-                            <div class="text-center">
-                                <i class="bi-phone icon-feature text-gradient d-block mb-3"></i>
-                                <h3 class="font-alt">Device Mockups</h3>
-                                <p class="text-muted mb-0">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-5">
-                            <!-- Feature item-->
-                            <div class="text-center">
-                                <i class="bi-camera icon-feature text-gradient d-block mb-3"></i>
-                                <h3 class="font-alt">Flexible Use</h3>
-                                <p class="text-muted mb-0">Put an image, video, animation, or anything else in the screen!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-5 mb-md-0">
-                            <!-- Feature item-->
-                            <div class="text-center">
-                                <i class="bi-gift icon-feature text-gradient d-block mb-3"></i>
-                                <h3 class="font-alt">Free to Use</h3>
-                                <p class="text-muted mb-0">As always, this theme is free to download and use for any purpose!</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Feature item-->
-                            <div class="text-center">
-                                <i class="bi-patch-check icon-feature text-gradient d-block mb-3"></i>
-                                <h3 class="font-alt">Open Source</h3>
-                                <p class="text-muted mb-0">Since this theme is MIT licensed, you can use it commercially!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 order-lg-0">
-                <!-- Features section device mockup-->
-                <div class="features-device-mockup">
-                    <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="circleGradient" gradientTransform="rotate(45)">
-                                <stop class="gradient-start-color" offset="0%"></stop>
-                                <stop class="gradient-end-color" offset="100%"></stop>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="50" cy="50" r="50"></circle></svg>
-                    <svg class="shape-1 d-none d-sm-block" viewBox="0 0 240.83 240.83" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(120.42 -49.88) rotate(45)"></rect>
-                        <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg>
-                    <svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
-                    <div class="device-wrapper">
-                        <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
-                            <div class="screen bg-black">
-                                <!-- PUT CONTENTS HERE:-->
-                                <!-- * * This can be a video, image, or just about anything else.-->
-                                <!-- * * Set the max width of your media to 100% and the height to-->
-                                <!-- * * 100% like the demo example below.-->
-                                <video muted="muted" autoplay="" loop="" style="max-width: 100%; height: 100%"><source src="{{ asset('assets/landing/assets/img/demo-screen.mp4') }}" type="video/mp4" /></video>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
 <section id="about" class="bg-light">
     <div class="container px-5">
         <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
             <div class="col-12 col-lg-5">
-                <h2 class="display-4 lh-1 mb-4">REMIS</h2>
+                <h2 class="display-4 lh-1 mb-4">Research and Extension Management Information System</h2>
                 <p class="lead fw-normal text-muted mb-5 mb-lg-0">
                     A web-based application designed to manage and organize data related to research and extension activities. It provides a centralized platform to collect, store, manage, and analyze information related to research projects, funding sources, publications, and events.
                 </p>
@@ -92,7 +16,100 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="px-5 px-sm-0 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-fluid " src="{{ getFileShortLocation('/media/dashboard_light.png') }}" alt="REMIS - Dashboard" />
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <div class="container px-5">
+            <h2 class="text-white display-1 lh-1 mb-4">
+                Manage Your<br />
+                Research and Extension<br/>
+                Data with Ease.
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section id="features" class="bg-light">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+            <div class="container-fluid px-5">
+
+                <div class="row gx-5">
+                    <div class="col-md-6 mb-5">
+                        <div class="text-center">
+                            <i class="bi-archive icon-feature text-gradient d-block mb-3"></i>
+                            <h3 class="font-alt">Data Management</h3>
+                            <p class="text-muted mb-0">Reliable platform to collect, store, and manage data related to research and extension programs, including research proposals, experimental designs, and results</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <div class="text-center">
+                            <i class="bi-columns-gap icon-feature text-gradient d-block mb-3"></i>
+                            <h3 class="font-alt">Collaboration and Communication</h3>
+                            <p class="text-muted mb-0">Facilitate collaboration and communication among researchers, extension workers, and other stakeholders involved in research and extension programs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row gx-5">
+                    <div class="col-md-6 mb-5">
+                        <div class="text-center">
+                            <i class="bi-cpu icon-feature text-gradient d-block mb-3"></i>
+                            <h3 class="font-alt">Integration and Customization</h3>
+                            <p class="text-muted mb-0">Customizable to meet the specific needs of the organization or institution using it, and should be able to integrate with other tools and systems used in research and extension programs</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <div class="text-center">
+                            <i class="bi-laptop icon-feature text-gradient d-block mb-3"></i>
+                            <h3 class="font-alt">Accessibility and Security</h3>
+                            <p class="text-muted mb-0">Easily accessible to authorized users, with robust security measures in place to protect sensitive data and ensure data privacy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row gx-5">
+                    <div class="col-md-6 mb-5">
+                        <div class="text-center">
+                            <i class="bi-tv icon-feature text-gradient d-block mb-3"></i>
+                            <h3 class="font-alt">Monitoring and Evaluation</h3>
+                            <p class="text-muted mb-0">Enable organizations to monitor and evaluate the impact of their research and extension programs, tracking key performance indicators and measuring progress against goals.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <div class="text-center">
+                            <i class="bi-pie-chart icon-feature text-gradient d-block mb-3"></i>
+                            <h3 class="font-alt">Reporting and Analysis</h3>
+                            <p class="text-muted mb-0">Allow users to generate reports and perform analyses on the data collected, helping to identify trends, patterns, and insights to support decision-making.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="bg-gradient-primary-to-secondary">
+    <div class="container px-5">
+        <h2 class="text-center text-white font-alt mb-4">If you are a Faculty of the Southern Philippines Agri-business and Marine and Aquatic School of Technology</h2>
+        <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
+            <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="/register" target="_blank">
+                Register Now
+            </a>
         </div>
     </div>
 </section>
