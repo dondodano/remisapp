@@ -346,41 +346,42 @@ Route::prefix('/partnership')->middleware(['auth'])->group(function(){
 /**
  * Optimization
  */
-Route::get('/optimize', function(){
-    Artisan::call('optimize');
-    return 'Optmized!';
-});
+Route::middleware(['onproduction'])->group(function(){
+    Route::get('/optimize', function(){
+        Artisan::call('optimize');
+        return 'Optmized!';
+    });
 
-Route::get('/symlink', function(){
-    Artisan::call('storage:link');
-    return 'Link created!';
-});
-Route::get('/phpinfo', function(){
-    return phpinfo();
-});
-Route::get('/clear', function(){
-    Artisan::call('view:clear');
-    Artisan::call('route:cache');
-    Artisan::call('route:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    echo 'Clear all things required to clear....';
-});
+    Route::get('/symlink', function(){
+        Artisan::call('storage:link');
+        return 'Link created!';
+    });
+    Route::get('/phpinfo', function(){
+        return phpinfo();
+    });
+    Route::get('/clear', function(){
+        Artisan::call('view:clear');
+        Artisan::call('route:cache');
+        Artisan::call('route:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('config:cache');
+        echo 'Clear all things required to clear....';
+    });
 
-Route::get('/migrate', function(){
-    Artisan::call('migrate');
-    return 'Migrated!';
+    Route::get('/migrate', function(){
+        Artisan::call('migrate');
+        return 'Migrated!';
+    });
+    Route::get('/seed', function(){
+        Artisan::call('db:seed');
+        return 'DB Seed!';
+    });
+    Route::get('/deploy', function(){
+        Artisan::call('deploy:now');
+        return 'System Deployed!';
+    });
 });
-Route::get('/seed', function(){
-    Artisan::call('db:seed');
-    return 'DB Seed!';
-});
-Route::get('/deploy', function(){
-    Artisan::call('deploy:now');
-    return 'System Deployed!';
-});
-
 /**
  * File Upload
  */
