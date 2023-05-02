@@ -85,6 +85,7 @@ class Index extends Component
             $user->update();
 
             if($user)
+                dispatch(new SendMailLaterJob($id) );
                 toastr("User [<strong>".$user->firstname." ".$user->last."</strong>] account successfully activated!", "info");
         }
     }
