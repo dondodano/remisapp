@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-    <title>SPAMAST - REMIS</title>
+    <title>{{ isset($title) ? $title : 'REMIS' }}</title>
 
     <meta name="description" content="Southern Philippines and Marine and Aquatic School of Technology REMIS" />
     <meta name="description" content="SPAMAST REMIS" />
@@ -40,7 +40,29 @@
 <body>
 
     <!-- Content -->
-    @yield('singleton-content')
+
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+          <div class="authentication-inner">
+              <div class="card">
+                  <div class="card-body">
+                      <!-- Logo -->
+                      <div class="app-brand justify-content-center">
+                          <a href="index.html" class="app-brand-link gap-2">
+                          <span class="app-brand-logo demo">
+                              <img src="{{ appFavIcon() }}" width="100" />
+                          </span>
+                          </a>
+                      </div>
+                      <!-- /Logo -->
+
+                      @yield('singleton-content')
+
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
     <!-- / Content -->
 
     <!-- Core JS -->

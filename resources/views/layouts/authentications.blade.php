@@ -15,10 +15,11 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>{{ $title }}</title>
+    <title>{{ isset($title) ? $title : 'REMIS' }}</title>
 
     <meta name="description" content="Southern Philippines and Marine and Aquatic School of Technology REMIS" />
     <meta name="description" content="SPAMAST REMIS" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{  appFavIcon() }}" />
@@ -43,7 +44,7 @@
     <!-- Page -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/css/pages/page-auth.css') }}" />
     <!-- Helpers -->
-    <script src="{{ asset('/assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/js/helpers-primary.js') }}"></script>
     <script src="{{ asset('/assets/js/config-primary.js') }}"></script>
   </head>
 
@@ -52,7 +53,7 @@
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
+        <div class="authentication-inner" {{ isset($style) ? $style : null }}>
             <div class="card">
                 <div class="card-body">
                     <!-- Logo -->
@@ -83,7 +84,7 @@
     <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-    <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/js/menu-primary.js') }}"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->

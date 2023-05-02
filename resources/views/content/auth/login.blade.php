@@ -37,7 +37,15 @@
         </div>
     </form>
 
-    <div class="text-center">
+    <div class="text-center ">
+        <a href="/forgot-password" class="mt-3">
+            Forgot Password?
+        </a>
+
+        <br/>
+
+        <br/>
+
         <p class="text-center">
             <span>Don't have account?</span>
             <a href="/register">
@@ -45,19 +53,15 @@
             </a>
         </p>
 
-        <br/>
-
-        <a href="/forgot-password">
-            Forgot Password?
-        </a>
-
         <div class="divider my-4">
             <div class="divider-text">
                 <i class='bx bx-dots-horizontal'></i>
             </div>
         </div>
+
+
         <a href="/home" class="btn btn-secondary">
-            <small>Go to public page</small>
+            <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i> Back to public
         </a>
     </div>
 

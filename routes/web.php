@@ -20,12 +20,13 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Log\LogUserController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backup\SystemController;
-use App\Http\Controllers\User\PasswordController;
 
 /**
  * Livewire
  */
+use App\Http\Controllers\User\PasswordController;
 use App\Http\Controllers\Backup\DatabaseController;
 use App\Http\Controllers\Setting\FaviconController;
 use App\Http\Controllers\Requisite\ProgramController;
@@ -60,6 +61,12 @@ Route::middleware('guest')->group(function(){
      */
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'signin'])->name('login.submit');
+
+    /**
+     * Register
+     */
+    Route::get('/register',[RegisterController::class, 'index']);
+    Route::post('/register',[RegisterController::class, 'save']);
 });
 
 /**
