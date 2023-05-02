@@ -34,7 +34,7 @@
                                 <li class="list-group-item justify-content-start list-group-item-action d-flex  align-items-center cursor-pointer" id="fileitem-{{ $file->id }}">
                                     <i class='bx bx-file  me-2'></i>
                                     <div class="w-100">
-                                        {{ basenameV2($file->file) }}
+                                        {{ basename($file->file) }}
                                     </div>
                                     <div class="text-danger" wire:click.prevent="remove('{{ encipher($file->id) }}')">
                                         <i class='bx bx-x-circle'></i>
