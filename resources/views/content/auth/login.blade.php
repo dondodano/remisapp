@@ -37,7 +37,28 @@
         </div>
     </form>
 
-    <a href="/forgot-password">
-        <small>Forgot Password?</small>
-    </a>
+    <div class="text-center">
+        <p class="text-center">
+            <span>Don't have account?</span>
+            <a href="/register">
+              <span>Click here to register</span>
+            </a>
+        </p>
+
+        <br/>
+
+        <a href="/forgot-password">
+            Forgot Password?
+        </a>
+
+        <div class="divider my-4">
+            <div class="divider-text">
+                <i class='bx bx-dots-horizontal'></i>
+            </div>
+        </div>
+        <a href="/home" class="btn btn-secondary">
+            <small>Go to public page</small>
+        </a>
+    </div>
+
 @endsection
