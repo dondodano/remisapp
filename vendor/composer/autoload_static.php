@@ -742,6 +742,7 @@ class ComposerStaticInit7a9b2ace0906bd7ff352117004649b4c
 
     public static $classMap = array (
         'App\\Console\\Commands\\BackupDatabase' => __DIR__ . '/../..' . '/app/Console/Commands/BackupDatabase.php',
+        'App\\Console\\Commands\\DeployNow' => __DIR__ . '/../..' . '/app/Console/Commands/DeployNow.php',
         'App\\Console\\Commands\\FlushSession' => __DIR__ . '/../..' . '/app/Console/Commands/FlushSession.php',
         'App\\Console\\Commands\\ResetLog' => __DIR__ . '/../..' . '/app/Console/Commands/ResetLog.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -823,6 +824,7 @@ class ComposerStaticInit7a9b2ace0906bd7ff352117004649b4c
         'App\\Http\\Livewire\\User\\Create' => __DIR__ . '/../..' . '/app/Http/Livewire/User/Create.php',
         'App\\Http\\Livewire\\User\\Edit' => __DIR__ . '/../..' . '/app/Http/Livewire/User/Edit.php',
         'App\\Http\\Livewire\\User\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/User/Index.php',
+        'App\\Http\\Middleware\\ApplicationOnProduction' => __DIR__ . '/../..' . '/app/Http/Middleware/ApplicationOnProduction.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\AuthenticateUser' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateUser.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

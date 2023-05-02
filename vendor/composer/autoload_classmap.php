@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Commands\\BackupDatabase' => $baseDir . '/app/Console/Commands/BackupDatabase.php',
+    'App\\Console\\Commands\\DeployNow' => $baseDir . '/app/Console/Commands/DeployNow.php',
     'App\\Console\\Commands\\FlushSession' => $baseDir . '/app/Console/Commands/FlushSession.php',
     'App\\Console\\Commands\\ResetLog' => $baseDir . '/app/Console/Commands/ResetLog.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -88,6 +89,7 @@ return array(
     'App\\Http\\Livewire\\User\\Create' => $baseDir . '/app/Http/Livewire/User/Create.php',
     'App\\Http\\Livewire\\User\\Edit' => $baseDir . '/app/Http/Livewire/User/Edit.php',
     'App\\Http\\Livewire\\User\\Index' => $baseDir . '/app/Http/Livewire/User/Index.php',
+    'App\\Http\\Middleware\\ApplicationOnProduction' => $baseDir . '/app/Http/Middleware/ApplicationOnProduction.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\AuthenticateUser' => $baseDir . '/app/Http/Middleware/AuthenticateUser.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
