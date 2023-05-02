@@ -8,6 +8,7 @@ use App\Models\Misc\Miscellaneous as Fund;
 use App\Http\Livewire\Traits\RepositoryEdit;
 use App\Models\Misc\Miscellaneous as Status;
 use App\Models\Misc\Miscellaneous as Category;
+use Illuminate\Support\Facades\Validator;
 
 
 class Edit extends RepositoryEdit

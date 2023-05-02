@@ -6,6 +6,7 @@ use App\Models\Repository\Training;
 use App\Models\Attachment\TrainingFile;
 use App\Http\Livewire\Traits\RepositoryEdit;
 use App\Models\Misc\Miscellaneous as Quality;
+use Illuminate\Support\Facades\Validator;
 
 class Edit extends RepositoryEdit
 {

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Partnership;
 use App\Models\Repository\Partnership;
 use App\Models\Attachment\PartnershipFile;
 use App\Http\Livewire\Traits\RepositoryEdit;
+use Illuminate\Support\Facades\Validator;
 
 class Edit extends RepositoryEdit
 {
