@@ -12,7 +12,7 @@
         <div class="row g-3">
             <div class="col-md-12 mb-3">
                 <div class="file-input">
-                    <x-filepond wire:model="attachments" multiple/>
+                    <x-file-pond wire:model="attachments" multiple/>
                     <small class="text-muted"><i>Note : To change file. You need to select another file(s) to upload.</i></small>
                 </div>
 
