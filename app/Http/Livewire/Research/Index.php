@@ -139,7 +139,9 @@ class Index extends RepositoryIndex
             'funds' => Category::where('group', 'fundclass')->get(),
             'research_statuses' => Category::where('group', 'projectstatus')->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'REMIS - Research'
+        ])
         ->section('site-content');
 
     }

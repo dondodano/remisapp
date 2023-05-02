@@ -97,7 +97,9 @@ class Index extends RepositoryIndex
         return view('livewire.presentation.index',[
             'presentations' => $this->all->orderBy('id', 'desc')->paginate($this->paginate)
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'REMIS - Presentation'
+        ])
         ->section('site-content');
     }
 }

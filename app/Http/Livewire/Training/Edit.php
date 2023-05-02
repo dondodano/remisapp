@@ -116,7 +116,9 @@ class Edit extends RepositoryEdit
             'trainingFiles' => TrainingFile::where('training_id', $this->trainingId)->get(),
             'qualities' => Quality::where('group', 'relevance')->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Training - Edit'
+        ])
         ->section('site-content');
     }
 }

@@ -98,7 +98,9 @@ class Edit extends RepositoryEdit
         return view('livewire.partnership.edit',[
             'partnershipFiles' => PartnershipFile::where('partnership_id', $this->partnershipId)->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Partnership - Edit'
+        ])
         ->section('site-content');
     }
 }

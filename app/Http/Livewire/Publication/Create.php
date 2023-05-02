@@ -98,7 +98,9 @@ class Create extends Component
     public function render()
     {
         return view('livewire.publication.create')
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Publication - Create'
+        ])
         ->section('site-content');
     }
 }

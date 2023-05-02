@@ -103,7 +103,9 @@ class Create extends Component
         return view('livewire.training.create',[
             'qualities' => Quality::where('group', 'relevance')->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Training - Create'
+        ])
         ->section('site-content');
     }
 }

@@ -96,7 +96,9 @@ class Index extends RepositoryIndex
         return view('livewire.partnership.index',[
             'partnerships' => $this->all->orderBy('id', 'desc')->paginate($this->paginate)
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Research - Partnership'
+        ])
         ->section('site-content');
     }
 }

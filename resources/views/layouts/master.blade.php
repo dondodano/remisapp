@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-        <title>REMIS</title>
+        <title>{{ isset($title) ? $title : 'REMIS' }}</title>
 
         <meta name="description" content="Southern Philippines and Marine and Aquatic School of Technology REMIS" />
         <meta name="description" content="SPAMAST REMIS" />

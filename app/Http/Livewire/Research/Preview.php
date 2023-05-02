@@ -26,7 +26,9 @@ class Preview extends RepositoryPreview
             'fundtypes' => Fund::where('group', 'fundclass')->get(),
             'categories' => Category::where('group', 'projectcategory')->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Research - Preview'
+        ])
         ->section('site-content');
     }
 }

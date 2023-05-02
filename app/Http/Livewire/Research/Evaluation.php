@@ -139,7 +139,9 @@ class Evaluation extends RepositoryEvaluation
             'fundtypes' => Fund::where('group', 'fundclass')->get(),
             'categories' => Category::where('group', 'projectcategory')->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Research - Evaluate'
+        ])
         ->section('site-content');
     }
 }

@@ -89,7 +89,9 @@ class Create extends Component
     public function render()
     {
         return view('livewire.partnership.create')
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Partnership - Create'
+        ])
         ->section('site-content');
     }
 }

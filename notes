@@ -46,9 +46,9 @@ require review on User creation and alteration
 Email during creation and alteration should be unique
 Make relationships for PasswordReset model
 Optimize master template of
-    \resources\views\content\change_password\index.blade.php
-    \resources\views\content\invalid_token\index.blade.php
-implement extends from
-    \resources\views\layouts\signleton.blade.php
-to
-    \resources\views\layouts\authentications.blade.php
+        \resources\views\content\change_password\index.blade.php
+        \resources\views\content\invalid_token\index.blade.php
+    implement extends from
+        \resources\views\layouts\signleton.blade.php
+    to
+        \resources\views\layouts\authentications.blade.php

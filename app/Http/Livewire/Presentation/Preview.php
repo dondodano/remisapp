@@ -19,7 +19,9 @@ class Preview extends RepositoryPreview
     public function render()
     {
         return view('livewire.presentation.preview')
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Presentation - Preview'
+        ])
         ->section('site-content');
     }
 }

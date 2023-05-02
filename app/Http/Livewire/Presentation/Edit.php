@@ -104,7 +104,9 @@ class Edit extends RepositoryEdit
             'presentationFiles' => PresentationFile::where('presentation_id', $this->presentationId)->get(),
             'types' => Type::where('group', 'presentationtype')->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Presentation - Edit'
+        ])
         ->section('site-content');
     }
 }

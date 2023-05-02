@@ -85,7 +85,9 @@ class Index extends Component
             'extensions' => $this->extensionCount,
             'partnerships' => $this->partnershipCount,
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master',[
+            'title' => 'REMIS - Dashboard'
+        ])
         ->section('site-content');
     }
 }

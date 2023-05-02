@@ -121,7 +121,9 @@ class Create extends Component
             'fundtypes' => Fund::where('group', 'fundclass')->get(),
             'categories' => Category::where('group', 'projectcategory')->get()
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Research - Create'
+        ])
         ->section('site-content');
     }
 }

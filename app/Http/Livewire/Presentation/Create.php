@@ -99,7 +99,9 @@ class Create extends Component
         return view('livewire.presentation.create',[
             'types' => Type::where('group', 'presentationtype')->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Presentation - Create'
+        ])
         ->section('site-content');
     }
 }

@@ -96,7 +96,9 @@ class Create extends Component
     public function render()
     {
         return view('livewire.extension.create')
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Extension - Create'
+        ])
         ->section('site-content');
     }
 }

@@ -100,7 +100,9 @@ class Index extends RepositoryIndex
         return view('livewire.publication.index',[
             'publications' => $this->all->orderBy('id', 'desc')->paginate($this->paginate)
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'REMIS - Publication'
+        ])
         ->section('site-content');
     }
 }

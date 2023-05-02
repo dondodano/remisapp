@@ -123,7 +123,9 @@ class Evaluation extends RepositoryEvaluation
         return view('livewire.extension.evaluation',[
             'extensionModel' => $this->all
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Extension - Evaluation'
+        ])
         ->section('site-content');
     }
 }

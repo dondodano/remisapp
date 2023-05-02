@@ -102,7 +102,9 @@ class Edit extends RepositoryEdit
         return view('livewire.extension.edit',[
             'extensionFiles' => ExtensionFile::where('extension_id', $this->extensionId)->get(),
         ])
-        ->extends('layouts.master')
+        ->extends('layouts.master', [
+            'title' => 'Research - Edit'
+        ])
         ->section('site-content');
     }
 }
