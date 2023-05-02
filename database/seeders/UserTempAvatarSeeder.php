@@ -14,7 +14,7 @@ class UserTempAvatarSeeder extends Seeder
      */
     public function run()
     {
-        UserRoles::create([
+        UserTempAvatar::create([
             'user_id' => 1,
             'avatar' => '<span class="avatar-initial rounded-circle bg-label-primary">SA</span>'
         ])->save();
