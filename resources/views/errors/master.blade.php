@@ -19,7 +19,14 @@
     <meta name="description" content="SPAMAST REMIS" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{  appFavIcon() }}" />
+    @php
+        $favIcon = 'images/default_logo';
+        if(Cache::get('favicon'))
+        {
+            $favIcon = Cache::get('favicon')['path'];
+        }
+        echo '<link rel="icon" type="image/x-icon" href="'.getFileShortLocation($favIcon).'" />';
+    @endphp
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

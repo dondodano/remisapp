@@ -14,6 +14,7 @@ use App\Http\Livewire\Partnership;
 use App\Http\Livewire\Publication;
 use App\Http\Livewire\Presentation;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Livewire\Requisite\Program;
 use App\Http\Livewire\Requisite\Institute;
 use App\Http\Controllers\Auth\AuthController;
@@ -21,11 +22,11 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Log\LogUserController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Backup\SystemController;
 
 /**
  * Livewire
  */
+use App\Http\Controllers\Backup\SystemController;
 use App\Http\Controllers\User\PasswordController;
 use App\Http\Controllers\Backup\DatabaseController;
 use App\Http\Controllers\Setting\FaviconController;
@@ -41,8 +42,67 @@ use App\Http\Controllers\User\UserAuthorizationController;
 use App\Http\Controllers\Maintenance\MaintenanceController;
 use App\Http\Controllers\User\FirstAccessChangePasswordController;
 
+Route::middleware(['onproduction'])->group(function(){
+    /**
+     * Clear cache
+     */
+    Route::get('/clear', function(){
+        Artisan::call('view:clear');
+        Artisan::call('route:cache');
+        Artisan::call('route:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('config:cache');
+        echo 'Clear all things required to clear....';
+    });
 
+    /**
+     * Run optimize on config
+     */
+    Route::get('/optimize', function(){
+        Artisan::call('optimize');
+        return 'Optmized!';
+    });
 
+    /**
+     * Run storage link
+     */
+    Route::get('/symlink', function(){
+        Artisan::call('storage:link');
+        return 'Link created!';
+    });
+
+    /**
+     * Show php info
+     */
+    Route::get('/phpinfo', function(){
+        return phpinfo();
+    });
+
+    /**
+     * Execute database migation
+     */
+    Route::get('/migrate', function(){
+        Artisan::call('migrate');
+        return 'Migrated!';
+    });
+
+    /**
+     * Execute database seeding
+     */
+    Route::get('/seed', function(){
+        Artisan::call('db:seed');
+        return 'DB Seed!';
+    });
+
+    /**
+     * Execute deploy
+     */
+    Route::get('/deploy', function(){
+        Artisan::call('deploy:now');
+        return 'System Deployed!';
+    });
+});
 
 
 Route::middleware('guest')->group(function(){
@@ -340,49 +400,4 @@ Route::prefix('/partnership')->middleware(['auth'])->group(function(){
     Route::get('/edit/{id}',Partnership\Edit::class);
     Route::get('/preview/{id}', Partnership\Preview::class);
     Route::get('/evaluation/{id}', Partnership\Evaluation::class);
-});
-
-
-/**
- * Optimization
- */
-Route::middleware(['onproduction'])->group(function(){
-    Route::get('/optimize', function(){
-        Artisan::call('optimize');
-        return 'Optmized!';
-    });
-
-    Route::get('/symlink', function(){
-        Artisan::call('storage:link');
-        return 'Link created!';
-    });
-    Route::get('/phpinfo', function(){
-        return phpinfo();
-    });
-    Route::get('/clear', function(){
-        Artisan::call('view:clear');
-        Artisan::call('route:cache');
-        Artisan::call('route:clear');
-        Artisan::call('cache:clear');
-        Artisan::call('config:clear');
-        Artisan::call('config:cache');
-        echo 'Clear all things required to clear....';
-    });
-
-    Route::get('/migrate', function(){
-        Artisan::call('migrate');
-        return 'Migrated!';
-    });
-    Route::get('/seed', function(){
-        Artisan::call('db:seed');
-        return 'DB Seed!';
-    });
-    Route::get('/deploy', function(){
-        Artisan::call('deploy:now');
-        return 'System Deployed!';
-    });
-
-    Route::get('/config', function(){
-        return 'Config Mode';
-    })->name('config');
 });

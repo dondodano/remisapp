@@ -19,7 +19,12 @@ class ApplicationOnProduction
         $path = storage_path('framework/') .'production';
         if(file_exists( $path))
         {
-            abort('404');
+            $content = file_get_contents($path);
+            if(filter_var($content, FILTER_VALIDATE_BOOLEAN) == true)
+            {
+                abort('404');
+            }
+
         }
         return $next($request);
     }

@@ -1300,7 +1300,23 @@ function appFavIcon()
 /**
  * Check URL if Local
  */
-function isAppInLocal()
+function isDeployedLocal()
+{
+    $file = storage_path('framework/') . 'production';
+    if(file_exists($file))
+    {
+        $content = file_get_contents($file);
+
+        if(config('app.url') == 'http://127.0.0.1:8000' && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true
+            || str_contains(config('app.url'), 'http://127.0.0.1:8000')  && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+function isUrlLocal()
 {
     if(config('app.url') == 'http://127.0.0.1:8000' || str_contains(config('app.url'), 'http://127.0.0.1:8000'))
     {
