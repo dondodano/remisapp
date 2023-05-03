@@ -1295,3 +1295,16 @@ function appFavIcon()
 
     return getFileShortLocation($favIcon);
 }
+
+
+/**
+ * Check URL if Local
+ */
+function isAppInLocal()
+{
+    if(config('app.url') == 'http://127.0.0.1:8000' || str_contains(config('app.url'), 'http://127.0.0.1:8000'))
+    {
+        return true;
+    }
+    return false;
+}
