@@ -47,4 +47,4 @@ Email during creation and alteration should be unique
 Make relationships for PasswordReset model
 
 # Last Action (05-02-2023)
-Validator class in Edit
+Optimize seeder
