@@ -381,8 +381,4 @@ Route::middleware(['onproduction'])->group(function(){
         Artisan::call('deploy:now');
         return 'System Deployed!';
     });
-
-    Route::get('/config', function(){
-
-    });
 });
