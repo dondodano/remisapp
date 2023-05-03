@@ -189,6 +189,9 @@ function toStr($string)
 /**
  * File
  */
+/**
+ * Depreciated
+ */
 function getFile($fileName, $appendBasePath = false, $fileFor = null)
 {
     $fileLocation = null;

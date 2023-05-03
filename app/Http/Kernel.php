@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'onproduction' => \App\Http\Middleware\ApplicationOnProduction::class,
+        'onconfig' =>  \App\Http\Middleware\VerifyBootstrapConfig::class,
 
         /**
          * Custom Middleware

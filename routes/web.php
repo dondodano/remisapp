@@ -381,11 +381,8 @@ Route::middleware(['onproduction'])->group(function(){
         Artisan::call('deploy:now');
         return 'System Deployed!';
     });
-});
-/**
- * File Upload
- */
-Route::prefix('/file')->middleware(['auth'])->group(function(){
-    Route::post('/upload', [FileUploadController::class, 'upload']);
-    Route::delete('/undo', [FileUploadController::class, 'undo']);
+
+    Route::get('/config', function(){
+
+    });
 });
