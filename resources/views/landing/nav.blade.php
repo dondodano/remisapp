@@ -13,6 +13,15 @@
                 <li class="nav-item"><a class="nav-link me-lg-3" href="/login">Login</a></li>
                 <li class="nav-item"><a class="nav-link me-lg-3" href="/register">Register</a></li>
             </ul>
+
+            {{-- @isDeployedLocally()
+                <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href="/deploy">
+                    <span class="d-flex align-items-center">
+                        <i class="bi-gear-wide-connected me-2"></i>
+                        <span class="small">Configure Now</span>
+                    </span>
+                </a>
+            @endisDeployedLocally --}}
         </div>
     </div>
 </nav>

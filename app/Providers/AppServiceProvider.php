@@ -61,5 +61,22 @@ class AppServiceProvider extends ServiceProvider
             return Cache::get('user-' . $userId)['isOnline'] == 0;
         });
 
+
+        Blade::if('isDeployedLocally', function(){
+            $file = storage_path('framework/') . 'production';
+            if(file_exists($file))
+            {
+                $content = file_get_contents($file);
+
+                if(config('app.url') == 'http://127.0.0.1:8000' && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true
+                    || str_contains(config('app.url'), 'http://127.0.0.1:8000')  && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true)
+                {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            return false;
+        });
     }
 }

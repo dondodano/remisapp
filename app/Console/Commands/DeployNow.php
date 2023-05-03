@@ -41,23 +41,23 @@ class DeployNow extends Command
         /**
          * Run Clear
          */
-        // Artisan::call('view:clear');
-        // Artisan::call('route:cache');
-        // Artisan::call('route:clear');
-        // Artisan::call('cache:clear');
-        // Artisan::call('config:clear');
-        // Artisan::call('config:cache');
+        Artisan::call('view:clear');
+        Artisan::call('route:cache');
+        Artisan::call('route:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('config:cache');
 
 
         /**
          * Run Optimize command
          */
-        // Artisan::call('optimize');
+        Artisan::call('optimize');
 
         /**
          * Rund Storage Link
          */
-        // Artisan::call('storage:link');
+        Artisan::call('storage:link');
 
 
         /**
@@ -76,13 +76,13 @@ class DeployNow extends Command
         /**
          * Call Migrate
          */
-        // Artisan::call('migrate');
+        Artisan::call('migrate');
 
 
         /**
          * Call Seed
          */
-        // Artisan::call('db:seed');
+        Artisan::call('db:seed');
 
 
         /**
