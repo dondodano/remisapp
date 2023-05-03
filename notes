@@ -45,6 +45,3 @@ resource\views\vendor\reis-components\mini-card.blade.php
 require review on User creation and alteration
 Email during creation and alteration should be unique
 Make relationships for PasswordReset model
-
-# Last Action (05-02-2023)
-Optimize seeder
