@@ -32,15 +32,6 @@ php artisan ide-helper:generate
 php artisan ide-helper:models
 
 
-# Depreciated (Removable items)
-Livewire\Modals\Modal.php
-Livewire\Modals\SeletYear.php
-
-resource\views\components\modal.blade.php
-resource\views\livewire\modals\select-year.blade.php
-resource\views\vendor\reis-components\mini-card.blade.php
-
-
 # Last Action (04-29-2023)
 require review on User creation and alteration
 Email during creation and alteration should be unique

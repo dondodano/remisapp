@@ -62,21 +62,21 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
-        Blade::if('isDeployedLocally', function(){
-            $file = storage_path('framework/') . 'production';
-            if(file_exists($file))
-            {
-                $content = file_get_contents($file);
+        // Blade::if('isDeployedLocally', function(){
+        //     $file = storage_path('framework/') . 'production';
+        //     if(file_exists($file))
+        //     {
+        //         $content = file_get_contents($file);
 
-                if(config('app.url') == 'http://127.0.0.1:8000' && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true
-                    || str_contains(config('app.url'), 'http://127.0.0.1:8000')  && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true)
-                {
-                    return true;
-                }else{
-                    return false;
-                }
-            }
-            return false;
-        });
+        //         if(config('app.url') == 'http://127.0.0.1:8000' && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true
+        //             || str_contains(config('app.url'), 'http://127.0.0.1:8000')  && filter_var($content, FILTER_VALIDATE_BOOLEAN) == true)
+        //         {
+        //             return true;
+        //         }else{
+        //             return false;
+        //         }
+        //     }
+        //     return false;
+        // });
     }
 }
