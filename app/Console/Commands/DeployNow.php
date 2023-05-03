@@ -45,6 +45,17 @@ class DeployNow extends Command
         }else{
             writeFile($path,'true');
         }
+
+        $dirList = ['attachment', 'avatar', 'backups', 'database', 'favicon', 'images', 'media', 'temp'];
+        $dirRoot = storage_path('app/public/');
+        foreach($dirList as $dirItem)
+        {
+            if(!is_dir($dirRoot . $dirItem))
+            {
+                mkdir($dirRoot . $dirItem);
+            }
+        }
+
         $this->info('System deployed!');
     }
 }
