@@ -36,3 +36,7 @@ php artisan ide-helper:models
 require review on User creation and alteration
 Email during creation and alteration should be unique
 Make relationships for PasswordReset model
+
+# Last Action (05-10-2023)
+Optimize Misc migration
+Add multiple user role and switch between roles
