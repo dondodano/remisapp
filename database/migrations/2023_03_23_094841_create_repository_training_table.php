@@ -17,7 +17,7 @@ class CreateRepositoryTrainingTable extends Migration
             $table->id();
 
             $table->string('title',255)->nullable();
-            $table->string('date_form',255)->nullable();
+            $table->string('date_from',255)->nullable();
             $table->string('date_to',255)->nullable();
             $table->string('duration',255)->nullable();
 
