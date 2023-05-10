@@ -37,7 +37,7 @@ class SendMailToUserCredentialListner
                 ->send(new UserCredentialMailer([
                     'recipient' => $event->user->firstname.' '.$event->user->lastname,
                     'email' => $event->user->email,
-                    'token' => encipher($token)
+                    'token' => $token
                 ]));
 
                 toastr("Credentail of [<strong>".$event->user->firstname.' '.$event->user->lastname."</strong>] successfully sent!", "success");

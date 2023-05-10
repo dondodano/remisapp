@@ -3,17 +3,18 @@
 namespace App\Http\Livewire\User;
 
 use Livewire\Component;
+use App\Models\User\User;
+
 use Livewire\WithPagination;
 
-use App\Jobs\SendMailLaterJob;
-
-use App\Models\User\User;
 use App\Models\User\UserRole;
+use App\Jobs\SendMailLaterJob;
 use App\Models\User\UserToken;
 use App\Mail\UserCredentialMailer;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Database\Eloquent\Collection;
+use App\Events\SendMailToUserCredentialEvent;
 
 class Index extends Component
 {
@@ -85,14 +86,15 @@ class Index extends Component
             $user->update();
 
             if($user)
-                dispatch(new SendMailLaterJob($id) );
+                event(new SendMailToUserCredentialEvent($id));//dispatch(new SendMailLaterJob($id) );
                 toastr("User [<strong>".$user->firstname." ".$user->last."</strong>] account successfully activated!", "info");
         }
     }
 
     public function send($id)
     {
-        dispatch(new SendMailLaterJob($id) );
+        event(new SendMailToUserCredentialEvent($id));
+       // dispatch(new SendMailLaterJob($id) );
     }
 
     public function render()
