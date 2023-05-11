@@ -69,9 +69,22 @@ class MiscellaneousSeeder extends Seeder
             ]
         ];
 
-        foreach($datas as $data){
-            Misc::create($data)->save();
-        }
-
+        Misc::create($datas[0])->save();
+        Misc::create($datas[1])->save();
+        Misc::create($datas[2])->save();
+        Misc::create($datas[3])->save();
+        Misc::create($datas[4])->save();
+        Misc::create($datas[5])->save();
+        Misc::create($datas[6])->save();
+        Misc::create($datas[7])->save();
+        Misc::create($datas[8])->save();
+        Misc::create($datas[9])->save();
+        Misc::create($datas[10])->save();
+        Misc::create($datas[11])->save();
+        Misc::create($datas[12])->save();
+        Misc::create($datas[13])->save();
+        Misc::create($datas[14])->save();
+        Misc::create($datas[15])->save();
+        Misc::create($datas[16])->save();
     }
 }
