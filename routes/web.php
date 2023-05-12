@@ -16,7 +16,7 @@ use App\Http\Livewire\Presentation;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Livewire\Requisite\Program;
-use App\Http\Livewire\Requisite\Institute;
+use App\Http\Livewire\Requisite\ResponsibilityCenter;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Log\LogUserController;
@@ -199,7 +199,7 @@ Route::prefix('/activity-log')->middleware(['auth', 'can:is_super'])->group(func
 Route::prefix('/rc')->middleware(['auth', 'can:is_super, can:is_admin'])->group(function(){
     Route::get('', ResponsibilityCenter\Index::class);
     Route::get('/create', ResponsibilityCenter\Create::class);
-    Route::get('/edit/{id}', InResponsibilityCentertitute\Edit::class);
+    Route::get('/edit/{id}', ResponsibilityCenter\Edit::class);
 });
 
 

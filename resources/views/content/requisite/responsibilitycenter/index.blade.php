@@ -14,7 +14,7 @@
             <h5 class="card-header">
                 Institute list
                 <div class="float-end">
-                    <a href="/institute/create" class="btn btn-sm btn-primary">
+                    <a href="/rc/create" class="btn btn-sm btn-primary">
                         <i class="bx bx-plus"></i> Add New Institute
                     </a>
                 </div>
@@ -32,13 +32,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($institutes as $institute )
+                            @foreach ($responsibilitycenters as $responsibilitycenter )
                                 <tr>
-                                    <td>{{ $institute->term }}</td>
-                                    <td>{{ $institute->definition }}</td>
+                                    <td>{{ $responsibilitycenter->term }}</td>
+                                    <td>{{ $responsibilitycenter->definition }}</td>
 
                                     <td>
-                                        @if($institute->status == 1)
+                                        @if($responsibilitycenter->status == 1)
                                             <i class='bx bx-check-circle text-success' title="Active"></i>
                                         @else
                                             <i class='bx bx-x-circle text-danger' title="Inactive"></i>
@@ -47,10 +47,10 @@
 
                                     <td>
                                         <div class="d-inline-block text-nowrap">
-                                            <a href="/institute/edit/{{ $institute->id }}" class="btn btn-sm btn-icon" title="Edit">
+                                            <a href="/rc/edit/{{ $responsibilitycenter->id }}" class="btn btn-sm btn-icon" title="Edit">
                                                 <i class="bx bx-edit"></i>
                                             </a>
-                                            <form action="/institute/delete/{{ $institute->id }}" method="post" class="btn-icon">
+                                            <form action="/rc/delete/{{ $responsibilitycenter->id }}" method="post" class="btn-icon">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button class="btn btn-sm " title="Delete" type="submit" name="delete[]"><i class="bx bx-trash"></i></button>
@@ -58,7 +58,7 @@
                                             <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
-                                            {!! statusActionControlV2($institute->id, $institute->status, 'institute') !!}
+                                            {!! statusActionControlV2($responsibilitycenter->id, $responsibilitycenter->status, 'rc') !!}
                                         </div>
                                     </td>
 
