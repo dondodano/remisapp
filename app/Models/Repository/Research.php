@@ -42,9 +42,10 @@ class Research extends Model
         'fund_id',
         'status_id',
         'owner',
+        'responsibility_center_id',
         'is_evaluated',
         'quarter',
-        'year'
+        'year',
     ];
 
     const CREATED_AT = 'date_created';
@@ -89,7 +90,7 @@ class Research extends Model
     {
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
-            $query->where('owner', sessionGet('id'))
+            $query->where('responsibility_center_id', sessionGet('responsibility_center_id'))
                 ->where('quarter', getCurrentQuarter()['value'])
                 ->where('year', getCurrentYear()['value']);
         }else{

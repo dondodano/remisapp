@@ -27,6 +27,7 @@ class CreateRepositoryPublicationTable extends Migration
 
 
             $table->integer('owner')->default(0);
+            $table->integer('responsibility_center_id')->default(0);
             $table->integer('is_evaluated')->default(0);
 
             $table->integer('quarter')->nullabe();

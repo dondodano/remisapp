@@ -30,6 +30,7 @@ class Partnership extends Model
         'date_from',
         'date_to',
         'owner',
+        'responsibility_center_id',
         'is_evaluated',
         'quarter',
         'year'
@@ -85,7 +86,7 @@ class Partnership extends Model
     {
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
-            $query->where('owner', sessionGet('id'))
+            $query->where('responsibility_center_id', sessionGet('responsibility_center_id'))
                 ->where('quarter', getCurrentQuarter()['value'])
                 ->where('year', getCurrentYear()['value']);
         }else{

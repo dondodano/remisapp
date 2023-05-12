@@ -72,7 +72,8 @@ class AuthController extends Controller
                 'temp_avatar' => !empty(Auth::user()->temp_avatar) ? Auth::user()->temp_avatar->avatar : '',
                 'name_array' => $fullName,
                 'current_year' => setToday('Y'),
-                'favicon' => $favIcon
+                'favicon' => $favIcon,
+                'responsibility_center_id' => Auth::user()->responsibility_center_id
             ]);
 
             $this->logUser($request, 1);
