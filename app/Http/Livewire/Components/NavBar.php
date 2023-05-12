@@ -49,7 +49,7 @@ class NavBar extends Component
 
         $currentQuarter = decipher($index);
 
-        if(in_array($currentQuarter, [1,2,3]))
+        if(in_array($currentQuarter, [1,2,3,4]))
         {
             $this->quarter = concat(' ',[
                 $currentQuarter . $this->suffix[$currentQuarter],

@@ -1213,7 +1213,8 @@ function getQuarterSuffix()
     return [
         '1' => 'st',
         '2' => 'nd',
-        '3' => 'rd'
+        '3' => 'rd',
+        '4' => 'th'
     ];
 }
 
