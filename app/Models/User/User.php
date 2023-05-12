@@ -9,7 +9,6 @@ use App\Models\User\UserRole;
 use App\Models\User\UserToken;
 
 use App\Models\Log\LogUserActivity;
-use App\Models\Requisite\Institute;
 
 //use Illuminate\Database\Eloquent\Model;
 use App\Models\User\UserTempAvatar;
@@ -17,6 +16,7 @@ use App\Models\User\UserTempAvatar;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Evaluation\ResearchEvaluation;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Requisite\ResponsibilityCenter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,7 +37,7 @@ class User extends Authenticatable
         'email',
         'password',
         'remember_token',
-        'institute_id',
+        'responsibility_center_id',
         'role_id',
         'status',
     ];
@@ -51,9 +51,9 @@ class User extends Authenticatable
         return $this->hasOne(UserRole::class, 'id', 'role_id');
     }
 
-    public function user_institute()
+    public function user_responsibility_center()
     {
-        return $this->hasOne(Institute::class, 'id', 'institute_id');
+        return $this->hasOne(ResponsibilityCenter::class, 'id', 'responsibility_center_id');
     }
 
     public function temp_avatar()

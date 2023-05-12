@@ -39,7 +39,6 @@ class Edit extends Component
         $this->lastname = $this->user->lastname;
         $this->extension = $this->user->extension;
 
-        dd($this->user->responsibility_center_id);
     }
 
     public function update()
