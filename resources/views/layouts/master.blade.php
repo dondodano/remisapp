@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
         <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}" />
         <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+        <link href="{{ asset('assets/vendor/libs/select2/select2.css') }}" rel="stylesheet" />
         @stack('header-0')
         <script src="{{ asset('/assets/vendor/js/helpers-primary.js') }}"></script>
         <script src="{{ asset('/assets/vendor/js/template-customizer-primary.js') }}"></script>
@@ -75,6 +76,7 @@
         @livewireScripts
         @stack('footer-1')
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+        <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
         <script>
             var pusher = new Pusher('b9a98d5d52ec6269f87b', {
                 cluster: 'ap1'
@@ -97,6 +99,10 @@
 
             window.addEventListener('reloadComponent', event => {
                 location.reload();
+            })
+
+            $(document).ready(function(){
+                $('select').select2();
             })
         </script>
         @stack('footer-2')
