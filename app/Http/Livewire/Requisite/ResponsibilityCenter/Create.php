@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Requisite\Institute;
+namespace App\Http\Livewire\Requisite\ResponsibilityCenter;
 
 use Livewire\Component;
-use App\Models\Requisite\Institute;
+use App\Models\Requisite\ResponsibilityCenter;
 
 class Create extends Component
 {
@@ -19,21 +19,21 @@ class Create extends Component
             return;
         }
 
-        $create = Institute::firstOrCreate([
+        $create = ResponsibilityCenter::firstOrCreate([
             'term' => $this->term,
             'definition' => $this->definition
         ]);
         $create->save();
 
         if($create)
-            logUserActivity(request(), 'Created new institute with ID = ['.$create->id.']');
-            toastr("Institute successfully saved!", "success");
+            logUserActivity(request(), 'Created new responsibility center with ID = ['.$create->id.']');
+            toastr("ResponsibilityCenter successfully saved!", "success");
             $this->term = '';
             $this->definition = '';
     }
 
     public function render()
     {
-        return view('livewire.requisite.institute.create');
+        return view('livewire.requisite.responsibilitycenter.create');
     }
 }

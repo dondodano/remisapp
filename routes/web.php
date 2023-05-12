@@ -194,12 +194,12 @@ Route::prefix('/activity-log')->middleware(['auth', 'can:is_super'])->group(func
 
 
 /**
- * Requisite Institute
+ * Requisite Responsibility Center
  */
-Route::prefix('/institute')->middleware(['auth', 'can:is_super, can:is_admin'])->group(function(){
-    Route::get('', Institute\Index::class);
-    Route::get('/create', Institute\Create::class);
-    Route::get('/edit/{id}', Institute\Edit::class);
+Route::prefix('/rc')->middleware(['auth', 'can:is_super, can:is_admin'])->group(function(){
+    Route::get('', ResponsibilityCenter\Index::class);
+    Route::get('/create', ResponsibilityCenter\Create::class);
+    Route::get('/edit/{id}', InResponsibilityCentertitute\Edit::class);
 });
 
 

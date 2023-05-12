@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Requisite\Program;
 use App\Models\Log\LogUserActivity;
 
-class Institute extends Model
+class ResponsibilityCenter extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'requisite_institute';
+    protected $table = 'requisite_responsibility_center';
 
     protected $fillable = [
         'term',
@@ -26,7 +26,7 @@ class Institute extends Model
 
     public function program()
     {
-        return $this->hasOne(Program::class, 'id', 'institute_id');
+        return $this->hasOne(Program::class, 'id', 'responsibility_center_id');
     }
 
 
@@ -46,36 +46,36 @@ class Institute extends Model
     {
         parent::boot();
 
-        static::created(function($institute){
+        static::created(function($responsibilitycenter){
             LogUserActivity::create([
                 'user_id' => sessionGet('id'),
                 'ip_address' => request()->ip(),
                 'agent' =>  request()->header('User-Agent'),
                 'activity' => 'created',
-                'subject_id' =>  $institute->id,
-                'subject_type' => Institute::class
+                'subject_id' =>  $responsibilitycenter->id,
+                'subject_type' => ResponsibilityCenter::class
             ])->save();
         });
 
-        static::updated(function($institute){
+        static::updated(function($responsibilitycenter){
             LogUserActivity::create([
                 'user_id' => sessionGet('id'),
                 'ip_address' => request()->ip(),
                 'agent' =>  request()->header('User-Agent'),
                 'activity' => 'updated',
-                'subject_id' => $institute->id,
-                'subject_type' => Institute::class
+                'subject_id' => $responsibilitycenter->id,
+                'subject_type' => ResponsibilityCenter::class
             ])->save();
         });
 
-        static::deleted(function($institute){
+        static::deleted(function($responsibilitycenter){
             LogUserActivity::create([
                 'user_id' => sessionGet('id'),
                 'ip_address' => request()->ip(),
                 'agent' =>  request()->header('User-Agent'),
                 'activity' => 'deleted',
-                'subject_id' => $institute->id,
-                'subject_type' => Institute::class
+                'subject_id' => $responsibilitycenter->id,
+                'subject_type' => ResponsibilityCenter::class
             ])->save();
         });
     }

@@ -101,9 +101,6 @@
                 location.reload();
             })
 
-            $(document).ready(function(){
-                $('select').select2();
-            })
         </script>
         @stack('footer-2')
 

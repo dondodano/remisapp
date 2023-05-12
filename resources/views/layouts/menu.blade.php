@@ -122,22 +122,22 @@
                 <span class="menu-header-text">System</span>
             </li>
 
-            <li class="menu-item {{ openSide(['institute', 'program']) }}">
+            <li class="menu-item {{ openSide(['rc']) }}">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-archive-in"></i>
                     <div data-i18n="Requisite">Requisite</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item  {{ activeSide('institute') }}">
-                        <a href="/institute" class="menu-link">
-                            <div data-i18n="Institute">Institute</div>
+                    <li class="menu-item  {{ activeSide('rc') }}">
+                        <a href="/rc" class="menu-link">
+                            <div data-i18n="Responsiblity Center">Responsiblity Center</div>
                         </a>
                     </li>
-                    <li class="menu-item  {{ activeSide('program') }}">
+                    {{-- <li class="menu-item  {{ activeSide('program') }}">
                         <a href="/program" class="menu-link">
                             <div data-i18n="Program">Program</div>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
 

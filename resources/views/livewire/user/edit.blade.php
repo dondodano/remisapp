@@ -36,12 +36,12 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label text-sm-end" for="institute">Responsibility Center</label>
+                        <label class="col-sm-3 col-form-label text-sm-end" for="responsibilitycenter">Responsibility Center</label>
                         <div class="col-sm-9">
-                            <select  id="institute" class="form-select" name="institute"  wire:model.defer="institute">
-                                <option value="0">-- Select Responsibility Center --</option>
-                                @foreach($institutes as $institute)
-                                    <option value="{{ $institute->id }}" selected>{{ $institute->term }}</option>
+                            <select  id="responsibilitycenter" class="form-select" name="responsibilitycenter"  wire:model.defer="responsibilitycenter">
+                                <option value="">-- Select Responsibility Center --</option>
+                                @foreach($responsibilitycenters as $rc)
+                                    <option value="{{ $rc->id }}" >{{ $rc->term }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -53,7 +53,7 @@
                             <select  id="role" class="form-select" name="role"  wire:model.defer="role">
                                 <option value="">-- Select Role --</option>
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" selected>{{ $role->term }}</option>
+                                    <option value="{{ $role->id }}" >{{ $role->term }}</option>
                                 @endforeach
                             </select>
                         </div>

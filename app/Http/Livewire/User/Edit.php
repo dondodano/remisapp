@@ -6,13 +6,13 @@ use Livewire\Component;
 
 use App\Models\User\User;
 use App\Models\User\UserRole;
-use App\Models\Requisite\Institute;
+use App\Models\Requisite\ResponsibilityCenter;
 use App\Models\User\UserTempAvatar;
 
 class Edit extends Component
 {
     public $user;
-    public $email, $password, $role, $institute;
+    public $email, $password, $role, $responsibilitycenter;
     public $firstname, $middlename, $lastname, $extension, $title;
 
     public function getRolesProperty()
@@ -20,9 +20,9 @@ class Edit extends Component
         return UserRole::where('is_visible',1)->get();
     }
 
-    public function getInstitutesProperty()
+    public function getResponsibilityCentersProperty()
     {
-        return Institute::activeStatus()->get();
+        return ResponsibilityCenter::activeStatus()->get();
     }
 
     public function mount($id)
@@ -32,17 +32,19 @@ class Edit extends Component
         $this->email = $this->user->email;
         //$this->password = $this->user->password;
         $this->role = $this->user->role_id;
-        $this->institute = $this->user->institute_id;
+        $this->responsibilitycenter = $this->user->responsibility_center_id;
 
         $this->firstname = $this->user->firstname;
         $this->middlename = $this->user->middlename;
         $this->lastname = $this->user->lastname;
         $this->extension = $this->user->extension;
+
+        dd($this->user->responsibility_center_id);
     }
 
     public function update()
     {
-        if(strlen($this->email) == 0 || strlen($this->institute) == 0 || strlen($this->role) == 0 || strlen($this->firstname) == 0 ||
+        if(strlen($this->email) == 0 || strlen($this->responsibilitycenter) == 0 || strlen($this->role) == 0 || strlen($this->firstname) == 0 ||
         strlen($this->middlename) == 0 || strlen($this->lastname) == 0 )
         {
             toastr("Please fill all required fields!", "error");
@@ -66,7 +68,7 @@ class Edit extends Component
             'extension' => $this->extension,
             'title' => $this->title,
             'email' => $this->email,
-            'institute_id' => $this->institute,
+            'responsibility_center_id' => $this->responsibilitycenter,
             'role_id' => $this->role,
         ];
 
@@ -91,7 +93,7 @@ class Edit extends Component
     {
         return view('livewire.user.edit',[
             'roles' => $this->roles,
-            'institutes' => $this->institutes
+            'responsibilitycenters' => $this->responsibilitycenters
         ])
         ->extends('layouts.master')
         ->section('site-content');

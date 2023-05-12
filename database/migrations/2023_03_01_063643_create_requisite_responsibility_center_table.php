@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequisiteInstituteTable extends Migration
+class CreateResponsibilityCenterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRequisiteInstituteTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisite_institute', function (Blueprint $table) {
+        Schema::create('requisite_responsibility_center', function (Blueprint $table) {
             $table->id();
 
             $table->string('term', 255)->nullable();
@@ -34,6 +34,6 @@ class CreateRequisiteInstituteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisite_institute');
+        Schema::dropIfExists('requisite_responsibility_center');
     }
 }
