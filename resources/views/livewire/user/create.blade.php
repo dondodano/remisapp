@@ -33,17 +33,17 @@
                             </div>
                         </div>
                     </div>
-
-                    <label class="col-sm-3 col-form-label text-sm-end" for="responsibilitycenter">Responsibility Center</label>
-                    <div class="col-sm-9" wire:ignore>
-                        <select  id="responsibilitycenter" class="form-select" name="responsibilitycenter"  wire:model.defer="responsibilitycenter">
-                            <option value="0">-- Select Responsibility Center --</option>
-                            @foreach($responsibilitycenters as $responsibilitycenter)
-                                <option value="{{ $responsibilitycenter->id }}" selected>{{ $responsibilitycenter->term }}</option>
-                            @endforeach
-                        </select>
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label text-sm-end" for="responsibilitycenter">Responsibility Center</label>
+                        <div class="col-sm-9" wire:ignore>
+                            <select  id="responsibilitycenter" class="form-select" name="responsibilitycenter"  wire:model.defer="responsibilitycenter">
+                                <option value="0">-- Select Responsibility Center --</option>
+                                @foreach($responsibilitycenters as $responsibilitycenter)
+                                    <option value="{{ $responsibilitycenter->id }}" selected>{{ $responsibilitycenter->term }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-
                     {{-- @livewire('components.select2',[
                         'title' => 'Responsibility Center',
                         'model' => 'responsibilitycenter',
