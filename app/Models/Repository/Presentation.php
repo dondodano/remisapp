@@ -94,7 +94,7 @@ class Presentation extends Model
     {
         if(!in_array(strtolower(sessionGet('role')), ['super', 'admin']))
         {
-            $query->where('responsibility_center_id', sessionGet('responsibility_center_id'))
+            $query->where('responsibility_center_id', sessionGet('responsibility_center')['id'])
                 ->where('quarter', getCurrentQuarter()['value'])
                 ->where('year', getCurrentYear()['value']);
         }else{
