@@ -9,6 +9,7 @@
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <ul class="navbar-nav flex-row align-items-center ms-auto">
 
+                @role(['super', 'admin'])
                 <li class="nav-item lh-1 me-3">
                     <x-dropdown-list id="dropdownResponsibilityCenter" text="{{ $rcenterName }}">
                         <li><h6 class="dropdown-header text-uppercase">Select Responsibility Center</h6></li>
@@ -17,6 +18,13 @@
                         @endforeach
                     </x-dropdown-list>
                 </li>
+                @endrole
+
+                @role(['staff', 'faculty'])
+                    <li class="nav-item lh-1 me-3">
+                        <button type="button" class="btn btn-success btn-sm">{{ $rcenterName }}</button>
+                    </li>
+                @endrole
 
                 <li class="nav-item lh-1 me-3">
                     <x-dropdown-list id="dropdownQuarter" text="{{ $quarter }}">
