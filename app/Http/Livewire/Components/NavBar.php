@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Components;
 
-use Livewire\Component;
 use Cache;
+use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use App\Events\PusherNotificationEvent;
+use App\Models\Requisite\ResponsibilityCenter;
 
 class NavBar extends Component
 {
@@ -12,6 +14,8 @@ class NavBar extends Component
     public $quarter;
     public $year;
     public $suffix;
+    public $rcenterId;
+    public $rcenterName;
 
 
     public function mount()
@@ -42,6 +46,10 @@ class NavBar extends Component
         sessionSet('current-year-'.auth()->user()->id,[
             'value' => getCurrentYear()['value']
         ]);
+
+        // Responsibility Center
+        $this->rcenterId = sessionGet('responsibility_center')['id'];
+        $this->rcenterName = sessionGet('responsibility_center')['name'];
     }
 
     public function selectQuarter($index)
@@ -91,8 +99,23 @@ class NavBar extends Component
         $this->dispatchBrowserEvent('reloadComponent');
     }
 
+    public function selectResponsibilityCenter($centerId)
+    {
+        sessionSet('responsibility_center', [
+            'id' => $centerId,
+            'name' => Auth::user()->with('user_responsibility_center')->where('responsibility_center_id', $centerId)->first()->user_responsibility_center->term
+        ]);
+
+
+        $this->emit('refreshDashboard');
+        $this->emit('refreshIndexComponent');
+        $this->dispatchBrowserEvent('reloadComponent');
+    }
+
     public function render()
     {
-        return view('livewire.components.nav-bar');
+        return view('livewire.components.nav-bar',[
+            'rcenters' => ResponsibilityCenter::activeStatus()->get()
+        ]);
     }
 }

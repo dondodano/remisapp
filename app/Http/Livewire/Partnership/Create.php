@@ -40,6 +40,7 @@ class Create extends Component
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,
             'owner' => sessionGet('id'),
+            'responsibility_center_id' => sessionGet('responsibility_center_id'),
 
             'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
             'year' => sessionGet('current-year-'.auth()->user()->id)['value'],

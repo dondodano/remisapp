@@ -73,7 +73,10 @@ class AuthController extends Controller
                 'name_array' => $fullName,
                 'current_year' => setToday('Y'),
                 'favicon' => $favIcon,
-                'responsibility_center_id' => Auth::user()->responsibility_center_id
+                'responsibility_center' => [
+                    'id' => Auth::user()->responsibility_center_id,
+                    'name' => Auth::user()->with('user_responsibility_center')->first()->user_responsibility_center->term
+                ]
             ]);
 
             $this->logUser($request, 1);

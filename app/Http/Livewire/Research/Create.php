@@ -64,6 +64,7 @@ class Create extends Component
             'fund_id' => $this->fundType,
             'status_id' => $this->status,
             'owner' => sessionGet('id'),
+            'responsibility_center_id' => sessionGet('responsibility_center_id'),
 
             'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
             'year' => sessionGet('current-year-'.auth()->user()->id)['value'],

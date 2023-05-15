@@ -44,6 +44,7 @@ class Create extends Component
             'date_presented' => $this->date_presented,
             'type_id' => $this->type,
             'owner' => sessionGet('id'),
+            'responsibility_center_id' => sessionGet('responsibility_center_id'),
 
             'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
             'year' => sessionGet('current-year-'.auth()->user()->id)['value'],

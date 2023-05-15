@@ -1262,6 +1262,14 @@ function setDisableQuarter($quarter)
     }
 }
 
+function setDisableRCenter($rcenterid)
+{
+    if($rcenterid == sessionGet('responsibility_center')['id'])
+    {
+        return ' disabled';
+    }
+}
+
 /**
  * Super and Admin
  */

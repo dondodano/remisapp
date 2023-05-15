@@ -8,6 +8,16 @@
 
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+                <li class="nav-item lh-1 me-3">
+                    <x-dropdown-list id="dropdownResponsibilityCenter" text="{{ $rcenterName }}">
+                        <li><h6 class="dropdown-header text-uppercase">Select Responsibility Center</h6></li>
+                        @foreach ($rcenters as $rcenter )
+                            <li><a class="dropdown-item  {{ setDisableRCenter($rcenter->id) }}" href="javascript:void(0)"  wire:click.prevent="selectResponsibilityCenter({{ $rcenter->id }})">{{ $rcenter->term }}</a></li>
+                        @endforeach
+                    </x-dropdown-list>
+                </li>
+
                 <li class="nav-item lh-1 me-3">
                     <x-dropdown-list id="dropdownQuarter" text="{{ $quarter }}">
                         <li><h6 class="dropdown-header text-uppercase">Select quarter</h6></li>

@@ -49,6 +49,7 @@ class Create extends Component
             'quality_id' => $this->quality,
             'relevance' => $this->relevance,
             'owner' => sessionGet('id'),
+            'responsibility_center_id' => sessionGet('responsibility_center_id'),
 
             'quarter' => sessionGet('current-quarter-'.auth()->user()->id)['value'],
             'year' => sessionGet('current-year-'.auth()->user()->id)['value'],
