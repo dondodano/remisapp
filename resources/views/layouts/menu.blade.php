@@ -73,15 +73,20 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Monitoring</span>
             </li>
-            <li class="menu-item {{ openSide(['lib']) }}">
+            <li class="menu-item {{ openSide(['project', 'lib', 'ppmp', 'consolidated-price', 'purchase-request', 'activity-design','activity-permit','attendance-sheet' ]) }}">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-wallet"></i>
                     <div data-i18n="Finance">Finance</div>
                 </a>
                 <ul class="menu-sub">
+                    <li class="menu-item {{ activeSide('project') }}">
+                        <a href="/project" class="menu-link">
+                            <div data-i18n="Project">Project</div>
+                        </a>
+                    </li>
                     <li class="menu-item {{ activeSide('lib') }}">
                         <a href="/lib" class="menu-link">
-                            <div data-i18n="LIB">LIB</div>
+                            <div data-i18n="Line Item Budget">Line Item Budget</div>
                         </a>
                     </li>
                     <li class="menu-item {{ activeSide('ppmp') }}">
@@ -89,9 +94,29 @@
                             <div data-i18n="PPMP">PPMP</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ activeSide('pr') }}">
-                        <a href="/pr" class="menu-link">
-                            <div data-i18n="PR">PR</div>
+                    <li class="menu-item {{ activeSide('consolidated-price') }}">
+                        <a href="/consolidated-price" class="menu-link">
+                            <div data-i18n="Consolidated Price">Consolidated Price</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ activeSide('purchase-request') }}">
+                        <a href="/purchase-request" class="menu-link">
+                            <div data-i18n="Purchase Request">Purchase Request</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ activeSide('activity-design') }}">
+                        <a href="/activity-design" class="menu-link">
+                            <div data-i18n="Activity Design">Activity Design</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ activeSide('activity-permit') }}">
+                        <a href="/activity-permit" class="menu-link">
+                            <div data-i18n="Activity Permit">Activity Permit</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ activeSide('attendance-sheet') }}">
+                        <a href="/attendance-sheet" class="menu-link">
+                            <div data-i18n="Attendance Sheet">Attendance Sheet</div>
                         </a>
                     </li>
                 </ul>
