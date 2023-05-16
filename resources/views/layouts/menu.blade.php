@@ -69,6 +69,34 @@
             </li>
         @endrole
 
+        {{-- @role(['super', 'admin', 'faculty', 'staff'])
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Monitoring</span>
+            </li>
+            <li class="menu-item {{ openSide(['lib']) }}">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-wallet"></i>
+                    <div data-i18n="Finance">Finance</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ activeSide('lib') }}">
+                        <a href="/lib" class="menu-link">
+                            <div data-i18n="LIB">LIB</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ activeSide('ppmp') }}">
+                        <a href="/ppmp" class="menu-link">
+                            <div data-i18n="PPMP">PPMP</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ activeSide('pr') }}">
+                        <a href="/pr" class="menu-link">
+                            <div data-i18n="PR">PR</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endrole --}}
 
         @role(['super', 'admin'])
             <!-- User -->
