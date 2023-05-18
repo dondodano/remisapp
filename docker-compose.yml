@@ -1,0 +1,25 @@
+version: '20.10.23'
+services:
+  www:
+    image: php:apache
+    volumes:
+      - "./:/var/www/html"
+      - .docker/config/vhosts:/etc/apache2/sites-enabled
+    ports:
+      - 8000:80
+    # extra_hosts:
+    #   - "host.docker.internal:127.0.0.1"
+  db:
+    image: mysql:8.0.21
+    environment:
+      - MYSQL_DATABASE=remisapp
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306

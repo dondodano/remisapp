@@ -58,6 +58,8 @@ return [
 
     'mail_from_address' => env('MAIL_FROM_ADDRESS'),
 
+    'chatgpt_api_key' => env('CHATGPT_API_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
