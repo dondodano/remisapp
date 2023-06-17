@@ -1295,14 +1295,14 @@ function isRoleBelongsTo($roles = ['super', 'admin']){
  */
 function appFavIcon()
 {
-    $favIcon = 'images/default_logo';
+    $webIcon = 'images/default_logo';
 
-    if(cache()->get('favicon'))
+    if(cache()->get('webicon'))
     {
-        $favIcon =cache()->get('favicon')['path'];
+        $webIcon =cache()->get('webicon')['path'];
     }
 
-    return getFileShortLocation($favIcon);
+    return getFileShortLocation($webIcon);
 }
 
 

@@ -20,15 +20,15 @@ class AuthController extends Controller
 {
     public function index()
     {
-        // $favIcon = 'images/default_logo';
-        // if(Cache::get('favicon'))
+        // $webIcon = 'images/default_logo';
+        // if(Cache::get('webicon'))
         // {
-        //     $favIcon = Cache::get('favicon')['path'];
+        //     $webIcon = Cache::get('webicon')['path'];
         // }
 
         return view('content.auth.login');
         // ,[
-        //     'favicon' => getFileShortLocation($favIcon)
+        //     'webicon' => getFileShortLocation($webIcon)
         // ]);
     }
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
                 'title' => Auth::user()->title
             ];
 
-            $favIcon = General::where('id', 1)->first()->fav_icon;
+            $webIcon = General::where('id', 1)->first()->fav_icon;
 
             session([
                 'session' => token(),
@@ -72,7 +72,7 @@ class AuthController extends Controller
                 'temp_avatar' => !empty(Auth::user()->temp_avatar) ? Auth::user()->temp_avatar->avatar : '',
                 'name_array' => $fullName,
                 'current_year' => setToday('Y'),
-                'favicon' => $favIcon,
+                'webicon' => $webIcon,
                 'responsibility_center' => [
                     'id' => Auth::user()->responsibility_center_id,
                     'name' => Auth::user()->with('user_responsibility_center')->first()->user_responsibility_center->term
@@ -81,8 +81,8 @@ class AuthController extends Controller
 
             $this->logUser($request, 1);
 
-            Cache::rememberForever('favicon', function() use ($favIcon){
-                return ['path' => $favIcon];
+            Cache::rememberForever('webicon', function() use ($webIcon){
+                return ['path' => $webIcon];
             });
 
             event(new PusherNotificationEvent('UserOnlineStatus'));

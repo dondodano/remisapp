@@ -11,13 +11,13 @@ use App\Models\Setting\General;
 class WebiconController extends Controller
 {
     public function index(){
-        return view('content.setting.favicon.index');
+        return view('content.setting.webicon.index');
     }
 
     public function update(Request $request)
     {
         // Path
-        $path = 'favicon/';
+        $path = 'webicon/';
         $location = 'public/' . $path;
 
         // File
@@ -41,51 +41,51 @@ class WebiconController extends Controller
             $attachment_file->storeAs($path, $attachment_file_name, 'public');
 
 
-            $favPath = $path . $attachment_file_name;
+            $webPath = $path . $attachment_file_name;
 
             if(General::count() == 0)
             {
-               $fav_icon_store = General::firstOrCreate([
-                   'fav_icon' => $favPath
+               $web_icon_store = General::firstOrCreate([
+                   'web_icon' => $webPath
                ]);
-               $fav_icon_store->save();
+               $web_icon_store->save();
 
-               if($fav_icon_store){
-                   session(['favicon' => $favPath]);
+               if($web_icon_store){
+                   session(['webicon' => $webPath]);
 
-                    Cache::forget('favicon');
-                    Cache::rememberForever('favicon', function() use ($favPath){
-                        return ['path' => $favPath];
+                    Cache::forget('webicon');
+                    Cache::rememberForever('webicon', function() use ($webPath){
+                        return ['path' => $webPath];
                     });
 
                    toastr("File successfully uploaded!", "success");
                    return back();
                }else{
-                   toastr("Unable to upload fav icon!", "warning");
+                   toastr("Unable to upload web icon!", "warning");
                    return back();
                }
            }else{
-               $fav_icon_update = General::findOrFail(1);
-               $fav_icon_update->update([
-                   'fav_icon' => $favPath
+               $web_icon_update = General::findOrFail(1);
+               $web_icon_update->update([
+                   'web_icon' => $webPath
                ]);
 
-               if($fav_icon_update){
-                   session(['favicon' => $favPath]);
+               if($web_icon_update){
+                   session(['webicon' => $webPath]);
 
-                    Cache::forget('favicon');
-                    Cache::rememberForever('favicon', function() use ($favPath){
-                        return ['path' => $favPath];
+                    Cache::forget('webicon');
+                    Cache::rememberForever('webicon', function() use ($webPath){
+                        return ['path' => $webPath];
                     });
 
                    toastr("Fav icon successfully updated!", "info");
                    return back();
                }else{
-                   toastr("Unable to update fav icon!", "warning");
+                   toastr("Unable to update web icon!", "warning");
                    return back();
                }
 
-               toastr("Data => " . $fav_icon_update, "warning");
+               toastr("Data => " . $web_icon_update, "warning");
                return back();
            }
 
