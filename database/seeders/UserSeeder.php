@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
                 'avatar' => '',
                 'email' => 'dondo.dano@spamast.edu.ph',
                 'password' => bcrypt('password'),
+                'responsibility_center_id' => 1,
                 'role_id' => 1,
                 'status' => 1,
             ]

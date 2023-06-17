@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('email', 255)->nullable();
             $table->string('password', 255)->nullable();
             $table->string('remember_token', 255)->nullable();
-            $table->integer('institute_id')->default(0);
+            $table->integer('responsibility_center_id')->default(0);
             $table->integer('role_id')->default(0);
             $table->integer('status')->default(1);
             $table->integer('active')->default(1);
