@@ -206,9 +206,9 @@
                                 <div data-i18n="General">General</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ activeSide('favicon') }}">
-                            <a href="/favicon" class="menu-link">
-                                <div data-i18n="Fav Icon">Fav Icon</div>
+                        <li class="menu-item {{ activeSide('webicon') }}">
+                            <a href="/webicon" class="menu-link">
+                                <div data-i18n="Web Icon">Web Icon</div>
                             </a>
                         </li>
                     </ul>

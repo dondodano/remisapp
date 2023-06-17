@@ -29,7 +29,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backup\SystemController;
 use App\Http\Controllers\User\PasswordController;
 use App\Http\Controllers\Backup\DatabaseController;
-use App\Http\Controllers\Setting\FaviconController;
+use App\Http\Controllers\Setting\WebiconController;
 use App\Http\Controllers\Requisite\ProgramController;
 use App\Http\Controllers\User\UserSendMailController;
 use App\Http\Controllers\User\ResetPasswordController;
@@ -299,11 +299,11 @@ Route::prefix('/general')->middleware(['auth', 'can:is_super'])->group(function(
 
 
 /**
- * Favicon Setting
+ * Webicon Setting
  */
-Route::prefix('/favicon')->middleware(['auth', 'can:is_super'])->group(function(){
-    Route::get('', [FaviconController::class, 'index']);
-    Route::post('/update', [FaviconController::class, 'update']);
+Route::prefix('/webicon')->middleware(['auth', 'can:is_super'])->group(function(){
+    Route::get('', [WebiconController::class, 'index']);
+    Route::post('/update', [WebiconController::class, 'update']);
 });
 
 

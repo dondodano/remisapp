@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Cache;
 use App\Models\Setting\General;
 
-class FaviconController extends Controller
+class WebiconController extends Controller
 {
     public function index(){
         return view('content.setting.favicon.index');
