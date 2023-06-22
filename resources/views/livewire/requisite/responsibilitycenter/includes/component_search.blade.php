@@ -18,8 +18,8 @@
                 <input type="search" class="form-control" placeholder="Search" wire:model.debounce.500ms="search" >
             </div>
             <div class="me-3">
-                <a href="/institute/create" class="btn btn-primary">
-                    <i class="bx bx-plus"></i> Add New Institute
+                <a href="/rc/create" class="btn btn-primary">
+                    <i class="bx bx-plus"></i> Add New RC
                 </a>
             </div>
         </div>

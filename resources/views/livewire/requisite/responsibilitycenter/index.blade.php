@@ -4,7 +4,7 @@
 
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5 class="card-title">Institute list</h5>
+                    <h5 class="card-title">Responsibility Center list</h5>
                 </div>
                 <div class="table-responsive text-nowrap perfect-sc" id="perfect-0">
 
