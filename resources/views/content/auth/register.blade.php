@@ -31,11 +31,11 @@
     </div>
 
     <div class="mb-3">
-        <label for="institute" class="form-label">Institute <strong class="text-danger">*</strong></label>
-        <select  id="institute" class="form-select" name="institute" >
-            <option value="0">-- Select Institute --</option>
-            @foreach($institutes as $institute)
-                <option value="{{ $institute->id }}" selected>{{ $institute->term }}</option>
+        <label for="center" class="form-label">Responsibility Center <strong class="text-danger">*</strong></label>
+        <select  id="center" class="form-select" name="center" >
+            <option value="0">-- Select Responsibility Center --</option>
+            @foreach($centers as $center)
+                <option value="{{ $center->id }}" selected>{{ $center->term }}</option>
             @endforeach
         </select>
         @error('institute')

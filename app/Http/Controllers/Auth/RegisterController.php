@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 use App\Models\User\UserRole;
-use App\Models\Requisite\Institute;
+use App\Models\Requisite\ResponsibilityCenter;
 use App\Models\User\UserTempAvatar;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +15,7 @@ class RegisterController extends Controller
     {
         return view('content.auth.register',[
             'roles' => UserRole::where('is_visible',1)->get(),
-            'institutes' => Institute::activeStatus()->get()
+            'centers' => ResponsibilityCenter::activeStatus()->get()
         ]);
     }
 
@@ -24,7 +24,7 @@ class RegisterController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'institute' => 'required',
+            'center' => 'required',
             'firstname' => 'required',
             'lastname' => 'required'
         ]);
@@ -40,7 +40,7 @@ class RegisterController extends Controller
             'title' => $request->input('title'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'institute_id' => $request->input('institute'),
+            'responsibility_center_id' => $request->input('center'),
             'role_id' => '3',
             'status' => '0'
         ]);
