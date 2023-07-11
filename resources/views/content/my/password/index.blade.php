@@ -13,9 +13,9 @@
 
                     <h6 class="mb-b fw-semibold">1. Account Details</h6>
                     <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label text-sm-end" for="role">Role</label>
+                        <label class="col-sm-3 col-form-label text-sm-end" for="fullname">Full Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="role" class="form-control" placeholder="Faculty" name="role" value="{{ fullName() }}" disabled>
+                            <input type="text" id="fullname" class="form-control" placeholder="Faculty" name="fullname" value="{{ fullName() }}" disabled>
                         </div>
                     </div>
                     <div class="row mb-3">
